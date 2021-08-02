@@ -9,9 +9,17 @@ const PersonalInformation:FC<personaldata> = (props) => {
   return (
     <React.Fragment>
     <div className="personalInfo">
-      <h3 className="personalInfo__subtitle">
-        Step 1 : Personal Information
-      </h3>
+      <div className="personalInfo__titlebar">
+
+<div className="personalInfo__steps mb-5">
+  <span className="step ml-4 mr-4 text-primary active">Step 1</span>
+  <span className="step ml-4 mr-4 text-muted">Step 2</span>
+  <span className="step ml-4 mr-4 text-muted">Step 3</span>
+  <span className="step ml-4 mr-4 text-muted">Step 4</span>
+  <span className="step ml-4 mr-4 text-muted">Step 5</span>
+</div>
+        <h3 className="personalInfo__subtitle">Step 1 : Personal Information</h3>
+      </div>
       {/* passport */}
       <div className="personalInfo__passport personalInfo__div mb-2">
         <input
@@ -110,11 +118,11 @@ const PersonalInformation:FC<personaldata> = (props) => {
 
 <div className="signup__buttons">
 <div className="signup__prev">
-  <button className="btn bg-dark text-white rounded-0">Go back</button>
+  <button className="btn bg-dark text-white rounded-0">Back</button>
 </div>
 
 <div className="signup__next">
-  <button className="btn bg-dark text-white rounded-0" onClick={() => props.changeTab(2)}>Continue</button>
+  <button className="btn bg-dark text-white rounded-0" onClick={() => props.changeTab(2)}>Next</button>
 </div>
 </div>
 </React.Fragment>

@@ -1,9 +1,9 @@
-/* personalInfo component */
-.personalInfo{
-    .personalInfo__titlebar {
+/* addressInfo component */
+.addressInfo{
+    .addressInfo__titlebar {
         text-align: center;
     }
-    .personalInfo__subtitle {
+    .addressInfo__subtitle {
         text-align: center;
         margin-top: -0.5em;
         margin-bottom: 1.5em;
@@ -12,7 +12,7 @@
         font-size: 20px;
         font-weight: 700;
     }
-    .personalInfo__passport {
+    .addressInfo__passport {
         text-align: center;
         padding: 2em;
         border: 2px dashed gray;
@@ -21,121 +21,115 @@
         left: 50%;
         transform: translate(-50%);
     }
-
-    .personalInfo__steps {
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-    }
     
-    .personalInfo__label {
+    .addressInfo__label {
         font-weight: 600;
     }
     
-    .personalInfo__photo {
+    .addressInfo__photo {
         margin-bottom: 15em;
     }
     
-    .personalInfo__field {
+    .addressInfo__field {
         font-family: "roboto";
         font-weight: 500;
         border: 1.5px solid gray;
     }
     
     @media (max-width: 991.98px) {
-        .personalInfo {
+        .addressInfo {
         padding: 0 1.8em 0 1.3em;
         margin-top: 3em;
         }
-        .personalInfo__pvtData {
+        .addressInfo__pvtData {
         display: block;
         margin-top: 2.2em;
         }
-        .personalInfo__surname,
-        .personalInfo__firstname,
-        .personalInfo__middlename,
-        .personalInfo__phoneNo,
-        .personalInfo__email,
-        .personalInfo__gender {
+        .addressInfo__surname,
+        .addressInfo__firstname,
+        .addressInfo__middlename,
+        .addressInfo__phoneNo,
+        .addressInfo__email,
+        .addressInfo__gender {
         padding: 0;
         margin-top: 1.5em;
         }
     
-        .personalInfo__label {
+        .addressInfo__label {
         font-size: 14px;
         }
     
-        .personalInfo__field {
+        .addressInfo__field {
         width: 100%;
         margin-top: 10px;
         height: 3.5em;
         }
     
-        .personalInfo__genderInput {
+        .addressInfo__genderInput {
         /* width: 102.5%; */
         }
     }
     
     @media (min-width: 576px) and (max-width: 767.98px) {
-        .personalInfo {
+        .addressInfo {
         padding: 0 5em;
         }
     }
     
     @media (min-width: 768px) and (max-width: 991.98px) {
-        .personalInfo {
+        .addressInfo {
         padding: 0 10em;
         }
     }
     
     @media (min-width: 992px) {
-        .personalInfo {
+        .addressInfo {
         padding: 0 12em;
         margin-top: 5em;
         }
-        .personalInfo__pvtData,
-        .personalInfo__otherData {
+        .addressInfo__pvtData,
+        .addressInfo__otherData {
             // display: flex;
             // justify-content: space-between;
             // margin-top: 3em;
             width:100%
         }
     
-        .personalInfo__otherData {
+        .addressInfo__otherData {
         margin-top: 2.5em;
         }
-        .personalInfo__surname,
-        .personalInfo__firstname,
-        .personalInfo__middlename,
-        .personalInfo__phoneNo,
-        .personalInfo__email,
-        .personalInfo__gender {
+        .addressInfo__surname,
+        .addressInfo__firstname,
+        .addressInfo__middlename,
+        .addressInfo__phoneNo,
+        .addressInfo__email,
+        .addressInfo__gender {
         padding: 0;
         }
     
-        .personalInfo__label {
+        .addressInfo__label {
         font-size: 13px;
         }
     
-        .personalInfo__field {
+        .addressInfo__field {
         width: 21em;
         margin-top: 12px;
         height: 3.5em;
         font-size: 13px;
         }
     
-        .personalInfo__genderInput {
+        .addressInfo__genderInput {
         /* width: 102.5%; */
         height: 3.85em;
         }
     }
     
     @media (min-width: 992px) and (max-width: 1199.98px) {
-        .personalInfo {
+        .addressInfo {
         padding: 0 5em;
         }
     
-        .personalInfo__field {
+        .addressInfo__field {
         width: 21em;
         margin-top: 12px;
         height: 3.5em;
