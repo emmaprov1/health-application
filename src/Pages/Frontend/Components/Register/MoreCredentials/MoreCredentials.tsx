@@ -55,11 +55,11 @@ const MoreCredentials:FC<personaldata> = (props) => {
       {/* back and next buttons */}
       <div className="ctrls pl-4 pr-4 mt-2">
         <div className="ctrls__back">
-          <button type="button" className="ctrls__btn btn btn-secondary rounded-0" onClick={() => props.changeTab(3)}>Back : Credentials Information</button>
+          <button type="button" className="ctrls__btn btn btn-secondary" onClick={() => props.changeTab(3)}>Back : Credentials Information</button>
         </div>
 
         <div className="ctrls__next ml-5">
-          <button type="button" className="ctrls__btn btn btn-dark rounded-0" onClick={() => props.changeTab(5)}>Next : Job Role Application</button>
+          <button type="button" className="ctrls__btn btn btn-dark" onClick={() => props.changeTab(5)}>Next : Job Role Application</button>
         </div>
       </div>
     </React.Fragment>

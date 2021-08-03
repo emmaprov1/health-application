@@ -17,7 +17,7 @@ const Register = () => {
       <React.Fragment>
       <RegisterHeader/>
         <div className="register">
-          <div className="register__container">
+          <div className="register__container pt-5">
             <div className="row">
               {/* register help column */}
               <div className="register__help col-lg-4">
@@ -43,7 +43,6 @@ const Register = () => {
                     {currentTab === 4 && (<MoreCredentials changeTab={changeTab}/>)}
                     {currentTab === 5 && (<JobApplication changeTab={changeTab}/>)}
                   </form>
-
                 </div>
               </div>
             </div>
