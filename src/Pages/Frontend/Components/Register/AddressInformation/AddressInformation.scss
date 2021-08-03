@@ -1,39 +1,30 @@
 /* addressInfo component */
 .addressInfo{
-    .addressInfo__titlebar {
+    width: auto;
+    margin-top: -0.9em;
+
+    &__titlebar {
         text-align: center;
-    }
-    .addressInfo__subtitle {
-        text-align: center;
-        margin-top: -0.5em;
-        margin-bottom: 1.5em;
     }
     .active {
-        font-size: 20px;
+        // font-size: 17px;
         font-weight: 700;
     }
-    .addressInfo__passport {
+    &__subtitle {
         text-align: center;
-        padding: 2em;
-        border: 2px dashed gray;
-        width: 18em;
-        position: relative;
-        left: 50%;
-        transform: translate(-50%);
-    }
-    
-    .addressInfo__label {
+        margin-top: -0.7em;
+        margin-bottom: 1.7em;
         font-weight: 600;
     }
     
-    .addressInfo__photo {
-        margin-bottom: 15em;
-    }
-    
-    .addressInfo__field {
-        font-family: "roboto";
-        font-weight: 500;
-        border: 1.5px solid gray;
+    // form - text fields
+    &__textFields {
+        width: auto;
+        
+        .form-control {
+            // height: 3em;
+            // border-radius: 0;
+        }
     }
     
     @media (max-width: 991.98px) {

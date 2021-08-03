@@ -1,0 +1,64 @@
+// breakpoints values
+$bps: (
+    xs-max: 575.98px,
+    sm-min: 576px,
+    sm-max: 767.98px,
+    md-min: 768px,
+    md-max: 991.98px,
+    lg-min: 992px,
+    lg-max: 1199px,
+    xl-min: 1200px,
+) !default;
+
+// query of the min-width
+@mixin media-min($lower) {
+    @if map-keys($bps) {
+        $min: map-get($bps, $lower);
+        @if $min {
+            @media(min-width: $min) {
+                @content;
+            }
+        }
+        @else {
+            @content;
+        }
+    }
+}
+
+// query of the max-width
+@mixin media-max($upper) {
+    @if map-keys($bps) {
+        $max: map-get($bps, $upper);
+        @if $max {
+            @media(max-width: $max) {
+                @content;
+            }
+        }
+        @else {
+            @content;
+        }
+    }
+}
+
+// query of the btw-widths
+@mixin media-btw($lower, $upper) {
+    @if map-keys($bps) {
+        $min: map-get($bps, $lower);
+        $max: map-get($bps, $upper);
+        @if $min != null and max != null {
+            @media(min-width: $min) and (max-width: $max) {
+                @content;
+            }
+        }
+        @else if $max == null {
+            @include media-min($lower) {
+                @content;
+            }
+        }
+        @else if $min == null {
+            @include media-max($upper) {
+                @content;
+            }
+        }
+    }
+}

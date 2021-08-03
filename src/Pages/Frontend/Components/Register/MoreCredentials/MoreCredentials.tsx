@@ -8,60 +8,61 @@ interface personaldata {
 const MoreCredentials:FC<personaldata> = (props) => {
   return (
     <React.Fragment>
-    <div className="moreCredentials">
-    <div className="credentialsInfo__titlebar">
-
-<div className="credentialsInfo__steps mb-5">
-  <span className="step ml-4 mr-4 text-muted">Step 1</span>
-  <span className="step ml-4 mr-4 text-muted">Step 2</span>
-  <span className="step ml-4 mr-4 text-muted">Step 3</span>
-  <span className="step ml-4 mr-4 text-primary active">Step 4</span>
-  <span className="step ml-4 mr-4 text-muted">Step 5</span>
-</div>
-        <h3 className="credentialsInfo__subtitle">Step 4 : More Credentials</h3>
+      {/* moreCredentials markup */}
+      <div className="moreCredentials">
+        {/* moreCredentials title */}
+        <div className="moreCredentials__titlebar">
+          <div className="mb-5">
+            <span className="step ml-4 mr-4 text-muted">Step 1</span>
+            <span className="step ml-4 mr-4 text-muted">Step 2</span>
+            <span className="step ml-4 mr-4 text-muted">Step 3</span>
+            <span className="step ml-4 mr-4 text-primary active">Step 4</span>
+            <span className="step ml-4 mr-4 text-muted">Step 5</span>
+          </div>
+          <h4 className="moreCredentials__subtitle">Step 4 : More Credentials</h4>
+        </div>
       </div>
-      <div className="row pl-5 pr-5">
-        <div className="moreCredentials__div col-xl-6">
-            <input
-            className="moreCredentials__fileField"
-            type="file"
-            name="ssc"
-            id="ssc"
-            />
-            <br/>
-            <p className="mt-3">
-                <label htmlFor="" className="moreCredentials__label">
-                    Upload LGA Certificate
-                </label>
-            </p>
-        </div>
-        <div className="moreCredentials__div col-xl-6">
-            <input
-            className="moreCredentials__fileField"
-            type="file"
-            name="bhc"
-            id="bhc"
-            />
-            <br/>
-            <p className="mt-3">
-                <label htmlFor="" className="moreCredentials__label">
-                    Upload Government Issued ID
-                </label>
-            </p>
-        </div>
-    </div>
-  </div>
 
-<div className="signup__buttons">
-<div className="signup__prev">
-  <button className="btn bg-dark text-white rounded-0" onClick={() => props.changeTab(3)}>Back</button>
-</div>
+      {/* form - file fields - open */}
+      <div className="moreCredentials__fileFields row pl-4 pr-4">
+      <div className="moreCredentials__fileField col-xl-6">
+          <div className="moreCredentials__uploadFile">
+            <input
+              type="file"
+              name="sscert"
+              id="sscert"
+            />
+          </div>
+          <p className="moreCredentials__labelContainer text-center mt-3">
+            <label htmlFor="upload passport">Upload LGA Certificate</label>
+          </p>
+        </div>
 
-<div className="signup__next">
-  <button className="btn bg-dark text-white rounded-0" onClick={() => props.changeTab(5)}>Next</button>
-</div>
-</div>
-</React.Fragment>
+        <div className="moreCredentials__fileField col-xl-6">
+          <div className="moreCredentials__uploadFile">
+            <input
+              type="file"
+              name="sscert"
+              id="sscert"
+            />
+          </div>
+          <p className="moreCredentials__labelContainer text-center mt-3">
+            <label htmlFor="upload passport">Upload Government Issued ID</label>
+          </p>
+        </div>
+      </div>
+
+      {/* back and next buttons */}
+      <div className="ctrls pl-4 pr-4 mt-2">
+        <div className="ctrls__back">
+          <button type="button" className="ctrls__btn btn btn-secondary rounded-0" onClick={() => props.changeTab(3)}>Back : Credentials Information</button>
+        </div>
+
+        <div className="ctrls__next ml-5">
+          <button type="button" className="ctrls__btn btn btn-dark rounded-0" onClick={() => props.changeTab(5)}>Next : Job Role Application</button>
+        </div>
+      </div>
+    </React.Fragment>
   )
 }
 

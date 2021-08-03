@@ -1,35 +1,33 @@
 /* jobApplication component */
 .jobApplication{
-    .jobApplication__titlebar {
+    width: auto;
+    margin-top: -0.9em;
+
+    &__titlebar {
         text-align: center;
-    }
-    .jobApplication__subtitle {
-        text-align: center;
-        margin-top: -0.5em;
-        margin-bottom: 1.5em;
     }
     .active {
-        font-size: 20px;
         font-weight: 700;
     }
-    .jobApplication__fileField {
+    &__subtitle {
         text-align: center;
-        padding: 2.2em;
-        border: 2px dashed gray;
-    }
-    
-    .jobApplication__label {
+        margin-top: -0.7em;
+        margin-bottom: 1.7em;
         font-weight: 600;
     }
     
-    .jobApplication__photo {
-        margin-bottom: 15em;
-    }
-    
-    .jobApplication__field {
-        font-family: "roboto";
-        font-weight: 500;
-        border: 1.5px solid gray;
+    // form - text fields
+    &__textFields {
+        width: auto;
+        
+        .form-control {
+            // height: 3em;
+            // border-radius: 0;
+        }
+
+        .letterBox {
+            height: 17em;
+        }
     }
     
     @media (max-width: 991.98px) {
@@ -52,7 +50,7 @@
         }
     
         .jobApplication__label {
-        font-size: 14px;
+        
         }
     
         .jobApplication__fileField {
@@ -95,12 +93,12 @@
         }
     
         .jobApplication__label {
-        font-size: 13px;
+        
         }
     
         .jobApplication__fileField {
         margin-top: 25px;
-        font-size: 15px;
+        
         width: 18.5em;
         }
     }
@@ -114,7 +112,7 @@
         width: 21em;
         margin-top: 12px;
         height: 3.5em;
-        font-size: 13px;
+        
         }
     }
 }  

@@ -1,31 +1,74 @@
+// import the mediaBP component
+@import "../../Components/MediaBP.scss";
+
 /* component : signup division */
 .register {
   background-color: rgb(255, 255, 255);
-  height:100vh;
+  height: 100vh;
+  overflow-x: hidden;
 
-  .form-content{
-    height: 100%;
+  @include media-min(xl-min) {
+    overflow: hidden;
   }
-  .signup {
-  // font-family: "montserrat"; 
-}
 
-.signup__formHandler {
-  padding-bottom: 3em;
-}
+  // register help column
+  &__help {
+    @include media-max(lg-max) {
+      display: none;
+    }
+    @include media-min(xl-min) {
+      padding: 4em 5em;
 
-.summary {
-  line-height: 185%;
-}
+      p {
+        line-height: 200%;
+      }
+    }
+  }
 
-.instructionList ol {
-  margin-top: 15px;
-}
+  &__helpTitle {
+    font-weight: 600;
+  }
 
-.signup__buttons {
-  display: flex;
-  justify-content: space-between;
-}
+  &__instructions {
+    margin-top: -0.2em;
+
+    li {
+      line-height: 300%;
+    }
+  }
+
+  // register form column
+  &__formCard {
+    border-left: 2px solid rgb(230, 230, 230);
+    height: 100vh;
+  }
+  &__formHandler {
+    @include media-max(md-max) {
+      padding: 0 1.7em 0 0;
+    }
+    @include media-min(lg-min) {
+      padding: 0 1em 0 0;
+    }
+  }
+
+  // back and next buttons
+  .ctrls,
+  &__buttons {
+    @include media-min(xl-min) {
+      display: flex;
+      // justify-content: space-between;
+    }
+
+    &__btn {
+      padding: 1em 1.8em;
+      letter-spacing: 1px;
+      font-weight: 600;
+
+      @include media-max(sm-max) {
+        width: 100%;
+      }
+    }
+  }
 
 .signup__prevBtn,
 .signup__nextBtn {

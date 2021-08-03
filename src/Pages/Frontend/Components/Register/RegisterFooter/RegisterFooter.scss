@@ -1,26 +1,11 @@
-.footer{
-    left: 0 !important;
+footer{
 
-    .footer-contact{
+    .reg-footer{  
         background: rgb(1, 0, 103);
-        padding: 40px 0 40px 0;
+        padding: 40px 0 40px 0; 
+        height: 100px;
+        position: relative;
+        left: 0;
     }
-    .footer-logo{
-        width:100px;
-    }
-    .footer-credit{ 
-        padding: 20px 0 20px 0;
-        background: linear-gradient(
-            180deg
-            , rgb(31, 156, 25) 0%, rgb(15, 77, 12) 100%), url(../../../../../Assets/images/police.jpeg) no-repeat;
-    
-    }
-    
-    .footer-power{
-        padding: 15px 0 15px 0;
-        background: linear-gradient(
-            180deg
-            , rgb(251, 254, 0) 0%, rgb(251, 254, 0) 100%), url(../../../../../Assets/images/police.jpeg) no-repeat;
-      
-    }
+
 }

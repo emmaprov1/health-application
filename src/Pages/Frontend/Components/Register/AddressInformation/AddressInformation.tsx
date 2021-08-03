@@ -7,22 +7,25 @@ interface personaldata {
 
 const AddressInformation:FC<personaldata> = (props) => {
   return (
+    // addressInfo markup
     <React.Fragment>
-    <div className="addressInfo">
-    <div className="addressInfo__titlebar">
+      <div className="addressInfo">
+        {/* addressInfo title */}
+        <div className="addressInfo__titlebar">
+          <div className="mb-5">
+            <span className="step ml-4 mr-4 text-muted">Step 1</span>
+            <span className="step ml-4 mr-4 text-primary active">Step 2</span>
+            <span className="step ml-4 mr-4 text-muted">Step 3</span>
+            <span className="step ml-4 mr-4 text-muted">Step 4</span>
+            <span className="step ml-4 mr-4 text-muted">Step 5</span>
+          </div>
+          <h4 className="addressInfo__subtitle">Step 2 : Address Information</h4>
+        </div>
 
-<div className="addressInfo__steps mb-5">
-  <span className="step ml-4 mr-4 text-muted">Step 1</span>
-  <span className="step ml-4 mr-4 text-primary active">Step 2</span>
-  <span className="step ml-4 mr-4 text-muted">Step 3</span>
-  <span className="step ml-4 mr-4 text-muted">Step 4</span>
-  <span className="step ml-4 mr-4 text-muted">Step 5</span>
-</div>
-        <h3 className="addressInfo__subtitle">Step 2 : Address Information</h3>
-      </div>
-      <div className="addressInfo__pvtData row mt-5 pl-4">
-        <div className="form-group col-xl-6">
-            <label htmlFor="state of origin" className="">
+        {/* form - text fields - open */}
+        <div className="addressInfo__textFields row pl-4">
+          <div className="form-group col-xl-6">
+            <label htmlFor="state of origin">
               State Of Origin
             </label>
             <br />
@@ -31,12 +34,12 @@ const AddressInformation:FC<personaldata> = (props) => {
               type="text"
               name="stateOfOrigin"
               id="stateOfOrigin"
-              placeholder="e.g Kwara State"
+              placeholder="Kwara State"
             />
           </div>
 
           <div className="form-group col-xl-6">
-            <label htmlFor="state of origin" className="">
+            <label htmlFor="state of origin">
               Address Of Origin
             </label>
             <br />
@@ -45,11 +48,11 @@ const AddressInformation:FC<personaldata> = (props) => {
               type="text"
               name="addressOfOrigin"
               id="addressOfOrigin"
-              placeholder="e.g Offa, Kwara State State"
+              placeholder="Offa, Kwara State State"
             />
           </div>
           <div className="form-group col-xl-6">
-            <label htmlFor="state of origin" className="">
+            <label htmlFor="state of origin">
               LGA Of Origin
             </label>
             <br />
@@ -58,11 +61,11 @@ const AddressInformation:FC<personaldata> = (props) => {
               type="text"
               name="stateOfOrigin"
               id="stateOfOrigin"
-              placeholder="e.g Offa LGA, Kwara State"
+              placeholder="Offa LGA, Kwara State"
             />
           </div>
           <div className="form-group col-xl-6">
-            <label htmlFor="state of origin" className="">
+            <label htmlFor="state of origin">
               State Of Residence
             </label>
             <br />
@@ -71,11 +74,11 @@ const AddressInformation:FC<personaldata> = (props) => {
               type="text"
               name="stateOfOrigin"
               id="stateOfOrigin"
-              placeholder="e.g Lagos State"
+              placeholder="Lagos State"
             />
           </div>
           <div className="form-group col-xl-4">
-            <label htmlFor="state of origin" className="">
+            <label htmlFor="state of origin">
               Address Of Residence
             </label>
             <br />
@@ -84,12 +87,12 @@ const AddressInformation:FC<personaldata> = (props) => {
               type="text"
               name="stateOfOrigin"
               id="stateOfOrigin"
-              placeholder="e.g Lekki Phase 2, Lagos"
+              placeholder="Lekki Phase 2, Lagos"
             />
           </div>
 
           <div className="form-group col-xl-4">
-            <label htmlFor="state of origin" className="">
+            <label htmlFor="state of origin">
               LGA Of Residence
             </label>
             <br />
@@ -98,12 +101,12 @@ const AddressInformation:FC<personaldata> = (props) => {
               type="text"
               name="stateOfOrigin"
               id="stateOfOrigin"
-              placeholder="e.g Lagos East"
+              placeholder="Lagos East"
             />
           </div>
 
           <div className="form-group col-xl-4">
-            <label htmlFor="state of origin" className="">
+            <label htmlFor="state of origin">
               Date of Birth
             </label>
             <br />
@@ -112,22 +115,24 @@ const AddressInformation:FC<personaldata> = (props) => {
               type="text"
               name="stateOfOrigin"
               id="stateOfOrigin"
-              placeholder="e.g 15th December 1990"
+              placeholder="15th December 1990"
             />
           </div>
-    </div>
-  </div>
+        </div>
+      </div>
+      {/* form - text fields - open */}
 
-<div className="signup__buttons">
-<div className="signup__prev">
-  <button className="btn bg-dark text-white rounded-0" onClick={() => props.changeTab(1)}>Back</button>
-</div>
+      {/* back and next buttons */}
+      <div className="ctrls pl-4 pr-4 mt-2">
+        <div className="ctrls__back">
+          <button type="button" className="ctrls__btn btn btn-secondary" onClick={() => props.changeTab(1)}>Back : Personal Information</button>
+        </div>
 
-<div className="signup__next">
-  <button className="btn bg-dark text-white rounded-0" onClick={() => props.changeTab(3)}>Next</button>
-</div>
-</div>
-</React.Fragment>
+        <div className="ctrls__next ml-5">
+          <button type="button" className="ctrls__btn btn btn-dark" onClick={() => props.changeTab(3)}>Next : Credentials Information</button>
+        </div>
+      </div>
+    </React.Fragment>
   )
 }
 
