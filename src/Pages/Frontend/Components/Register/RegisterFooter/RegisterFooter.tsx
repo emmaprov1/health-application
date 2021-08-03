@@ -8,6 +8,7 @@ const RegisterFooter = () => {
                     <div className="container">
                         <div className="row">
                             <div className="col-md text-center">
+                                &copy; 2021 LHSC
                             </div>
                             <div className="col-md text-center">
                             </div>
