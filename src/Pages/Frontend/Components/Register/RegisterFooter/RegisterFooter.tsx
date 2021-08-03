@@ -11,10 +11,6 @@ const RegisterFooter = () => {
                             </div>
                             <div className="col-md text-center">
                             </div>
-                            <div className="col-md text-center">
-                            </div>
-                            <div className="col-md text-center">
-                            </div>
                         </div>
                     </div>
                 </div>

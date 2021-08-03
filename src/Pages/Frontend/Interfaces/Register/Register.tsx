@@ -21,7 +21,7 @@ const Register = () => {
           {/* register help column */}
           <div className="register__help col-lg-4">
             <h4 className="register__helpTitle">Registration Instructions</h4>
-            <p className="mt-4 text-muted">Follow the specified instructions to get a very detailed and thorough understanding on how to start and complete your account registration</p>
+            <p className="mt-4 text-muted">Follow the specified instructions to get a very detailed and thorough understanding on how to start and complete your application</p>
             <div className="register__instructions">
               <li>Instruction 1: Your Personal Information</li>
               <li>Instruction 2: Your Address Information</li>
