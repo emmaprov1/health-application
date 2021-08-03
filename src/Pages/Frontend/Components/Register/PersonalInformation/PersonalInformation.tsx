@@ -39,6 +39,24 @@ const PersonalInformation:FC<personaldata> = (props) => {
 
         {/* form - text fields - open */}
         <div className="personalInfo__textFields row pl-4">
+        <div className="form-group col-xl-6">
+              <label htmlFor="state of origin" className="">
+                Job Role
+              </label>
+              <br />
+              <select
+                className="form-control"
+                name="stateOfOrigin"
+                id="stateOfOrigin"
+                placeholder="e.g Doe"
+              >
+              <option value="null">Select a Job Role</option>
+              <option value="consultant">Consultant</option>
+              <option value="consultant">Registrar</option>
+              <option value="consultant">Medical Officer</option>
+            </select>
+          </div>
+
           <div className="form-group col-xl-6">
               <label htmlFor="surname">
                 Surname
@@ -66,23 +84,51 @@ const PersonalInformation:FC<personaldata> = (props) => {
             />
           </div>
 
-          <div className="form-group col-xl-6">
-            <label htmlFor="middlename" className="personalInfo__label">
-              Middle Name
+            <div className="form-group col-xl-6">
+              <label htmlFor="middlename" className="personalInfo__label">
+                Middle Name
+              </label>
+              <br />
+              <input
+                className="form-control"
+                type="text"
+                name="middlename"
+                id="middlename"
+                placeholder="Farruko"
+              />
+            </div>
+
+            <div className="form-group col-xl-6">
+              <label htmlFor="middlename" className="personalInfo__label">
+                Date of birth
+              </label>
+              <br />
+              <input
+                className="form-control"
+                type="date"
+                name="middlename"
+                id="middlename"
+                placeholder="Farruko"
+              />
+            </div>
+
+            <div className="form-group col-xl-6">
+            <label htmlFor="phone" className="personalInfo__label">
+              Phone Number 1
             </label>
             <br />
             <input
               className="form-control"
               type="text"
-              name="middlename"
-              id="middlename"
-              placeholder="Farruko"
+              name="phoneNo"
+              id="phoneNo"
+              placeholder="(234) 091 234 5678"
             />
           </div>
 
           <div className="form-group col-xl-6">
             <label htmlFor="phone" className="personalInfo__label">
-              Phone Number
+              Phone Number 2
             </label>
             <br />
             <input
@@ -96,7 +142,21 @@ const PersonalInformation:FC<personaldata> = (props) => {
 
           <div className="form-group col-xl-6">
             <label htmlFor="email" className="personalInfo__label">
-              Email Address
+              Email Address 1
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              name="email"
+              id="email"
+              placeholder="leongakumba@hotmail.com"
+            />
+          </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="email" className="personalInfo__label">
+              Email Address 2
             </label>
             <br />
             <input

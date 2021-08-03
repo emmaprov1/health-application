@@ -3,7 +3,17 @@ import './RegisterHeader.scss'
 
 const RegisterHeader = () => {
   return (
-    <header className="register-header shadow">
+    <header className="register-header ">
+        <div className="topnavs">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6 text-white">Contact us: hsc@lagosstate.gov.ng | info@lshsc.com.ng</div>
+                    <div className="col-md-6">
+                        <i className="fa fa-facebook-square" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
         <nav className="navbar navbar-expand-lg navbar-light bg-white">
             <div className="container">
                 <a className="navbar-brand" href="#">

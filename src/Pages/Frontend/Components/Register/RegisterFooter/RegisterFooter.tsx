@@ -7,10 +7,8 @@ const RegisterFooter = () => {
                 <div className="footer-credit">
                     <div className="container">
                         <div className="row">
-                            <div className="col-md text-center">
-                                &copy; 2021 LHSC
-                            </div>
-                            <div className="col-md text-center">
+                            <div className="col-md text-center text-white">
+                                &copy; 2021 LHSC - Powered by JKK
                             </div>
                         </div>
                     </div>

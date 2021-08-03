@@ -36,23 +36,19 @@ const JobApplication:FC<personaldata> = (props) => {
                 placeholder="e.g Hello! My name is..."
               ></textarea>
             </div>
-            <div className="form-group col-xl-12">
+        </div>
+
+        <div className="jobApplication__textFields row pl-4">
+          <div className="form-group col-xl-12">
+
+            <br />
+            <input
+             type="checkbox"
+              />
               <label htmlFor="state of origin" className="">
-                Permanent Job Category Role
-              </label>
-              <br />
-              <select
-                className="form-control"
-                name="stateOfOrigin"
-                id="stateOfOrigin"
-                placeholder="e.g Doe"
-              >
-              <option value="null">Select a Job Role</option>
-              <option value="consultant">Consultant</option>
-              <option value="consultant">Registrar</option>
-              <option value="consultant">Medical Officer</option>
-            </select>
-          </div>
+            I accept and acknwoledge that information provided are true to the best of my knowledge.
+            </label>
+            </div>
         </div>
       </div>
       {/* form - text fields - open */}

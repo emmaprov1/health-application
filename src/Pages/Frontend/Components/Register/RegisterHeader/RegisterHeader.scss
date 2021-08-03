@@ -1,6 +1,20 @@
+@import '../../../../../Assets/scss/primaryColor';
 .register-header{
     .logo{
         width:80px;
         height:80px;
+    } 
+    .navbar{
+        box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
     }
+    .topnavs{ 
+        position:relative;
+        top:0;
+        background: #002a38;
+        height:30px;
+        font-size: .8rem;
+        padding: 6px 20px;
+        color: $white
+    }
+    
 }
