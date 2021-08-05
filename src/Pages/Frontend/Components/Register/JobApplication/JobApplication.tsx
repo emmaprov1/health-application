@@ -8,6 +8,8 @@ interface JobApplicationType {
   value:any;
   errors:DeepMap<FieldValues, FieldError>;
   handleChange:(e: any) => void;
+  completeForm:()=>void;
+  submited: boolean
 }
 
 const JobApplication:FC<JobApplicationType> = (props) => {
@@ -104,8 +106,14 @@ const JobApplication:FC<JobApplicationType> = (props) => {
         </div>
 
         <div className="ctrls__next ml-5">
-          <button type="button" className="ctrls__btn btn btn-dark rounded-0" onClick={() => props.changeTab(5)}>Submit : Finish Registration</button>
-        </div>
+
+        {!props.submited && <button className="btn btn-dark btn-md" onClick={props.completeForm}>Submit</button>}
+
+          {props.submited && <button className="btn btn-dark btn-md" disabled onClick={props.completeForm}>Submiting please wait
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
+          </div></button>}
+          </div>
       </div>
     </React.Fragment>
   )

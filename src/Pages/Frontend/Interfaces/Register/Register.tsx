@@ -5,9 +5,12 @@ import CredentialsInformation from '../../Components/Register/CredentialsInforma
 import JobApplication from '../../Components/Register/JobApplication/JobApplication';
 import MoreCredentials from '../../Components/Register/MoreCredentials/MoreCredentials';
 import { useForm } from "react-hook-form";
-
+import { Loader } from "../../../../Components"
+import { Toaster, toast } from 'react-hot-toast';
 import './Register.scss'
 import { useSelector } from 'react-redux';
+import userService from '../../../../Services/userService';
+import { useReference } from '../../../../Hooks';
 
 const initialState = {
   surname: "",
@@ -34,10 +37,12 @@ const Register = () => {
 
   const { uploadedFiles } = useSelector((state:any) => state)
 
+  const userNin = useReference()
+
   const [fields, updateFields] = useState<any>({ ...initialState, data: uploadedFiles })
-  // const [success, setSuccess] = useState(false)
-  // const [submited, setSubmited] = useState(false)
-  // const [loader, setLoader] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [submited, setSubmited] = useState(false)
+  const [loader, setLoader] = useState(false)
 
   const changeTab = (value:number) => {
     setCurrentTab(value)
@@ -69,10 +74,23 @@ const Register = () => {
       [data?.fileType]: [...dataSource, data],
     })
   }
-  const onSubmit = handleSubmit((data) => processData(data));
+  const onSubmit = handleSubmit((data) => completeForm());
 
-  const processData = (data: { [x: string]: any; }) => {
-    console.log(data)
+  const completeForm = async () => {
+    setLoader(true)
+    setSubmited(!submited) // ninData
+    await userService.saveRegistrationData(userNin.id, fields).then(
+      () => {
+        setLoader(false)
+        setSubmited(!submited)
+        setSuccess(!success)
+      }, error => {
+        setLoader(false)
+        setSubmited(!submited)
+        console.log(error.message)
+        toast.error(error.message, { duration: 20000, className: 'bg-danger text-white' });
+      }
+    )
   }
 
   return (
@@ -135,6 +153,8 @@ const Register = () => {
                                           errors={errors}
                                           handleChange={handleChange}
                                           value={fields}
+                                          completeForm = {completeForm}
+                                          submited={submited}
                                           />)}
                   </form>
                 </div>
@@ -143,6 +163,8 @@ const Register = () => {
           </div>
         </div>
       <RegisterFooter/>
+          <Toaster/>
+          <Loader show={loader}/>
     </React.Fragment>
   )
 }
