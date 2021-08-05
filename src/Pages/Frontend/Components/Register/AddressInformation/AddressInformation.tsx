@@ -195,11 +195,11 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
       {/* back and next buttons */}
       <div className="ctrls pl-4 pr-4 mt-2">
         <div className="ctrls__back">
-          <button type="button" className="ctrls__btn btn btn-secondary" onClick={() => props.changeTab(1)}>Back : Personal Information</button>
+          <button type="button" className=" btn btn-secondary" onClick={() => props.changeTab(1)}>Back : Personal Information</button>
         </div>
 
         <div className="ctrls__next ml-5">
-          <button type="button" className="ctrls__btn btn btn-dark" onClick={() => props.changeTab(3)}>Next : Credentials Information</button>
+          <button type="button" className=" btn btn-dark" onClick={() => props.changeTab(3)}>Next : Credentials Information</button>
         </div>
       </div>
     </React.Fragment>

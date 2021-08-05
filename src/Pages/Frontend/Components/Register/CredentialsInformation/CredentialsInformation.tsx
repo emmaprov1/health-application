@@ -29,8 +29,6 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
   }
   const handleShow = () => setShowActivity(!showActivity);
 
-  console.log(uploadedFiles)
-
   const deletFile = async (data:string) => {
     alert(data)
     await fileService.deleteFile(data).then((res) => {
@@ -40,7 +38,6 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
     })
   }
 
-  console.log("UPLOADS", uploadedFiles)
   return (
     // credentialsInfo markup
     <React.Fragment>
@@ -78,13 +75,12 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
       <div className="credentialsInfo__fileFields row pl-4 pr-4">
         <div className="credentialsInfo__fileField col-xl-6">
             <div className={checkExistence('ssce') <= 0 ? "credentialsInfo__uploadFile" : "credentialsInfo__uploadFile2"}>
-              <input
-                type="file"
-                name="sscert"
-                id="sscert"
-                readOnly
-                onClick={() => { handleShow(); setFileType(1) }}
-              />
+
+              <button
+              id="uploadbtn"
+              className="w-50 btn border rounded-0 shadow"
+              onClick={() => { handleShow(); setFileType(1) }}
+            >Choose file</button>
             </div>
             <p className="credentialsInfo__labelContainer text-center mt-3">
               <label htmlFor="upload passport">Upload SSC Certificate</label>
@@ -104,12 +100,11 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
 
           <div className="credentialsInfo__fileField col-xl-6">
           <div className={checkExistence('tertiary') <= 0 ? "credentialsInfo__uploadFile" : "credentialsInfo__uploadFile2"}>
-               <input
-                type="file"
-                name="sscert"
-                id="sscert"
-                onClick={() => { handleShow(); setFileType(2) }}
-              />
+            <button
+              id="uploadbtn"
+              className="w-50 btn border rounded-0 shadow"
+              onClick={() => { handleShow(); setFileType(2) }}
+            >Choose file</button>
             </div>
             <p className="credentialsInfo__labelContainer text-center mt-3">
               <label htmlFor="upload passport">Upload BSC/HND Certificate</label>
@@ -129,12 +124,11 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
 
           <div className="credentialsInfo__fileField col-xl-6">
           <div className={checkExistence('licenseCertifcate') <= 0 ? "credentialsInfo__uploadFile" : "credentialsInfo__uploadFile2"}>
-               <input
-                type="file"
-                name="sscert"
-                id="sscert"
+               <button
+                id="uploadbtn"
+                className="w-50 btn border rounded-0 shadow"
                 onClick={() => { handleShow(); setFileType(3) }}
-              />
+              >Choose file</button>
             </div>
             <p className="credentialsInfo__labelContainer text-center mt-3">
               <label htmlFor="upload passport">Upload Operating License Certificate</label>
@@ -155,12 +149,11 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
 
           <div className="credentialsInfo__fileField col-xl-6">
           <div className={checkExistence('certificate') <= 0 ? "credentialsInfo__uploadFile" : "credentialsInfo__uploadFile2"}>
-               <input
-                type="file"
-                name="sscert"
-                id="sscert"
-                onClick={() => { handleShow(); setFileType(4) }}
-              />
+          <button
+              id="uploadbtn"
+              className="w-50 btn border rounded-0 shadow"
+              onClick={() => { handleShow(); setFileType(4) }}
+            >Choose file</button>
             </div>
             <p className="credentialsInfo__labelContainer text-center mt-3">
               <label htmlFor="upload passport">Upload Other Professional Certificates</label>
@@ -184,11 +177,11 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
       {/* back and next buttons */}
       <div className="ctrls pl-4 pr-4 mt-2">
         <div className="ctrls__back">
-          <button type="button" className="ctrls__btn btn btn-secondary" onClick={() => props.changeTab(2)}>Back : Address Information</button>
+          <button type="button" className="  btn btn-secondary" onClick={() => props.changeTab(2)}>Back : Address Information</button>
         </div>
 
         <div className="ctrls__next ml-5">
-          <button type="button" className="ctrls__btn btn btn-dark" onClick={() => props.changeTab(4)}>Next : More Credentials</button>
+          <button type="button" className="  btn btn-dark" onClick={() => props.changeTab(4)}>Next : More Credentials</button>
         </div>
       </div>
       <FileUploadManager showActivity={showActivity} fileType={fileType} handleShow={handleShow} fileDoc={props.fileDoc} deletFile={() => deletFile}/>

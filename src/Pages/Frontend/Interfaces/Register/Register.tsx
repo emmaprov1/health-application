@@ -7,6 +7,7 @@ import MoreCredentials from '../../Components/Register/MoreCredentials/MoreCrede
 import { useForm } from "react-hook-form";
 
 import './Register.scss'
+import { useSelector } from 'react-redux';
 
 const initialState = {
   surname: "",
@@ -31,7 +32,9 @@ const initialState = {
 const Register = () => {
   const [currentTab, setCurrentTab] = useState<number>(1)
 
-  const [fields, updateFields] = useState<any>(initialState)
+  const { uploadedFiles } = useSelector((state:any) => state)
+
+  const [fields, updateFields] = useState<any>({ ...initialState, data: uploadedFiles })
   // const [success, setSuccess] = useState(false)
   // const [submited, setSubmited] = useState(false)
   // const [loader, setLoader] = useState(false)
@@ -55,7 +58,7 @@ const Register = () => {
       [name]: value,
     })
   }
-
+  console.log("All field", fields)
   const fileDoc = (data: { fileType: string | number; }) => {
     const dataSource = fields[data?.fileType]
 

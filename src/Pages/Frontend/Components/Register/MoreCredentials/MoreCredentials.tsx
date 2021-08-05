@@ -80,12 +80,11 @@ const MoreCredentials:FC<MoreCredentialsType> = (props) => {
       <div className="moreCredentials__fileFields row pl-4 pr-4">
       <div className="moreCredentials__fileField col-xl-6">
           <div className="moreCredentials__uploadFile">
-            <input
-              type="file"
-              name="sscert"
-              id="sscert"
+            <button
+              id="uploadbtn"
+              className="w-50 btn border rounded-0 shadow"
               onClick={() => { handleShow(); setFileType(5) }}
-            />
+            >Choose file</button>
           </div>
           <p className="moreCredentials__labelContainer text-center mt-3">
             <label htmlFor="upload passport">Upload LGA Certificate</label>
@@ -105,12 +104,11 @@ const MoreCredentials:FC<MoreCredentialsType> = (props) => {
 
         <div className="moreCredentials__fileField col-xl-6">
           <div className="moreCredentials__uploadFile">
-            <input
-              type="file"
-              name="sscert"
-              id="sscert"
+          <button
+              id="uploadbtn"
+              className="w-50 btn border rounded-0 shadow"
               onClick={() => { handleShow(); setFileType(6) }}
-            />
+            >Choose file</button>
           </div>
           <p className="moreCredentials__labelContainer text-center mt-3">
             <label htmlFor="upload passport">Upload Government Issued ID</label>
