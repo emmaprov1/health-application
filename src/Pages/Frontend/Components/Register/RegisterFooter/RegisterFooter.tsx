@@ -8,7 +8,7 @@ const RegisterFooter = () => {
                     <div className="container">
                         <div className="row">
                             <div className="col-md text-center text-white">
-                                &copy; 2021 LHSC - Powered by JKK
+                                &copy; 2021 LHSC - Powered by <span className="reg-jkk">JKK</span>
                             </div>
                         </div>
                     </div>

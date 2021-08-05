@@ -2,6 +2,9 @@ import React, { FC } from 'react'
 import { DeepMap, FieldError, FieldValues, UseFormRegister } from 'react-hook-form'
 import "./AddressInformation.scss"
 
+import state from '../../../../../Data/state.json'
+import lga from '../../../../../Data/lga.json'
+
 interface AddressInformationType {
   changeTab:(value: number) => void;
   register:UseFormRegister<FieldValues>;
@@ -12,6 +15,15 @@ interface AddressInformationType {
 
 const AddressInformation:FC<AddressInformationType> = (props) => {
   const { stateOfOrigin, addressOfOrigin, stateOfResidence, addressOfRecidence, lgaOfResidence } = props.value
+
+  const selectedLga = lga[2].data?.filter((lgas) => {
+    return lgas.state_id === stateOfOrigin;
+  });
+
+  const resSelectedLga = lga[2].data?.filter((lgas) => {
+    return lgas.state_id === stateOfResidence;
+  });
+
   return (
     // addressInfo markup
     <React.Fragment>
@@ -52,11 +64,9 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
               State Of Origin
             </label>
             <br />
-            <input
+            <select
               className="form-control"
-              type="text"
               id="stateOfOrigin"
-              placeholder="Kwara State"
               {...props.register("stateOfOrigin", {
                 required: 'this is a required field',
                 pattern: {
@@ -64,8 +74,44 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
                    /^[a-zA-Z]*$/,
                   message: 'Invalid input',
                 }
-              })} value={stateOfOrigin} onChange={props.handleChange}
-            />
+              })} onChange={props.handleChange}
+              value={stateOfOrigin}
+            >
+              {state[2].data?.map((statelist: { id: any; name: any }, Index: React.Key | null | undefined) => {
+                const { id, name } = statelist
+                return (<option value={id} key={Index}>{name}</option>)
+              })}
+                    </select>
+            <div className="register--error text-danger">
+                {props.errors.stateOfOrigin && props.errors.stateOfOrigin.message}
+            </div>
+          </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="state of origin">
+              LGA Of Origin
+            </label>
+            <br />
+            <select
+              className="form-control"
+              id="stateOfOrigin"
+              placeholder="Offa LGA, Kwara State"
+              {...props.register("stateOfOrigin", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })} onChange={props.handleChange}
+            >
+                 <option value="">--choose--</option>
+                    {selectedLga?.map((lgalist, Index: React.Key | null | undefined) => {
+                      const { id, name } = lgalist
+                      return (<option value={id} key={Index}>{name}</option>)
+                    })}
+
+              </select>
             <div className="register--error text-danger">
                 {props.errors.stateOfOrigin && props.errors.stateOfOrigin.message}
             </div>
@@ -94,37 +140,14 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
                 {props.errors.addressOfOrigin && props.errors.addressOfOrigin.message}
             </div>
           </div>
-          <div className="form-group col-xl-6">
-            <label htmlFor="state of origin">
-              LGA Of Origin
-            </label>
-            <br />
-            <input
-              className="form-control"
-              type="text"
-              id="stateOfOrigin"
-              placeholder="Offa LGA, Kwara State"
-              {...props.register("stateOfOrigin", {
-                required: 'this is a required field',
-                pattern: {
-                  value:
-                   /^[a-zA-Z]*$/,
-                  message: 'Invalid input',
-                }
-              })} value={stateOfOrigin} onChange={props.handleChange}
-            />
-            <div className="register--error text-danger">
-                {props.errors.stateOfOrigin && props.errors.stateOfOrigin.message}
-            </div>
-          </div>
+
           <div className="form-group col-xl-6">
             <label htmlFor="state of origin">
               State Of Residence
             </label>
             <br />
-            <input
+            <select
               className="form-control"
-              type="text"
               id="stateOfOrigin"
               placeholder="Lagos State"
               {...props.register("stateOfResidence", {
@@ -135,11 +158,48 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
                   message: 'Invalid input',
                 }
               })} value={stateOfResidence} onChange={props.handleChange}
-            />
+            >
+              {state[2].data?.map((statelist: { id: any; name: any }, Index: React.Key | null | undefined) => {
+                const { id, name } = statelist
+                return (<option value={id} key={Index}>{name}</option>)
+              })}
+              </select>
             <div className="register--error text-danger">
                 {props.errors.stateOfResidence && props.errors.stateOfResidence.message}
             </div>
           </div>
+
+          <div className="form-group col-xl-4">
+            <label htmlFor="state of origin">
+              LGA Of Residence
+            </label>
+            <br />
+            <select
+              className="form-control"
+              id="stateOfOrigin"
+              {...props.register("lgaOfResidence", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })}
+              value={lgaOfResidence}
+              onChange={props.handleChange}
+            >
+                    {resSelectedLga?.map((lgalist, Index: React.Key | null | undefined) => {
+                      const { id, name } = lgalist
+                      return (<option value={id} key={Index}>{name}</option>)
+                    })}
+
+              </select>
+
+            <div className="register--error text-danger">
+                {props.errors.lgaOfResidence && props.errors.lgaOfResidence.message}
+            </div>
+          </div>
+
           <div className="form-group col-xl-4">
             <label htmlFor="state of origin">
               Address Of Residence
@@ -161,30 +221,6 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
             />
             <div className="register--error text-danger">
                 {props.errors.addressOfRecidence && props.errors.addressOfRecidence.message}
-            </div>
-          </div>
-
-          <div className="form-group col-xl-4">
-            <label htmlFor="state of origin">
-              LGA Of Residence
-            </label>
-            <br />
-            <input
-              className="form-control"
-              type="text"
-              id="stateOfOrigin"
-              placeholder="Lagos East"
-              {...props.register("lgaOfResidence", {
-                required: 'this is a required field',
-                pattern: {
-                  value:
-                   /^[a-zA-Z]*$/,
-                  message: 'Invalid input',
-                }
-              })} value={lgaOfResidence} onChange={props.handleChange}
-            />
-            <div className="register--error text-danger">
-                {props.errors.lgaOfResidence && props.errors.lgaOfResidence.message}
             </div>
           </div>
 

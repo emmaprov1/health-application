@@ -141,28 +141,28 @@ const Register = () => {
                                           value={fields}/>)}
 
                     {currentTab === 3 && (<CredentialsInformation
-                                          changeTab={changeTab}
-                                          register={register}
-                                          errors={errors}
-                                          handleChange={handleChange}
-                                          value={fields}
-                                          fileDoc={fileDoc}/>)}
+                                            changeTab={changeTab}
+                                            register={register}
+                                            errors={errors}
+                                            handleChange={handleChange}
+                                            value={fields}
+                                            fileDoc={fileDoc}/>)}
 
                     {currentTab === 4 && (<MoreCredentials
-                                          changeTab={changeTab}
-                                          register={register}
-                                          errors={errors}
-                                          handleChange={handleChange}
-                                          value={fields}
-                                          fileDoc={fileDoc}/>)}
+                                            changeTab={changeTab}
+                                            register={register}
+                                            errors={errors}
+                                            handleChange={handleChange}
+                                            value={fields}
+                                            fileDoc={fileDoc}/>)}
                     {currentTab === 5 && (<JobApplication
-                                          changeTab={changeTab}
-                                          register={register}
-                                          errors={errors}
-                                          handleChange={handleChange}
-                                          value={fields}
-                                          completeForm = {completeForm}
-                                          submited={submited}
+                                            changeTab={changeTab}
+                                            register={register}
+                                            errors={errors}
+                                            handleChange={handleChange}
+                                            value={fields}
+                                            completeForm = {completeForm}
+                                            submited={submited}
                                           />)}
                   </form>
                 </div>
