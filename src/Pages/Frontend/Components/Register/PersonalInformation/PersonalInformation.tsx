@@ -112,7 +112,7 @@ const PersonalInformation:FC<personalType> = (props) => {
               )}
 
             <label htmlFor="profilePhoto mt-1">
-                <input type="file" onChange={uploadImage} name="passport" id="passport"></input>
+                <input type="file" onChange={uploadImage} name="passport" id="passport" required></input>
             </label>
           </div>
 
