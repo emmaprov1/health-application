@@ -79,6 +79,12 @@ const Register = () => {
   const completeForm = async () => {
     setLoader(true)
     setSubmited(!submited) // ninData
+
+    setTimeout(() => {
+      setLoader(false)
+      toast.success('Application submitted successfully', { duration: 20000, className: 'bg-danger text-white' });
+    }, 3000)
+
     await userService.saveRegistrationData(userNin.id, fields).then(
       () => {
         setLoader(false)

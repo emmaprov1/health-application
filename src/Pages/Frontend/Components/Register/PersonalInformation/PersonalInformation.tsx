@@ -124,6 +124,10 @@ const PersonalInformation:FC<personalType> = (props) => {
 
         {/* form - text fields - open */}
         <div className="personalInfo__textFields row pl-4">
+          <div className="form-group col-xl-12 text-center">
+            <div className="text-center w-100">Your Reference ID</div>
+            <input type="text" value={7665343432455} readOnly className="w-50 offset-3 text-center form-control"/>
+          </div>
         <div className="form-group col-xl-6">
               <label htmlFor="state of origin" className="">
                 Job Role
