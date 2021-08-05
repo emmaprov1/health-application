@@ -27,7 +27,6 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
       return element.fileType === type;
     }).length
   }
-
   const handleShow = () => setShowActivity(!showActivity);
 
   console.log(uploadedFiles)
@@ -78,7 +77,7 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
       {/* form - text fields - open */}
       <div className="credentialsInfo__fileFields row pl-4 pr-4">
         <div className="credentialsInfo__fileField col-xl-6">
-            <div className="credentialsInfo__uploadFile">
+            <div className={checkExistence('ssce') <= 0 ? "credentialsInfo__uploadFile" : "credentialsInfo__uploadFile2"}>
               <input
                 type="file"
                 name="sscert"
@@ -104,8 +103,8 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
           </div>
 
           <div className="credentialsInfo__fileField col-xl-6">
-            <div className="credentialsInfo__uploadFile">
-              <input
+          <div className={checkExistence('tertiary') <= 0 ? "credentialsInfo__uploadFile" : "credentialsInfo__uploadFile2"}>
+               <input
                 type="file"
                 name="sscert"
                 id="sscert"
@@ -129,8 +128,8 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
           </div>
 
           <div className="credentialsInfo__fileField col-xl-6">
-            <div className="credentialsInfo__uploadFile">
-              <input
+          <div className={checkExistence('licenseCertifcate') <= 0 ? "credentialsInfo__uploadFile" : "credentialsInfo__uploadFile2"}>
+               <input
                 type="file"
                 name="sscert"
                 id="sscert"
@@ -155,8 +154,8 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
           </div>
 
           <div className="credentialsInfo__fileField col-xl-6">
-            <div className="credentialsInfo__uploadFile">
-              <input
+          <div className={checkExistence('certificate') <= 0 ? "credentialsInfo__uploadFile" : "credentialsInfo__uploadFile2"}>
+               <input
                 type="file"
                 name="sscert"
                 id="sscert"
