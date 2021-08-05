@@ -4,7 +4,7 @@ import { Container, Col, Row, Form, Button } from "react-bootstrap"
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux'
 import { UPLOADED_FILES } from '../../../../../Constants/FileConstants';
-import { useNin } from '../../../../../Hooks';
+import { useReference } from '../../../../../Hooks';
 import fileService from '../../../../../Services/fileService';
 import toast, { Toaster } from 'react-hot-toast'
 
@@ -23,25 +23,29 @@ const Ssce = ({ fileDoc, deletFile }: propsType) => {
   const { uploadedFiles, uploaded, uploadProgress } = useSelector((state:any) => state)
   const [uploadStatus, setUploadStatus] = useState(false)
   const [uploadedNow, setUploadedNow] = useState("")
+  const [certname, setCertName] = useState("")
 
   const onSubmit = handleSubmit((data) => fileDoc({ ...data, fileType: "ssce" }));
 
   const dispatcher = useDispatch()
-  const userNin = useNin()
+  const userRefId = useReference()
   const storedFiles: string[] = uploadedFiles
+
+  console.log("userRefId", userRefId)
 
   const uploadFile = async (event: any) => {
     console.log("uploading")
     setUploadStatus(true)
     const file = event.target.files
     const fileType = "ssce"
-    await fileService.uploadImage(file, fileType, dispatcher, userNin.nin).then((res:any) => {
+    await fileService.uploadImage(file, fileType, dispatcher, userRefId.id).then((res:any) => {
       console.log("DOWNLOAD URI", res)
       const resData = {
         remoteURL: res,
         name: file[0].name,
         size: (file[0].size / 1048576).toFixed(2),
-        fileType
+        fileType,
+        certificate_name: certname
       }
       setUploadedNow(res[0])
       dispatcher({ type: UPLOADED_FILES, data: [...storedFiles, resData] })
@@ -55,7 +59,7 @@ const Ssce = ({ fileDoc, deletFile }: propsType) => {
 
   return (
       <Container>
-      <h5>SSCE Uertificate Upload</h5>
+      <h5>SSCE Certificate Upload</h5>
       <hr/>
       <br/>
       <Row>
@@ -63,7 +67,7 @@ const Ssce = ({ fileDoc, deletFile }: propsType) => {
           <Form.Group controlId="exampleForm.ControlSelect1">
 
               <Form.Label>Choose document type</Form.Label>
-              <Form.Control as="select" {...register("documentName")} disabled={uploadStatus}>
+              <Form.Control as="select" {...register("documentName")} disabled={uploadStatus} onChange={(e:any) => { setCertName(e.target.value) }}>
               <option>WAEC</option>
               <option>NECO</option>
               <option>NABTEB</option>

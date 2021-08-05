@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
-import { disableStatusReducer, ninReducer, UploadProgressReducer, UploadStorageReducer } from '.';
+import { disableStatusReducer, UploadProgressReducer, UploadStorageReducer } from '.';
 import UploadMessageReducer from './FileManager/UploadMessageReducer';
+import referenceReducer from './Verification/referenceReducer';
 
 const rootReducer = combineReducers({
   uploadProgress: UploadProgressReducer,
   uploadMessage: UploadMessageReducer,
   uploadedFiles: UploadStorageReducer,
-  ninVerification: ninReducer,
+  reference: referenceReducer,
   disableStatus: disableStatusReducer
 });
 

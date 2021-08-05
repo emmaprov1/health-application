@@ -1,15 +1,16 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
-import { Container, Col, Row, Form } from "react-bootstrap"
+import { Container, Col, Row, Form, Button } from "react-bootstrap"
 
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux'
 import { UPLOADED_FILES } from '../../../../../Constants/FileConstants';
-import { useNin } from '../../../../../Hooks';
+import { useReference } from '../../../../../Hooks';
 import fileService from '../../../../../Services/fileService';
 
  interface propsType {
-    fileDoc: any;
+   fileDoc: any;
     deletFile: (data:string)=>void
 }
 type FormValues = {
@@ -17,25 +18,24 @@ type FormValues = {
     documentName: string;
   };
 
-const Seminar = ({ fileDoc, deletFile }: propsType) => {
-  // eslint-disable-next-line no-unused-vars
+const LicenseCertificate = ({ deletFile }: propsType) => {
   const { register, watch, handleSubmit, formState: { errors } } = useForm<FormValues>();
 
-  const { uploadedFiles } = useSelector((state:any) => state)
-  // eslint-disable-next-line no-unused-vars
+  const { uploadedFiles, uploaded, uploadProgress } = useSelector((state:any) => state)
   const [uploadStatus, setUploadStatus] = useState(false)
-  // eslint-disable-next-line no-unused-vars
   const [uploadedNow, setUploadedNow] = useState("")
   const dispatcher = useDispatch()
-  const userNin = useNin()
+  const userNin = useReference()
   const storedFiles: string[] = uploadedFiles
+
+  // const onSubmit = handleSubmit((data) => fileDoc({ ...data, fileType: "profession" }));
 
   const uploadFile = async (event: any) => {
     setUploadStatus(true)
     const documentName = watch("documentName")
     const file = event.target.files
-    const fileType = "seminar"
-    await fileService.uploadImage(file, fileType, dispatcher, userNin.nin).then((res:any) => {
+    const fileType = "certificate"
+    await fileService.uploadImage(file, fileType, dispatcher, userNin.id).then((res:any) => {
       const resData = {
         remoteURL: res,
         name: documentName,
@@ -45,7 +45,7 @@ const Seminar = ({ fileDoc, deletFile }: propsType) => {
       setUploadedNow(res[0])
       dispatcher({ type: UPLOADED_FILES, data: [...storedFiles, resData] })
       setUploadStatus(false)
-    }, (error: { message: any; }) => {
+    }, error => {
       console.log(error.message)
       setUploadStatus(false)
       toast.error("invalid file", { duration: 20000, className: 'bg-danger text-white' });
@@ -54,26 +54,25 @@ const Seminar = ({ fileDoc, deletFile }: propsType) => {
 
   return (
           <Container>
-
-                <h5>Seminar Attended Information</h5>
-              <hr/>
-              <br/>
+          <h5>Professional certification</h5>
+          <hr/>
+          <br/>
           <Row>
               <Col>
               <Form.Group controlId="exampleForm.ControlSelect1">
 
-                  <Form.Label>Seminar name</Form.Label>
+                  <Form.Label>Certificate name</Form.Label>
                   <Form.Control type="text" {...register("documentName")}/>
 
               </Form.Group>
               <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Upload issued certificate</Form.Label>
+                  <Form.Label>Upload Certificate</Form.Label>
                   <Form.Control type="file" {...register("file")} onChange={uploadFile}/>
               </Form.Group>
               {uploadStatus && (
-            <div className="spinner-border spinner-border-sm text-success" role="status">
-            <span className="sr-only">Loading...</span>
-            </div>
+                <div className="spinner-border spinner-border-sm text-success" role="status">
+                <span className="sr-only">Loading...</span>
+                </div>
               )}
               </Col>
 
@@ -81,7 +80,7 @@ const Seminar = ({ fileDoc, deletFile }: propsType) => {
               <ul className="list-group">
                 {uploadedFiles &&
                   (uploadedFiles.map((items:any, index:any) => {
-                    return items.fileType === "seminar" && (
+                    return items.fileType === "certificate" && (
                       <li key={index} className="list-group-item list-group-item-success mb-1 rounded">
                         <a href={items.remoteURL} target="_blank" rel="noreferrer">
                         <span className="badge alert-success pull-right">{items.size}mb</span>{items.name}
@@ -93,8 +92,9 @@ const Seminar = ({ fileDoc, deletFile }: propsType) => {
               </ul>
               </Col>
           </Row>
+          <Toaster/>
       </Container>
   )
 }
 
-export default Seminar
+export default LicenseCertificate

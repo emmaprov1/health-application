@@ -6,10 +6,11 @@ import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux'
 import { UPLOADED_FILES } from '../../../../../Constants/FileConstants';
-import { useNin } from '../../../../../Hooks';
+import { useReference } from '../../../../../Hooks';
 import fileService from '../../../../../Services/fileService';
 
  interface propsType {
+   fileDoc: any;
     deletFile: (data:string)=>void
 }
 type FormValues = {
@@ -17,14 +18,14 @@ type FormValues = {
     documentName: string;
   };
 
-const Professional = ({ deletFile }: propsType) => {
+const Citizenship = ({ deletFile }: propsType) => {
   const { register, watch, handleSubmit, formState: { errors } } = useForm<FormValues>();
 
   const { uploadedFiles, uploaded, uploadProgress } = useSelector((state:any) => state)
   const [uploadStatus, setUploadStatus] = useState(false)
   const [uploadedNow, setUploadedNow] = useState("")
   const dispatcher = useDispatch()
-  const userNin = useNin()
+  const userNin = useReference()
   const storedFiles: string[] = uploadedFiles
 
   // const onSubmit = handleSubmit((data) => fileDoc({ ...data, fileType: "profession" }));
@@ -33,8 +34,8 @@ const Professional = ({ deletFile }: propsType) => {
     setUploadStatus(true)
     const documentName = watch("documentName")
     const file = event.target.files
-    const fileType = "profession"
-    await fileService.uploadImage(file, fileType, dispatcher, userNin.nin).then((res:any) => {
+    const fileType = "citizenship"
+    await fileService.uploadImage(file, fileType, dispatcher, userNin.id).then((res:any) => {
       const resData = {
         remoteURL: res,
         name: documentName,
@@ -53,15 +54,14 @@ const Professional = ({ deletFile }: propsType) => {
 
   return (
           <Container>
-          <h5>Professional certification</h5>
+          <h5>Upload LGA Certificate</h5>
           <hr/>
           <br/>
           <Row>
               <Col>
               <Form.Group controlId="exampleForm.ControlSelect1">
 
-                  <Form.Label>Profession name</Form.Label>
-                  <Form.Control type="text" {...register("documentName")}/>
+                  <Form.Control type="text" {...register("documentName")} hidden value={`${userNin.id}citizenship`}/>
 
               </Form.Group>
               <Form.Group controlId="formBasicPassword">
@@ -79,7 +79,7 @@ const Professional = ({ deletFile }: propsType) => {
               <ul className="list-group">
                 {uploadedFiles &&
                   (uploadedFiles.map((items:any, index:any) => {
-                    return items.fileType === "profession" && (
+                    return items.fileType === "citizenship" && (
                       <li key={index} className="list-group-item list-group-item-success mb-1 rounded">
                         <a href={items.remoteURL} target="_blank" rel="noreferrer">
                         <span className="badge alert-success pull-right">{items.size}mb</span>{items.name}
@@ -96,4 +96,4 @@ const Professional = ({ deletFile }: propsType) => {
   )
 }
 
-export default Professional
+export default Citizenship

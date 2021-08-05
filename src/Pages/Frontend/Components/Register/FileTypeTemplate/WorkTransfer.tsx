@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux'
 import { UPLOADED_FILES } from '../../../../../Constants/FileConstants';
-import { useNin } from '../../../../../Hooks';
+import { useReference } from '../../../../../Hooks';
 import fileService from '../../../../../Services/fileService';
 
  interface propsType {
@@ -29,7 +29,7 @@ const WorkTransfer = ({ fileDoc, deletFile }: propsType) => {
   const [uploadedNow, setUploadedNow] = useState<any>([])
   const [disable, setDisable] = useState<boolean>(false)
   const dispatcher = useDispatch()
-  const userNin = useNin()
+  const userNin = useReference()
   const storedFiles: string[] = uploadedFiles
 
   console.log(uploadedNow)

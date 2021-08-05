@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { UPLOADED_FILES } from '../../../../../Constants/FileConstants';
-import { useNin } from '../../../../../Hooks';
+import { useReference } from '../../../../../Hooks';
 import fileService from '../../../../../Services/fileService';
 // import { useDispatch, useSelector } from 'react-redux'
 // import { UPLOADED_FILES } from '../../../../../Constants/FileConstants'
@@ -18,7 +18,7 @@ const initialData = { fileType: "", name: "", remoteURL: "" }
 const ProfilePhoto:FC<propsType> = ({ register, errors, handleChange, value }) => {
   const { profilePhotoNin } = value
   const dispatcher = useDispatch()
-  const userNin = useNin()
+  const userNin = useReference()
   // eslint-disable-next-line no-unused-vars
   const { uploadedFiles, disableStatus, uploadProgress } = useSelector((state:any) => state)
 

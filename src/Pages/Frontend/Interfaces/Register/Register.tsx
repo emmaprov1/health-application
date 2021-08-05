@@ -4,14 +4,74 @@ import AddressInformation from '../../Components/Register/AddressInformation/Add
 import CredentialsInformation from '../../Components/Register/CredentialsInformation/CredentialsInformation';
 import JobApplication from '../../Components/Register/JobApplication/JobApplication';
 import MoreCredentials from '../../Components/Register/MoreCredentials/MoreCredentials';
+import { useForm } from "react-hook-form";
+
 import './Register.scss'
+
+const initialState = {
+  surname: "",
+  jobRole: "",
+  firstname: "",
+  middlename: "",
+  dataOfBirth: "",
+  phoneNo: "",
+  phoneNo2: "",
+  email: "",
+  email2: "",
+  gender: "",
+  stateOfOrigin: "",
+  addressOfOrigin: "",
+  stateOfResidence: "",
+  addressOfRecidence: "",
+  lgaOfResidence: "",
+  dateOfBirth: "",
+  acknwoledgement: false,
+};
 
 const Register = () => {
   const [currentTab, setCurrentTab] = useState<number>(1)
 
+  const [fields, updateFields] = useState<any>(initialState)
+  // const [success, setSuccess] = useState(false)
+  // const [submited, setSubmited] = useState(false)
+  // const [loader, setLoader] = useState(false)
+
   const changeTab = (value:number) => {
     setCurrentTab(value)
   }
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+    const { name, value } = e.target;
+
+    console.log({
+      [name]: value,
+    })
+    console.log(fields)
+
+    updateFields({
+      ...fields,
+      [name]: value,
+    })
+  }
+
+  const fileDoc = (data: { fileType: string | number; }) => {
+    const dataSource = fields[data?.fileType]
+
+    console.log(dataSource)
+
+    updateFields({
+      ...fields,
+      [data?.fileType]: [...dataSource, data],
+    })
+  }
+  const onSubmit = handleSubmit((data) => processData(data));
+
+  const processData = (data: { [x: string]: any; }) => {
+    console.log(data)
+  }
+
   return (
       // markup for register
       <React.Fragment>
@@ -36,12 +96,43 @@ const Register = () => {
               {/* register form column */}
               <div className="register__formWrap col-lg-8">
                 <div className="register__formCard p-2 p-lg-5 mt-1">
-                  <form className="register__formHandler">
-                    {currentTab === 1 && (<PersonalInformation changeTab={changeTab}/>)}
-                    {currentTab === 2 && (<AddressInformation changeTab={changeTab}/>)}
-                    {currentTab === 3 && (<CredentialsInformation changeTab={changeTab}/>)}
-                    {currentTab === 4 && (<MoreCredentials changeTab={changeTab}/>)}
-                    {currentTab === 5 && (<JobApplication changeTab={changeTab}/>)}
+                  <form className="register__formHandler" onSubmit={onSubmit}>
+                    {currentTab === 1 && (<PersonalInformation
+                                            changeTab={changeTab}
+                                            register={register}
+                                            errors={errors}
+                                            handleChange={handleChange}
+                                            value={fields}/>)}
+
+                    {currentTab === 2 && (<AddressInformation
+                                          changeTab={changeTab}
+                                          register={register}
+                                          errors={errors}
+                                          handleChange={handleChange}
+                                          value={fields}/>)}
+
+                    {currentTab === 3 && (<CredentialsInformation
+                                          changeTab={changeTab}
+                                          register={register}
+                                          errors={errors}
+                                          handleChange={handleChange}
+                                          value={fields}
+                                          fileDoc={fileDoc}/>)}
+
+                    {currentTab === 4 && (<MoreCredentials
+                                          changeTab={changeTab}
+                                          register={register}
+                                          errors={errors}
+                                          handleChange={handleChange}
+                                          value={fields}
+                                          fileDoc={fileDoc}/>)}
+                    {currentTab === 5 && (<JobApplication
+                                          changeTab={changeTab}
+                                          register={register}
+                                          errors={errors}
+                                          handleChange={handleChange}
+                                          value={fields}
+                                          />)}
                   </form>
                 </div>
               </div>

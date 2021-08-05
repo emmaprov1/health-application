@@ -1,5 +1,4 @@
 export { default as RegisterHeader } from './Register/RegisterHeader/RegisterHeader'
-export { default as OfficerVerification } from './Register/OfficerVerification/OfficerVerification'
 export { default as PersonalInformation } from './Register/PersonalInformation/PersonalInformation'
 export { default as EducationalInformation } from './Register/EducationalInformation/EducationalInformation'
 export { default as CarreerInformation } from './Register/CarreerInformation/CarreerInformation'
