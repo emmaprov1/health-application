@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { UPLOADED_FILES } from '../../../../../Constants/FileConstants';
 import { useReference } from '../../../../../Hooks';
 import fileService from '../../../../../Services/fileService';
+import MD5 from 'crypto-js/md5';
 
  interface propsType {
    fileDoc: any;
@@ -30,12 +31,14 @@ const Identity = ({ deletFile }: propsType) => {
 
   // const onSubmit = handleSubmit((data) => fileDoc({ ...data, fileType: "profession" }));
 
+  const hashRef = MD5(userNin.id).toString();
+
   const uploadFile = async (event: any) => {
     setUploadStatus(true)
     const documentName = watch("documentName")
     const file = event.target.files
     const fileType = "identity"
-    await fileService.uploadImage(file, fileType, userNin.ref).then((res:any) => {
+    await fileService.uploadImage(file, fileType, hashRef).then((res:any) => {
       const resData = {
         remoteURL: res,
         name: documentName,

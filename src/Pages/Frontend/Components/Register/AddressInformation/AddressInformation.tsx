@@ -15,6 +15,11 @@ interface AddressInformationType {
 
 const AddressInformation:FC<AddressInformationType> = (props) => {
   const { stateOfOrigin, lgaOfOrigin, addressOfOrigin, stateOfResidence, addressOfResidence, lgaOfResidence } = props.value
+  let disable = true
+  // simple validation
+  if (stateOfOrigin !== "" && lgaOfOrigin !== "" && addressOfOrigin !== "" && stateOfResidence !== "" && addressOfResidence !== "" && lgaOfResidence !== "") {
+    disable = false
+  }
 
   const selectedLga = lga[2].data?.filter((lgas) => {
     return lgas.state_id === stateOfOrigin;
@@ -233,11 +238,11 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
       {/* back and next buttons */}
       <div className="ctrls pl-4 pr-4 mt-2">
         <div className="ctrls__back">
-          <button type="button" className=" btn btn-secondary" onClick={() => props.changeTab(1)}>Back : Personal Information</button>
+          <button type="button" className=" btn btn-dark" onClick={() => props.changeTab(1)}>Back : Personal Information</button>
         </div>
 
         <div className="ctrls__next ml-5">
-          <button type="button" className=" btn btn-dark" onClick={() => props.changeTab(3)}>Next : Credentials Information</button>
+          <button type="button" className=" btn btn-dark" onClick={() => props.changeTab(3)} disabled={disable}>Next : Credentials Information</button>
         </div>
       </div>
     </React.Fragment>

@@ -38,6 +38,12 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
     })
   }
 
+  let disable = true
+  // simple validation
+  if (checkExistence("ssce") !== 0 && checkExistence("tertiary") !== 0 && checkExistence("licenseCertifcate") !== 0 && checkExistence("certificate") !== 0) {
+    disable = false
+  }
+
   return (
     // credentialsInfo markup
     <React.Fragment>
@@ -133,11 +139,11 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
       {/* back and next buttons */}
       <div className="ctrls pl-4 pr-4 mt-2">
         <div className="ctrls__back">
-          <button type="button" className="  btn btn-secondary" onClick={() => props.changeTab(2)}>Back : Address Information</button>
+          <button type="button" className="btn btn-dark" onClick={() => props.changeTab(2)}>Back : Address Information</button>
         </div>
 
         <div className="ctrls__next ml-5">
-          <button type="button" className="  btn btn-dark" onClick={() => props.changeTab(4)}>Next : More Credentials</button>
+          <button type="button" className="btn btn-dark" onClick={() => props.changeTab(4)} disabled={disable}>Next : More Credentials</button>
         </div>
       </div>
       <FileUploadManager showActivity={showActivity} fileType={fileType} handleShow={handleShow} fileDoc={props.fileDoc} deletFile={() => deletFile}/>

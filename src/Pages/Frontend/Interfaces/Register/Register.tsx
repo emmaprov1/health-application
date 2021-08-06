@@ -11,6 +11,7 @@ import './Register.scss'
 import { useSelector } from 'react-redux';
 import userService from '../../../../Services/userService';
 import { useReference } from '../../../../Hooks';
+import MD5 from 'crypto-js/md5';
 
 const initialState = {
   surname: "",
@@ -49,7 +50,9 @@ const Register = () => {
     setCurrentTab(value)
   }
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+  console.log("WATCHER", watch("firstname"))
 
   const handleChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
@@ -83,14 +86,16 @@ const Register = () => {
     setLoader(true)
     setSubmited(!submited) // ninData
 
-    await userService.saveRegistrationData(userNin.ref, fields).then(
+    const hashRef = MD5(userNin.id).toString();
+
+    await userService.saveRegistrationData(hashRef, fields).then(
       () => {
         setLoader(false)
         setSubmited(!submited)
         setSuccess(!success)
         toast.success('Application submitted successfully', { duration: 20000, className: 'bg-success text-white' });
         setTimeout(() => {
-          window.location.href = `/#/slip/${userNin.ref}`
+          window.location.href = `/#/slip/${hashRef}`
         }, 4000)
       }, error => {
         setLoader(false)
@@ -144,6 +149,7 @@ const Register = () => {
                                             changeTab={changeTab}
                                             register={register}
                                             errors={errors}
+                                            watch={watch}
                                             handleChange={handleChange}
                                             value={fields}/>)}
 

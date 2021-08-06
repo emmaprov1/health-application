@@ -11,6 +11,7 @@ interface personalType {
   changeTab:(value: number) => void;
   register:UseFormRegister<FieldValues>;
   value:any;
+  watch:any;
   errors:DeepMap<FieldValues, FieldError>;
   handleChange:(e: any) => void;
 }
@@ -25,9 +26,16 @@ const PersonalInformation:FC<personalType> = (props) => {
   const userNin = useReference()
   const { uploadedFiles } = useSelector((state:any) => state)
   const [uploadStatus, setUploadStatus] = useState(false)
+  // eslint-disable-next-line no-unused-vars
+  let disable = true
 
   const [uploaded, setUploaded] = useState<any>(initialData)
   const storedFiles: string[] = uploadedFiles
+
+  // simple validation
+  if (surname !== "" && jobRole !== "" && firstname !== "" && middlename !== "" && dataOfBirth !== "" && phoneNo !== "" && phoneNo2 !== "" && email !== "" && email2 !== "" && gender) {
+    disable = false
+  }
 
   const uploadImage = async (event: { target: { files: any; }; }) => {
     const file = event.target.files
@@ -235,7 +243,8 @@ const PersonalInformation:FC<personalType> = (props) => {
               <input
                 className="form-control"
                 type="date"
-                id="middlename"
+                id="dateofbirth"
+                data-date-inline-picker="true"
                 placeholder="Farruko"
               {...props.register("dataOfBirth", {
                 required: 'this is a required field',
@@ -285,7 +294,7 @@ const PersonalInformation:FC<personalType> = (props) => {
             <input
               className="form-control"
               type="text"
-              id="phoneNo"
+              id="phoneNo2"
               placeholder="(234) 091 234 5678"
               {...props.register("phoneNo2", {
                 required: 'this is a required field',
@@ -385,7 +394,7 @@ const PersonalInformation:FC<personalType> = (props) => {
       {/* back and next buttons */}
       <div className="ctrls pl-4 mt-2">
         <div className="ctrls__next">
-          <button type="button" className="ctrls__btn btn btn-dark" onClick={() => props.changeTab(2)}>Next</button>
+          <button type="button" className="ctrls__btn btn btn-dark" onClick={() => props.changeTab(2)} disabled={disable}>Next</button>
         </div>
       </div>
     </React.Fragment>

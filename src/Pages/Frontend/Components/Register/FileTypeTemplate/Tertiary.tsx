@@ -7,6 +7,7 @@ import { UPLOADED_FILES } from '../../../../../Constants/FileConstants';
 import { useReference } from '../../../../../Hooks';
 import fileService from '../../../../../Services/fileService';
 import toast, { Toaster } from 'react-hot-toast'
+import MD5 from 'crypto-js/md5';
 
 interface propsType {
     fileDoc: any;
@@ -34,12 +35,14 @@ const Tertiary = ({ fileDoc, deletFile }: propsType) => {
   const userNin = useReference()
   const storedFiles: string[] = uploadedFiles
 
+  const hashRef = MD5(userNin.id).toString();
+
   const uploadFile = async (event: any) => {
     console.log("uploading", certname)
     setUploadStatus(true)
     const file = event.target.files
     const fileType = "tertiary"
-    await fileService.uploadImage(file, fileType, userNin.ref).then((res:any) => {
+    await fileService.uploadImage(file, fileType, hashRef).then((res:any) => {
       console.log("DOWNLOAD URI", res)
       const resData = {
         remoteURL: res,

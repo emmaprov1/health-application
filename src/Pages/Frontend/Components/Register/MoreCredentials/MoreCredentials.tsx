@@ -22,6 +22,12 @@ const MoreCredentials:FC<MoreCredentialsType> = (props) => {
   // eslint-disable-next-line no-unused-vars
   const [fileType, setFileType] = useState<number>(0)
 
+  let disable = true
+  // simple validation
+  if (checkExistence("citizenship") !== 0 && checkExistence("identity") !== 0) {
+    disable = false
+  }
+
   console.log(uploadedFiles)
   // eslint-disable-next-line no-unused-vars
   function checkExistence (type:string) {
@@ -113,7 +119,7 @@ const MoreCredentials:FC<MoreCredentialsType> = (props) => {
         </div>
 
         <div className="ctrls__next ml-5">
-          <button type="button" className="ctrls__btn btn btn-dark" onClick={() => props.changeTab(5)}>Next : Job Role Application</button>
+          <button type="button" className="ctrls__btn btn btn-dark" onClick={() => props.changeTab(5)} disabled={disable}>Next : Job Role Application</button>
         </div>
       </div>
       <FileUploadManager showActivity={showActivity} fileType={fileType} handleShow={handleShow} fileDoc={props.fileDoc} deletFile={() => deletFile}/>
