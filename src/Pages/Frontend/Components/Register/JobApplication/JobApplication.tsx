@@ -86,7 +86,7 @@ const JobApplication:FC<JobApplicationType> = (props) => {
                   /^[a-zA-Z]*$/,
                  message: 'Invalid input',
                }
-             })} value={'true'} onChange={props.handleChange}
+             })} value={'true'} required={true} onChange={props.handleChange}
               />
               <label htmlFor="state of origin" className="">
             I accept and acknwoledge that information provided are true to the best of my knowledge.

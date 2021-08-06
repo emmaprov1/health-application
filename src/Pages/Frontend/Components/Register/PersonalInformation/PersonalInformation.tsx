@@ -36,8 +36,14 @@ const PersonalInformation:FC<personalType> = (props) => {
   const [uploaded, setUploaded] = useState<any>(initialData)
   const storedFiles: string[] = uploadedFiles
 
+  function checkExistence (type:string) {
+    return uploadedFiles.filter(function (element: { fileType: string }) {
+      return element.fileType === type;
+    }).length
+  }
+
   // simple validation
-  if (error.length === 0 && surname !== "" && jobRole !== "" && firstname !== "" && middlename !== "" && dataOfBirth !== "" && phoneNo !== "" && phoneNo2 !== "" && email !== "" && email2 !== "" && gender) {
+  if (error.length === 0 && checkExistence("profilePhoto") !== 0 && surname !== "" && jobRole !== "" && firstname !== "" && middlename !== "" && dataOfBirth !== "" && phoneNo !== "" && phoneNo2 !== "" && email !== "" && email2 !== "" && gender) {
     disable = false
   }
 
@@ -348,7 +354,7 @@ const PersonalInformation:FC<personalType> = (props) => {
                 required: 'this is a required field',
                 pattern: {
                   value:
-                   /^[a-zA-Z]*$/,
+                   /^[0-9]*$/,
                   message: 'Invalid input',
                 }
               })} value={phoneNo}
@@ -375,7 +381,7 @@ const PersonalInformation:FC<personalType> = (props) => {
                 required: 'this is a required field',
                 pattern: {
                   value:
-                   /^[a-zA-Z]*$/,
+                   /^[0-9]*$/,
                   message: 'Invalid input',
                 }
               })} value={phoneNo2}
