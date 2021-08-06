@@ -137,8 +137,7 @@ const Register = () => {
                   <li>Instruction 3: Your Credentials Information</li>
                   <li>Instruction 4: More of your Credentials Info</li>
                   <li>Instruction 5: Write an Application Letter</li>
-                  <li>Instruction 6: Select a Job Category Role</li>
-                  <li>Instruction 5: Submit and Finish Registration</li>
+                  <li>Instruction 6: Print confirmation slip</li>
                 </div>
               </div>
               {/* register form column */}
