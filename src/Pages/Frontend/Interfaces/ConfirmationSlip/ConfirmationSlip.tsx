@@ -33,6 +33,7 @@ const ConfirmationSlip = () => {
   }, [refid])
 
   return (
+      <div className="confirmation">
       <div className="register-main">
         <RegisterHeader></RegisterHeader>
           <div className="container">
@@ -71,7 +72,8 @@ const ConfirmationSlip = () => {
         <Loader show={loader}/>
         <Toast/>
       </div>
-      </div>
+    </div>
+  </div>
   )
 }
 

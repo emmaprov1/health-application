@@ -17,12 +17,16 @@ const ConfirmationSlipVerification = () => {
   const [loader, setLoader] = useState(false)
 
   const onSubmit = handleSubmit((data:any) => {
-    const hashRef:any = MD5(data).toString();
+    const hashRef:any = MD5(data.nin).toString();
 
     setLoader(true)
-    userService.getData(data.nin).then((res) => {
-      console.log("", res)
-      history.push("/slip/" + hashRef)
+    userService.getData(hashRef).then((res) => {
+      if (res.data()) {
+        history.push("/slip/" + hashRef)
+      } else {
+        setLoader(false)
+        toast.error("Reference id doesn't exist", { duration: 4000 })
+      }
       setLoader(false)
     }, error => {
       console.log(error.message)
@@ -32,20 +36,22 @@ const ConfirmationSlipVerification = () => {
   }
   );
   return (
-    <div className="register-main">
+    <div className=" slip-confirmation h-100">
       <RegisterHeader></RegisterHeader>
         <div className="container">
             <div className="register-inner">
                 <div className="spacer"></div>
 
-                <div className="card">
+                 <div className="row">
+                   <div className="col-md-6 offset-md-3">
+                   <div className="card mt-5">
                     <div className="card-header text-center">
                         <div className="c-header-crib-2">
                             <span></span>
                             <span></span>
                             <span></span>
                         </div>
-                       Confirmation Slip Printing
+                       <h5>Confirmation Slip Printing</h5>
                         <div className="c-header-crib">
                             <span></span>
                             <span></span>
@@ -55,7 +61,7 @@ const ConfirmationSlipVerification = () => {
                     <div className="card-body">
                       <form onSubmit={onSubmit}>
                         <div className="form-group">
-                          <label>NIN number</label>
+                          <label>Reference ID</label>
                         <input className="form-control" {...register("nin", { required: true })}></input>
                         <div className="register--error text-danger">
                         {errors.nin && "invalid input"}
@@ -67,11 +73,15 @@ const ConfirmationSlipVerification = () => {
                       </form>
                     </div>
                 </div>
+              </div>
             </div>
-        </div>
-          <RegisterFooter></RegisterFooter>
-          <Loader show={loader}/>
-          <Toaster/>
+          </div>
+    </div>
+    <div className="fixed-bottom">
+      <RegisterFooter></RegisterFooter>
+      </div>
+      <Loader show={loader}/>
+      <Toaster/>
     </div>
   )
 }

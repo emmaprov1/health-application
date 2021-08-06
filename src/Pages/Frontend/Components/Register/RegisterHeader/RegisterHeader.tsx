@@ -31,9 +31,6 @@ const RegisterHeader = () => {
                         <a className="nav-link" href="/#/slip/nin/verification">Print slip</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Status</a>
-                    </li>
-                    <li className="nav-item">
                         <a className="nav-link disabled" href="#">Contact</a>
                     </li>
                     </ul>
