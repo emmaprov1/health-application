@@ -18,7 +18,7 @@ const app = (
       <Router history={history}>
           <Route exact path="/login" component={Login}></Route>
           <Route exact path="/register" component={Register}></Route>
-          <Route exact path="/slip/:nin" component={ConfirmationSlip}></Route>
+          <Route exact path="/slip/:refid" component={ConfirmationSlip}></Route>
           <Route exact path="/slip/nin/verification" component={ConfirmationSlipVerification}></Route>
           <Route exact path="/forgot-password" component={ForgotPassword}></Route>
           <Route exact path="/">

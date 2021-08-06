@@ -76,11 +76,11 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
         <div className="credentialsInfo__fileField col-xl-6">
             <div className={checkExistence('ssce') <= 0 ? "credentialsInfo__uploadFile" : "credentialsInfo__uploadFile2"}>
 
-              <button
+              <span
               id="uploadbtn"
               className="w-50 btn border rounded-0 shadow"
               onClick={() => { handleShow(); setFileType(1) }}
-            >Choose file</button>
+            >Choose file</span>
             </div>
             <p className="credentialsInfo__labelContainer text-center mt-3">
               <label htmlFor="upload passport">Upload SSC Certificate</label>
@@ -100,11 +100,11 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
 
           <div className="credentialsInfo__fileField col-xl-6">
           <div className={checkExistence('tertiary') <= 0 ? "credentialsInfo__uploadFile" : "credentialsInfo__uploadFile2"}>
-            <button
+            <span
               id="uploadbtn"
               className="w-50 btn border rounded-0 shadow"
               onClick={() => { handleShow(); setFileType(2) }}
-            >Choose file</button>
+            >Choose file</span>
             </div>
             <p className="credentialsInfo__labelContainer text-center mt-3">
               <label htmlFor="upload passport">Upload BSC/HND Certificate</label>
@@ -124,11 +124,11 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
 
           <div className="credentialsInfo__fileField col-xl-6">
           <div className={checkExistence('licenseCertifcate') <= 0 ? "credentialsInfo__uploadFile" : "credentialsInfo__uploadFile2"}>
-               <button
+               <span
                 id="uploadbtn"
                 className="w-50 btn border rounded-0 shadow"
                 onClick={() => { handleShow(); setFileType(3) }}
-              >Choose file</button>
+              >Choose file</span>
             </div>
             <p className="credentialsInfo__labelContainer text-center mt-3">
               <label htmlFor="upload passport">Upload Operating License Certificate</label>
@@ -149,11 +149,11 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
 
           <div className="credentialsInfo__fileField col-xl-6">
           <div className={checkExistence('certificate') <= 0 ? "credentialsInfo__uploadFile" : "credentialsInfo__uploadFile2"}>
-          <button
+          <span
               id="uploadbtn"
               className="w-50 btn border rounded-0 shadow"
               onClick={() => { handleShow(); setFileType(4) }}
-            >Choose file</button>
+            >Choose file</span>
             </div>
             <p className="credentialsInfo__labelContainer text-center mt-3">
               <label htmlFor="upload passport">Upload Other Professional Certificates</label>

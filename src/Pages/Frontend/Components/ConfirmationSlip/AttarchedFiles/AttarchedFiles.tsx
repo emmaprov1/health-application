@@ -5,7 +5,15 @@ interface propsType {
     disable: boolean;
 }
 const AttarchedFiles:FC<propsType> = ({ value, disable }) => {
-  const { promotion, profession, lawyer, seminar, service, ssce, tertiary, workTransfer, workshop } = value
+  // eslint-disable-next-line no-unused-vars
+  const { data } = value
+
+  function checkExistence (type:string) {
+    return data.filter(function (element: { fileType: string }) {
+      return element.fileType === type;
+    }).length
+  }
+
   console.log(value)
   return (
         <div>
@@ -28,44 +36,32 @@ const AttarchedFiles:FC<propsType> = ({ value, disable }) => {
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-md">
-                            <h6>Promotion</h6>
-                            {promotion.length > 0 ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
-                            </div>
-                            <div className="col-md">
-                            <h6>Profession</h6>
-                            { profession.length > 0 ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span> }
-                            </div>
-                            <div className="col-md">
-                            <h6>Lawyer</h6>
-                            {lawyer.length > 0 ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
-                            </div>
-                            <div className="col-md">
-                            <h6>Seminar</h6>
-                            {seminar.length > 0 ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
-                            </div>
-                            <div className="col-md">
-                            <h6>Service</h6>
-                            {service.length > 0 ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
-                            </div>
-                            <div className="col-md">
                             <h6>SSCE</h6>
-                            {ssce.length > 0 ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
+                            {data.length > 0 && checkExistence('ssce') ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
                             </div>
                             <div className="col-md">
                             <h6>Tertiary</h6>
-                            {tertiary.length > 0 ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
+                            { data.length > 0 && checkExistence('tertiary') ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span> }
                             </div>
                             <div className="col-md">
-                            <h6>WorkTransfer</h6>
-                            {workTransfer.length > 0 ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
+                            <h6>License Certifcate</h6>
+                            {data.length > 0 && checkExistence('licenseCertifcate') ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
                             </div>
                             <div className="col-md">
-                            <h6>Workshop</h6>
-                            {workshop.length > 0 ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
+                            <h6>Professional Certificate</h6>
+                            {data.length > 0 && checkExistence('certificate') ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
+                            </div>
+                            <div className="col-md">
+                            <h6>Citizenship</h6>
+                            {data.length > 0 && checkExistence('citizenship') ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
+                            </div>
+                            <div className="col-md">
+                            <h6>Valid ID</h6>
+                            {data.length > 0 && checkExistence('identity') ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
                             </div>
                         </div>
                     </div>
-                </div>
+                    </div>
                 )}
             </div>
         </div>

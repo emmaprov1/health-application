@@ -39,7 +39,7 @@ const Tertiary = ({ fileDoc, deletFile }: propsType) => {
     setUploadStatus(true)
     const file = event.target.files
     const fileType = "tertiary"
-    await fileService.uploadImage(file, fileType, dispatcher, userNin.id).then((res:any) => {
+    await fileService.uploadImage(file, fileType, userNin.id).then((res:any) => {
       console.log("DOWNLOAD URI", res)
       const resData = {
         remoteURL: res,
@@ -69,7 +69,8 @@ const Tertiary = ({ fileDoc, deletFile }: propsType) => {
 
             <Form.Label>Choose certificate type</Form.Label>
             <select className="form-control" {...register("documentName")} onChange={(e:any) => setCertname(e.target.value)}>
-            <option>OND</option>
+            <option>--choose--</option>
+             <option>OND</option>
             <option>B.SC</option>
             <option>HND</option>
             <option>MSC</option>
@@ -89,7 +90,7 @@ const Tertiary = ({ fileDoc, deletFile }: propsType) => {
             </div>
               )}
         </Form.Group>
-        <Button onClick={ onSubmit }>Add</Button>
+        {/* <Button onClick={ onSubmit }>Add</Button> */}
         </Col>
 
         <Col>

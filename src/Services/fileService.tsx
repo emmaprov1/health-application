@@ -4,7 +4,7 @@ import { UPLOAD_ERROR, UPLOAD_PROGRESS, UPLOAD_PROGRESS_MESSAGE } from '../Const
 import firebase from './firebaseInitService'
 
 const fileService = {
-  uploadImage: async (file:any, fileType:string, dispatcher:any, userNin:number) => {
+  uploadImage: async (file:any, fileType:string, userNin:any) => {
     const metadata = {
       contentType: "image/jpeg"
     };

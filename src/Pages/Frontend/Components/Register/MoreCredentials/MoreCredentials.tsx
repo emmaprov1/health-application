@@ -15,6 +15,7 @@ interface MoreCredentialsType {
 }
 
 const MoreCredentials:FC<MoreCredentialsType> = (props) => {
+  // eslint-disable-next-line no-unused-vars
   const { uploadedFiles, uploadProgress } = useSelector((state:any) => state)
 
   const [showActivity, setShowActivity] = useState<boolean>(false)
@@ -79,51 +80,29 @@ const MoreCredentials:FC<MoreCredentialsType> = (props) => {
       {/* form - file fields - open */}
       <div className="moreCredentials__fileFields row pl-4 pr-4">
       <div className="moreCredentials__fileField col-xl-6">
-          <div className="moreCredentials__uploadFile">
-            <button
+          <div className={checkExistence('citizenship') <= 0 ? "moreCredentials__uploadFile" : "moreCredentials__uploadFile2"}>
+             <span
               id="uploadbtn"
               className="w-50 btn border rounded-0 shadow"
               onClick={() => { handleShow(); setFileType(5) }}
-            >Choose file</button>
+            >Choose file</span>
           </div>
           <p className="moreCredentials__labelContainer text-center mt-3">
             <label htmlFor="upload passport">Upload LGA Certificate</label>
           </p>
-          {uploadProgress.licenseCertifcate && (
-              <div className="progress">
-                  <div className={"progress-bar " + (uploadProgress.licenseCertifcate < 99 ? "bg-danger" : "bg-success")} role="progressbar" style={{ width: uploadProgress.licenseCertifcate + "%" }} aria-valuenow={uploadProgress.licenseCertifcate} aria-valuemin={0} aria-valuemax={100}>{uploadProgress.licenseCertifcate}%</div>
-              </div>)}
-              <ul className="list-group">
-                  {uploadedFiles &&
-                  (uploadedFiles.map((items:any, index:any) => {
-                    return items.fileType === "licenseCertifcate" && (index += index)
-                  }))
-                }
-              </ul>
         </div>
 
         <div className="moreCredentials__fileField col-xl-6">
-          <div className="moreCredentials__uploadFile">
-          <button
+            <div className={checkExistence('identity') <= 0 ? "moreCredentials__uploadFile" : "moreCredentials__uploadFile2"}>
+             <span
               id="uploadbtn"
               className="w-50 btn border rounded-0 shadow"
               onClick={() => { handleShow(); setFileType(6) }}
-            >Choose file</button>
+            >Choose file</span>
           </div>
           <p className="moreCredentials__labelContainer text-center mt-3">
             <label htmlFor="upload passport">Upload Government Issued ID</label>
           </p>
-          {uploadProgress.identity && (
-              <div className="progress">
-                  <div className={"progress-bar " + (uploadProgress.identity < 99 ? "bg-danger" : "bg-success")} role="progressbar" style={{ width: uploadProgress.identity + "%" }} aria-valuenow={uploadProgress.identity} aria-valuemin={0} aria-valuemax={100}>{uploadProgress.identity}%</div>
-              </div>)}
-              <ul className="list-group">
-                  {uploadedFiles &&
-                  (uploadedFiles.map((items:any, index:any) => {
-                    return items.fileType === "identity" && (index += index)
-                  }))
-                }
-              </ul>
         </div>
       </div>
 

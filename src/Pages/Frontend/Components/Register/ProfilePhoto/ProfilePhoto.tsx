@@ -29,9 +29,15 @@ const ProfilePhoto:FC<propsType> = ({ register, errors, handleChange, value }) =
     const file = event.target.files
     const fileType = "profilePhoto"
 
-    await fileService.uploadImage(file, fileType, dispatcher, userNin.nin).then((res:any) => {
+    await fileService.uploadImage(file, fileType, userNin.id).then((res:any) => {
+      const resData = {
+        remoteURL: res,
+        name: file[0].name,
+        size: (file[0].size / 1048576).toFixed(2),
+        fileType
+      }
       setUploaded(res)
-      dispatcher({ type: UPLOADED_FILES, data: [...storedFiles, res] })
+      dispatcher({ type: UPLOADED_FILES, data: [...storedFiles, resData] })
     }, error => {
       console.log(error.message)
     })

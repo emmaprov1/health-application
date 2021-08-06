@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PersonalInformation, RegisterFooter, RegisterHeader } from '../../Components/Index'
 import AddressInformation from '../../Components/Register/AddressInformation/AddressInformation';
 import CredentialsInformation from '../../Components/Register/CredentialsInformation/CredentialsInformation';
@@ -26,10 +26,11 @@ const initialState = {
   stateOfOrigin: "",
   addressOfOrigin: "",
   stateOfResidence: "",
-  addressOfRecidence: "",
+  addressOfResidence: "",
   lgaOfResidence: "",
-  dateOfBirth: "",
   acknwoledgement: false,
+  referenceID: "",
+  profilePhoto: ""
 };
 
 const Register = () => {
@@ -41,7 +42,7 @@ const Register = () => {
 
   const [fields, updateFields] = useState<any>({ ...initialState, data: uploadedFiles })
   const [success, setSuccess] = useState(false)
-  const [submited, setSubmited] = useState(false)
+  const [submited, setSubmited] = useState(true)
   const [loader, setLoader] = useState(false)
 
   const changeTab = (value:number) => {
@@ -53,17 +54,13 @@ const Register = () => {
   const handleChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
 
-    console.log({
-      [name]: value,
-    })
-    console.log(fields)
-
     updateFields({
       ...fields,
       [name]: value,
     })
+    console.log(value)
   }
-  console.log("All field", fields)
+
   const fileDoc = (data: { fileType: string | number; }) => {
     const dataSource = fields[data?.fileType]
 
@@ -77,21 +74,24 @@ const Register = () => {
   const onSubmit = handleSubmit((data) => completeForm());
 
   const completeForm = async () => {
+    updateFields({
+      ...fields,
+      data: [...uploadedFiles],
+      referenceID: userNin.id
+    })
+
     setLoader(true)
     setSubmited(!submited) // ninData
 
-    setTimeout(() => {
-      setLoader(false)
-      setSubmited(!submited) // ninData
-
-      toast.success('Application submitted successfully', { duration: 20000, className: 'bg-danger text-white' });
-    }, 3000)
-
-    await userService.saveRegistrationData(userNin.id, fields).then(
+    await userService.saveRegistrationData(userNin.ref, fields).then(
       () => {
         setLoader(false)
         setSubmited(!submited)
         setSuccess(!success)
+        toast.success('Application submitted successfully', { duration: 20000, className: 'bg-success text-white' });
+        setTimeout(() => {
+          window.location.href = `/#/slip/${userNin.ref}`
+        }, 4000)
       }, error => {
         setLoader(false)
         setSubmited(!submited)
@@ -100,6 +100,20 @@ const Register = () => {
       }
     )
   }
+
+  useEffect(() => {
+    console.log(fields)
+  }, [
+    fields])
+
+  useEffect(() => {
+    updateFields({
+      ...fields,
+      data: [...uploadedFiles],
+      referenceID: userNin.id
+    })
+  }, [
+    uploadedFiles])
 
   return (
       // markup for register
@@ -161,7 +175,7 @@ const Register = () => {
                                             errors={errors}
                                             handleChange={handleChange}
                                             value={fields}
-                                            completeForm = {completeForm}
+                                            completeForm = {() => completeForm()}
                                             submited={submited}
                                           />)}
                   </form>

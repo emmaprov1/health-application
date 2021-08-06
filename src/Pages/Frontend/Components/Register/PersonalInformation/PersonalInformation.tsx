@@ -18,12 +18,12 @@ interface personalType {
 const initialData = { fileType: "", name: "", remoteURL: "", size: "" }
 
 const PersonalInformation:FC<personalType> = (props) => {
+  // eslint-disable-next-line no-unused-vars
   const { surname, jobRole, firstname, middlename, dataOfBirth, phoneNo, phoneNo2, email, email2, gender } = props.value
 
   const dispatcher = useDispatch()
   const userNin = useReference()
-  // eslint-disable-next-line no-unused-vars
-  const { uploadedFiles, disableStatus, uploadProgress } = useSelector((state:any) => state)
+  const { uploadedFiles } = useSelector((state:any) => state)
   const [uploadStatus, setUploadStatus] = useState(false)
 
   const [uploaded, setUploaded] = useState<any>(initialData)
@@ -33,15 +33,15 @@ const PersonalInformation:FC<personalType> = (props) => {
     const file = event.target.files
     const fileType = "profilePhoto"
     setUploadStatus(true)
-    await fileService.uploadImage(file, fileType, dispatcher, userNin.id).then((res:any) => {
-      setUploaded({
+    await fileService.uploadImage(file, fileType, userNin.id).then((res:any) => {
+      const resData = {
         remoteURL: res,
         name: file[0].name,
         size: (file[0].size / 1048576).toFixed(2),
         fileType
-      })
-      dispatcher({ type: UPLOADED_FILES, data: [...storedFiles, res] })
-
+      }
+      setUploaded(resData)
+      dispatcher({ type: UPLOADED_FILES, data: [...storedFiles, resData] })
       setUploadStatus(false)
     }, error => {
       console.log(error.message)
@@ -56,7 +56,7 @@ const PersonalInformation:FC<personalType> = (props) => {
       console.log(error.message)
     })
   }
-  console.log("all uploaded completed", uploadedFiles)
+
   return (
     // personalInfo markup
     <React.Fragment>
@@ -126,7 +126,7 @@ const PersonalInformation:FC<personalType> = (props) => {
         <div className="personalInfo__textFields row pl-4">
           <div className="form-group col-xl-12 text-center">
             <div className="text-center w-100">Your Reference ID</div>
-            <input type="text" value={7665343432455} readOnly className="w-50 offset-3 text-center form-control"/>
+            <input type="text" value={userNin.id} readOnly className="w-50 offset-3 text-center form-control"/>
           </div>
         <div className="form-group col-xl-6">
               <label htmlFor="state of origin" className="">
@@ -136,7 +136,6 @@ const PersonalInformation:FC<personalType> = (props) => {
               <select
                 className="form-control"
                 id="stateOfOrigin"
-                placeholder="e.g Doe"
                 {...props.register("jobRole", {
                   required: 'this is a required field',
                   pattern: {
@@ -144,12 +143,12 @@ const PersonalInformation:FC<personalType> = (props) => {
                      /^[a-zA-Z]*$/,
                     message: 'Invalid input',
                   }
-                })} value={jobRole} onChange={props.handleChange}
+                })} onChange={props.handleChange}
               >
               <option value="null">Select a Job Role</option>
               <option value="consultant">Consultant</option>
-              <option value="consultant">Registrar</option>
-              <option value="consultant">Medical Officer</option>
+              <option value="Registrar">Registrar</option>
+              <option value="Medical Officer">Medical Officer</option>
             </select>
               <div className="register--error text-danger">
                   {props.errors.jobRole && props.errors.jobRole.message}
@@ -368,8 +367,10 @@ const PersonalInformation:FC<personalType> = (props) => {
                    /^[a-zA-Z]*$/,
                   message: 'Invalid input',
                 }
-              })} value={gender}
+              })}
+              onChange={props.handleChange}
             >
+              <option value="null">--choose--</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>

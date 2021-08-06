@@ -6,53 +6,36 @@ interface propsType {
     disable: boolean;
 }
 
-const generalDutyOrSpecialistArray = [
-  { id: 13, name: "General Duty" },
-  { id: 1, name: "Electrician" },
-  { id: 2, name: "Merson" },
-  { id: 3, name: "Plumber" },
-  { id: 4, name: "Painter" },
-  { id: 5, name: "Tailor" },
-  { id: 7, name: "Welder" },
-  { id: 8, name: "Driver" },
-  { id: 10, name: "Veterinary" },
-  { id: 11, name: "Mounted Troop" },
-  { id: 12, name: "K-9" }
-]
-const secondMentData = [
-  { id: 1, name: "Presidency" },
-  { id: 2, name: "ADC" },
-  { id: 3, name: "EFCC" },
-  { id: 4, name: "ICPC" },
-  { id: 5, name: "INEC" },
-  { id: 6, name: "ECOWAS" },
-  { id: 7, name: "UN" },
-  { id: 8, name: "AU" },
-  { id: 9, name: "EU" },
-  { id: 10, name: "NASS" },
-]
-
 const PersonalInformationSlip:FC<propsType> = ({ value, disable }) => {
   const {
-    surName, firstName, lastName, substansiveRank, phoneNumber, email, sex, stateOfOrigin,
-    localGovernmentArea, /* dateOfBirth, */
-    dateOfEnlistment, rankOnEnlistment, discipline, generalDutyOrSpecialist, secondment, actingCapacity, deptZoneCommand
+    surname,
+    jobRole,
+    firstname,
+    middlename,
+    phoneNo,
+    phoneNo2,
+    email,
+    email2,
+    gender,
+    stateOfOrigin,
+    addressOfOrigin,
+    dateOfBirth,
+    stateOfResidence,
+    addressOfResidence,
+    lgaOfResidence,
+
   } = value
 
-  const stateName:any = state[2].data?.filter((obj:any) => {
+  const stateOfResidenceName:any = state[2].data?.filter((obj:any) => {
+    return obj.id === stateOfResidence?.toString()
+  })[0]?.name
+
+  const stateOfOriginName:any = state[2].data?.filter((obj:any) => {
     return obj.id === stateOfOrigin?.toString()
   })[0]?.name
 
-  const lgaName:any = lga[2].data?.filter((obj:any) => {
-    return obj.id === localGovernmentArea?.toString()
-  })[0]?.name
-
-  const specialDuties = generalDutyOrSpecialistArray.filter((obj:any) => {
-    return obj.id === generalDutyOrSpecialist
-  })[0]?.name
-
-  const secondmentValue = secondMentData.filter((obj:any) => {
-    return obj.id === secondment
+  const lgaOfResidenceName:any = lga[2].data?.filter((obj:any) => {
+    return obj.id === lgaOfResidence?.toString()
   })[0]?.name
 
   return (
@@ -77,75 +60,71 @@ const PersonalInformationSlip:FC<propsType> = ({ value, disable }) => {
 
                 <div className="col-md-6 form-group">
                     <label>Surname </label>
-                    <input type="text" className="form-control rounded-0" value={surName} readOnly/>
+                    <input type="text" className="form-control rounded-0" value={surname} readOnly/>
                 </div>
                 <div className="col-md-6 form-group">
                     <label>Firstname: </label>
-                    <input type="text" name="" className="form-control rounded-0" value={firstName} readOnly/>
-                </div>
-                <div className="col-md-4 form-group">
-                    <label> Last name </label>
-                    <input type="text" name="" className="form-control rounded-0" value={lastName} readOnly/>
+                    <input type="text" name="" className="form-control rounded-0" value={firstname} readOnly/>
                 </div>
                 <div className="col-md-5 form-group">
-                    <label> Substansive Rank </label>
-                    <input className="form-control rounded-0" value={substansiveRank} readOnly/>
+                    <label> Middle name </label>
+                    <input className="form-control rounded-0" value={middlename} readOnly/>
                 </div>
                 <div className="col-md-3 form-group">
-                    <label> Are you on Acting Capacity </label>
-                    <input className="form-control rounded-0" value={actingCapacity} readOnly/>
+                    <label>Job Role </label>
+                    <input className="form-control rounded-0" value={jobRole} readOnly/>
                 </div>
                 <div className="col-md-6 form-group">
-                    <label> Phone No </label>
-                    <input type="text" name="" className="form-control rounded-0" value={phoneNumber} readOnly/>
+                    <label> Phone No1 </label>
+                    <input type="text" name="" className="form-control rounded-0" value={phoneNo} readOnly/>
                 </div>
                 <div className="col-md-6 form-group">
-                    <label> Email Address </label>
+                    <label> Phone No2 </label>
+                    <input type="text" name="" className="form-control rounded-0" value={phoneNo2} readOnly/>
+                </div>
+                <div className="col-md-6 form-group">
+                    <label> Email Address1 </label>
                     <input type="text" name="" className="form-control rounded-0" value={email} readOnly/>
+                </div>
+                <div className="col-md-6 form-group">
+                    <label> Email Address2 </label>
+                    <input type="text" name="" className="form-control rounded-0" value={email2} readOnly/>
                 </div>
 
                 <div className="col-md-3 form-group">
                     <label> Sex </label>
-                    <input className="form-control rounded-0" value={sex === 1 ? "male" : "female"} readOnly/>
+                    <input className="form-control rounded-0" value={gender} readOnly/>
                 </div>
                 <div className="col-md-4 form-group">
                    <label htmlFor="stateOfOrigin">State of Origin </label>
-                    <input className="form-control rounded-0" id="stateOfOrigin" value={stateName} readOnly/>
+                    <input className="form-control rounded-0" id="stateOfOrigin" value={stateOfOriginName} readOnly/>
                 </div>
                <div className="col-md-5 form-group">
-                   <label htmlFor="deptZoneCommand"> Department/Zone/Command </label>
-                    <input className="form-control rounded-0" id="stateOfOrigin" value={deptZoneCommand} readOnly/>
+                   <label htmlFor="deptZoneCommand">State of origin </label>
+                    <input className="form-control rounded-0" id="stateOfOrigin" value={addressOfOrigin} readOnly/>
                 </div>
-                <div className="col-md-6 form-group">
-                    <label htmlFor="localGovernmentArea"> Local Governement Area</label>
-                    <input className="form-control rounded-0" id="localGovernmentArea" value={lgaName} readOnly/>
+               <div className="col-md-5 form-group">
+                   <label htmlFor="deptZoneCommand">Address of State of origin </label>
+                    <input className="form-control rounded-0" id="stateOfOrigin" value={addressOfOrigin} readOnly/>
                 </div>
 
                 <div className="col-md-6 form-group">
                     <label> Date of Birth</label>
-                    <input type="text" name="" className="form-control rounded-0" />
-                </div>
-                <div className="col-md-6 form-group">
-                    <label> Date of Enlistment </label>
-                    <input type="text" name="" className="form-control rounded-0" value={dateOfEnlistment} readOnly/>
-                </div>
-                <div className="col-md-6 form-group">
-                    <label>Rank on Enlistment </label>
-                    <input className="form-control rounded-0" value={rankOnEnlistment} readOnly/>
+                    <input type="text" name="" className="form-control rounded-0" value={dateOfBirth}/>
                 </div>
 
-                <div className="col-md-3 form-group">
-                    <label>Discipline </label>
-                    <input type="text" name="" className="form-control rounded-0" value={discipline} readOnly/>
+                <div className="col-md-6 form-group">
+                    <label> State of residence</label>
+                    <input type="text" name="" className="form-control rounded-0" value={stateOfResidenceName} readOnly/>
                 </div>
-                <div className="col-md-4 form-group">
-                    <label> What is your Official Duty. </label>
-                    <input name="" className="form-control rounded-0" value={specialDuties} readOnly/>
+                <div className="col-md-6 form-group">
+                    <label>Address of residence</label>
+                    <input className="form-control rounded-0" value={addressOfResidence} readOnly/>
                 </div>
 
-                 <div className="col-md-5 form-group">
-                    <label> Are you on Secondment. </label>
-                    <input name="" className="form-control rounded-0" value={secondmentValue} readOnly/>
+                <div className="col-md-6 form-group">
+                    <label>Local government of residence </label>
+                    <input type="text" name="" className="form-control rounded-0" value={lgaOfResidenceName} readOnly/>
                 </div>
               </div>
             </div>

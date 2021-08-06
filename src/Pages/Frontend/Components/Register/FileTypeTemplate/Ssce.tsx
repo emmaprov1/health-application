@@ -38,7 +38,7 @@ const Ssce = ({ fileDoc, deletFile }: propsType) => {
     setUploadStatus(true)
     const file = event.target.files
     const fileType = "ssce"
-    await fileService.uploadImage(file, fileType, dispatcher, userRefId.id).then((res:any) => {
+    await fileService.uploadImage(file, fileType, userRefId.id).then((res:any) => {
       console.log("DOWNLOAD URI", res)
       const resData = {
         remoteURL: res,
@@ -68,6 +68,7 @@ const Ssce = ({ fileDoc, deletFile }: propsType) => {
 
               <Form.Label>Choose document type</Form.Label>
               <Form.Control as="select" {...register("documentName")} disabled={uploadStatus} onChange={(e:any) => { setCertName(e.target.value) }}>
+              <option>--choose--</option>
               <option>WAEC</option>
               <option>NECO</option>
               <option>NABTEB</option>
@@ -88,7 +89,7 @@ const Ssce = ({ fileDoc, deletFile }: propsType) => {
           </Form.Group>
           {/* <!-- Progress Bar --> */}
 
-          <Button onClick={ onSubmit } disabled={uploadStatus}>Add</Button>
+          {/* <Button onClick={ onSubmit } disabled={uploadStatus}>Add</Button> */}
           </Col>
 
           <Col>

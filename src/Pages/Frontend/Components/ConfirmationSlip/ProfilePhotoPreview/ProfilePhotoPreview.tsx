@@ -6,11 +6,22 @@ interface propsType {
 }
 
 const ProfilePhotoPreview:FC<propsType> = ({ value, disable }) => {
-  const { profilePhotoNin, profilePhoto } = value
+  // eslint-disable-next-line no-unused-vars
+  const { referenceID, data } = value
 
+  function getPhoto () {
+    data.filter(function (element: { fileType: string, remoteURL:any }) {
+      return element.fileType === 'profilePhoto' ? element.remoteURL : '';
+    })
+  }
+
+  console.log(getPhoto)
+
+  const myPhoto = data.find((e: { fileType: string; }) => e.fileType === "profilePhoto");
+  console.log(myPhoto);
   return (
     <div className="card">
-        <div className="card-header">
+        <div className="card-header text-center">
             <div className="c-header-crib-2">
                 <span></span>
                 <span></span>
@@ -28,15 +39,14 @@ const ProfilePhotoPreview:FC<propsType> = ({ value, disable }) => {
         (<div className="card-body">
           <div className="container">
               <div className="row h-100">
-                  <div className="col-md-6 text-center">
-                      <div>
-                          <img src={`data:image/png;base64,${profilePhotoNin}`} alt="" className="w-50"/>
-                      </div>
-                  </div>
-                  <div className="col-md-6 text-center">
-                      <div>
-                          <img src={profilePhoto || emptyAvarter} alt="" className="w-50"/>
-                      </div>
+                  <div className="col-md-12 text-center">
+                        <div>
+                            <img src={myPhoto.remoteURL || emptyAvarter} alt="" className="w-25"/>
+                        </div>
+                        <div className="form-group mt-4">
+                            <b>Application Reference ID: </b>
+                            <div style={{ fontWeight: 400, textAlign: "center" }}>{referenceID}</div>
+                        </div>
                   </div>
               </div>
           </div>

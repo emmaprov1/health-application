@@ -106,13 +106,13 @@ const JobApplication:FC<JobApplicationType> = (props) => {
         </div>
 
         <div className="ctrls__next ml-5">
+        <button className="btn btn-dark btn-md" type="submit" onClick={props.completeForm}>Submit</button>
+        {/* {props.submited && <button className="btn btn-dark btn-md" onClick={props.completeForm}>Submit</button>} */}
 
-        {!props.submited && <button className="btn btn-dark btn-md" onClick={props.completeForm}>Submit</button>}
-
-          {props.submited && <button className="btn btn-dark btn-md" disabled onClick={props.completeForm}>Submiting please wait
+          {/* {!props.submited && <button className="btn btn-dark btn-md" disabled onClick={props.completeForm}>Submiting please wait
           <div className="spinner-border" role="status">
             <span className="sr-only">Loading...</span>
-          </div></button>}
+          </div></button>} */}
           </div>
       </div>
     </React.Fragment>
