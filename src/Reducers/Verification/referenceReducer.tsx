@@ -1,7 +1,18 @@
 
 import { REF_FAILURE, REF_REQUEST, REF_SUCCESS } from '../../Constants/ReferenceConstants';
 
-const referenceReducer = (state = { id: 'emmaTester' }, action: { type: any; data: any; }) => {
+function makeid (length: number) {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() *
+charactersLength));
+  }
+  return result;
+}
+
+const referenceReducer = (state = { id: `LS-HSC/2021-${makeid(8)}`, ref: `LS_HSC_2021_${makeid(8)}`, }, action: { type: any; data: any; }) => {
   switch (action.type) {
     case REF_SUCCESS:
       return { success: action.data }
