@@ -21,7 +21,7 @@ const ConfirmationSlipVerification = () => {
 
     setLoader(true)
     userService.getData(data.nin).then((res) => {
-      // console.log("", res)
+      console.log("", res)
       history.push("/slip/" + hashRef)
       setLoader(false)
     }, error => {
