@@ -35,7 +35,7 @@ const Certificate = ({ deletFile }: propsType) => {
     const documentName = watch("documentName")
     const file = event.target.files
     const fileType = "licenseCertifcate"
-    await fileService.uploadImage(file, fileType, userNin.id).then((res:any) => {
+    await fileService.uploadImage(file, fileType, userNin.ref).then((res:any) => {
       const resData = {
         remoteURL: res,
         name: documentName,

@@ -39,7 +39,7 @@ const Tertiary = ({ fileDoc, deletFile }: propsType) => {
     setUploadStatus(true)
     const file = event.target.files
     const fileType = "tertiary"
-    await fileService.uploadImage(file, fileType, userNin.id).then((res:any) => {
+    await fileService.uploadImage(file, fileType, userNin.ref).then((res:any) => {
       console.log("DOWNLOAD URI", res)
       const resData = {
         remoteURL: res,

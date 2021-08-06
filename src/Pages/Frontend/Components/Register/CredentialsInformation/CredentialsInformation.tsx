@@ -15,7 +15,7 @@ interface CredentialsInformationType {
 }
 
 const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
-  const { uploadedFiles, uploadProgress } = useSelector((state:any) => state)
+  const { uploadedFiles } = useSelector((state:any) => state)
 
   const [showActivity, setShowActivity] = useState<boolean>(false)
   const [fileType, setFileType] = useState<number>(0)
@@ -85,17 +85,6 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
             <p className="credentialsInfo__labelContainer text-center mt-3">
               <label htmlFor="upload passport">Upload SSC Certificate</label>
             </p>
-            {uploadProgress.ssce && (
-              <div className="progress">
-                  <div className={"progress-bar " + (uploadProgress.ssce < 99 ? "bg-danger" : "bg-success")} role="progressbar" style={{ width: uploadProgress.ssce + "%" }} aria-valuenow={uploadProgress.ssce} aria-valuemin={0} aria-valuemax={100}>{uploadProgress.ssce}%</div>
-              </div>)}
-              <ul className="list-group">
-                  {uploadedFiles &&
-                  (uploadedFiles.map((items:any, index:any) => {
-                    return items.fileType === "ssce" && (index += index)
-                  }))
-                }
-              </ul>
           </div>
 
           <div className="credentialsInfo__fileField col-xl-6">
@@ -109,17 +98,6 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
             <p className="credentialsInfo__labelContainer text-center mt-3">
               <label htmlFor="upload passport">Upload BSC/HND Certificate</label>
             </p>
-            {uploadProgress.tertiary && (
-              <div className="progress">
-                  <div className={"progress-bar " + (uploadProgress.tertiary < 99 ? "bg-danger" : "bg-success")} role="progressbar" style={{ width: uploadProgress.tertiary + "%" }} aria-valuenow={uploadProgress.tertiary} aria-valuemin={0} aria-valuemax={100}>{uploadProgress.tertiary}%</div>
-              </div>)}
-              <ul className="list-group">
-                  {uploadedFiles &&
-                  (uploadedFiles.map((items:any, index:any) => {
-                    return items.fileType === "tertiary" && (index += index)
-                  }))
-                }
-              </ul>
           </div>
 
           <div className="credentialsInfo__fileField col-xl-6">
@@ -134,17 +112,6 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
               <label htmlFor="upload passport">Upload Operating License Certificate</label>
             </p>
 
-            {uploadProgress.licenseCertifcate && (
-              <div className="progress">
-                  <div className={"progress-bar " + (uploadProgress.licenseCertifcate < 99 ? "bg-danger" : "bg-success")} role="progressbar" style={{ width: uploadProgress.licenseCertifcate + "%" }} aria-valuenow={uploadProgress.licenseCertifcate} aria-valuemin={0} aria-valuemax={100}>{uploadProgress.licenseCertifcate}%</div>
-              </div>)}
-              <ul className="list-group">
-                  {uploadedFiles &&
-                  (uploadedFiles.map((items:any, index:any) => {
-                    return items.fileType === "licenseCertifcate" && (index += index)
-                  }))
-                }
-              </ul>
           </div>
 
           <div className="credentialsInfo__fileField col-xl-6">
@@ -158,17 +125,6 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
             <p className="credentialsInfo__labelContainer text-center mt-3">
               <label htmlFor="upload passport">Upload Other Professional Certificates</label>
             </p>
-            {uploadProgress.certificate && (
-              <div className="progress">
-                  <div className={"progress-bar " + (uploadProgress.certificate < 99 ? "bg-danger" : "bg-success")} role="progressbar" style={{ width: uploadProgress.certificate + "%" }} aria-valuenow={uploadProgress.certificate} aria-valuemin={0} aria-valuemax={100}>{uploadProgress.certificate}%</div>
-              </div>)}
-              <ul className="list-group">
-                  {uploadedFiles &&
-                  (uploadedFiles.map((items:any, index:any) => {
-                    return items.fileType === "certificate" && (index += index)
-                  }))
-                }
-              </ul>
 
           </div>
         </div>
