@@ -65,6 +65,14 @@ const PersonalInformation:FC<personalType> = (props) => {
     })
   }
 
+  const copyFunction = () => {
+    const copyref:any = document.getElementById("myInput");
+    copyref.select();
+    copyref.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("Copied the reference id " + copyref.value);
+  }
+
   return (
     // personalInfo markup
     <React.Fragment>
@@ -134,7 +142,7 @@ const PersonalInformation:FC<personalType> = (props) => {
         <div className="personalInfo__textFields row pl-4">
           <div className="form-group col-xl-12 text-center">
             <div className="text-center w-100">Your Reference ID</div>
-            <input type="text" value={userNin.id} readOnly className="w-50 offset-3 text-center form-control"/>
+            <input type="text" onClick={copyFunction} value={userNin.id} readOnly className="w-50 offset-3 text-center form-control" id="myInput"/>
           </div>
         <div className="form-group col-xl-6">
               <label htmlFor="state of origin" className="">
