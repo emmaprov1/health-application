@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { UPLOADED_FILES } from '../../../../../Constants/FileConstants'
 import { useReference } from '../../../../../Hooks'
 import fileService from '../../../../../Services/fileService'
+import userService from '../../../../../Services/userService'
 import emptyAvarter from "./../../../../../Assets/images/user-empty-avatar.png";
 import "./PersonalInformation.scss"
 
@@ -26,14 +27,17 @@ const PersonalInformation:FC<personalType> = (props) => {
   const userNin = useReference()
   const { uploadedFiles } = useSelector((state:any) => state)
   const [uploadStatus, setUploadStatus] = useState(false)
+
   // eslint-disable-next-line no-unused-vars
+  const [error, setError] = useState<any[]>([])
+
   let disable = true
 
   const [uploaded, setUploaded] = useState<any>(initialData)
   const storedFiles: string[] = uploadedFiles
 
   // simple validation
-  if (surname !== "" && jobRole !== "" && firstname !== "" && middlename !== "" && dataOfBirth !== "" && phoneNo !== "" && phoneNo2 !== "" && email !== "" && email2 !== "" && gender) {
+  if (error.length === 0 && surname !== "" && jobRole !== "" && firstname !== "" && middlename !== "" && dataOfBirth !== "" && phoneNo !== "" && phoneNo2 !== "" && email !== "" && email2 !== "" && gender) {
     disable = false
   }
 
@@ -73,6 +77,67 @@ const PersonalInformation:FC<personalType> = (props) => {
     alert("Copied the reference id " + copyref.value);
   }
 
+  /**
+   * Basic Email validation
+   *
+   * */
+
+  function checkError (type:string) {
+    return error.find(x => x.type === type);
+  }
+
+  async function validatePhoneNo (e: { target: { value: any } }) {
+    const phoneNos = e.target.value
+    console.log("PHONE VALIDATION +++++", email)
+    await userService.validatePhone(phoneNos).then((res:{docs:any}) => {
+      if (res.docs.length > 0) {
+        setError([...error, { type: "phoneNo", message: "Phone number already exist" }])
+        disable = true
+      } else {
+        error.splice(error.findIndex(a => a.type === 'phoneNo'), 1)
+        setError(error)
+      }
+    })
+  }
+
+  async function validatePhoneNo2 (e: { target: { value: any } }) {
+    const phoneNos2 = e.target.value
+    await userService.validatePhone(phoneNos2).then((res:{docs:any}) => {
+      if (res.docs.length > 0) {
+        setError([...error, { type: "phoneNo2", message: "Phone number already exist" }])
+        disable = true
+      } else {
+        error.splice(error.findIndex(a => a.type === 'phoneNo2'), 1)
+        setError(error)
+      }
+    })
+  }
+
+  async function validateEmail (e: { target: { value: any } }) {
+    const emails = e.target.value
+    await userService.validateEmail(emails).then((res:any) => {
+      if (res.docs.length > 0) {
+        setError([...error, { type: "email", message: "Email already exist" }])
+        disable = true
+      } else {
+        error.splice(error.findIndex(a => a.type === 'email'), 1)
+        setError(error)
+      }
+    })
+  }
+
+  async function validateEmail2 (e: { target: {value: any } }) {
+    const emails2 = e.target.value
+    await userService.validateEmail(emails2).then((res:any) => {
+      if (res.docs.length > 0) {
+        setError([...error, { type: "email2", message: "Email already exist" }])
+        disable = true
+      } else {
+        error.splice(error.findIndex(a => a.type === 'email2'), 1)
+        setError(error)
+      }
+    })
+  }
   return (
     // personalInfo markup
     <React.Fragment>
@@ -276,7 +341,7 @@ const PersonalInformation:FC<personalType> = (props) => {
             <br />
             <input
               className="form-control"
-              type="text"
+              type="number"
               id="phoneNo"
               placeholder="(234) 091 234 5678"
               {...props.register("phoneNo", {
@@ -287,10 +352,12 @@ const PersonalInformation:FC<personalType> = (props) => {
                   message: 'Invalid input',
                 }
               })} value={phoneNo}
+              onKeyUp={(e:any) => validatePhoneNo(e)}
                onChange={props.handleChange}
             />
             <div className="register--error text-danger">
                 {props.errors.phoneNo && props.errors.phoneNo.message}
+                {checkError("phoneNo") && checkError("phoneNo").message}
             </div>
           </div>
 
@@ -301,7 +368,7 @@ const PersonalInformation:FC<personalType> = (props) => {
             <br />
             <input
               className="form-control"
-              type="text"
+              type="number"
               id="phoneNo2"
               placeholder="(234) 091 234 5678"
               {...props.register("phoneNo2", {
@@ -312,10 +379,12 @@ const PersonalInformation:FC<personalType> = (props) => {
                   message: 'Invalid input',
                 }
               })} value={phoneNo2}
+              onKeyUp={(e:any) => validatePhoneNo2(e)}
                onChange={props.handleChange}
             />
              <div className="register--error text-danger">
                 {props.errors.phoneNo2 && props.errors.phoneNo2.message}
+                {checkError("phoneNo2") && checkError("phoneNo2").message}
             </div>
           </div>
 
@@ -337,10 +406,12 @@ const PersonalInformation:FC<personalType> = (props) => {
                   message: 'Invalid input',
                 }
               })} value={email}
+              onKeyUp={(e:{target:any}) => validateEmail(e)}
                onChange={props.handleChange}
             />
             <div className="register--error text-danger">
                {props.errors.email && props.errors.email.message}
+                {checkError("email") && checkError("email").message}
            </div>
           </div>
 
@@ -362,10 +433,12 @@ const PersonalInformation:FC<personalType> = (props) => {
                   message: 'Invalid input',
                 }
               })} value={email2}
+              onKeyUp={(e:{target:any}) => validateEmail2(e)}
                onChange={props.handleChange}
             />
             <div className="register--error text-danger">
                {props.errors.email2 && props.errors.email2.message}
+                {checkError("email2") && checkError("email2").message}
            </div>
           </div>
 
