@@ -18,7 +18,6 @@ const userService = {
   },
 
   getDataByPhone: async (phone:number) => {
-    alert(phone)
     const db = firebase.firestore()
     return await db.collection("applications").where("phoneNo", "==", phone).get();
   },

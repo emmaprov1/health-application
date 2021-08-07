@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { DeepMap, FieldError, FieldValues, UseFormRegister } from 'react-hook-form'
+import { useSelector } from 'react-redux'
 import "./JobApplication.scss"
 
 interface JobApplicationType {
@@ -13,7 +14,25 @@ interface JobApplicationType {
 }
 
 const JobApplication:FC<JobApplicationType> = (props) => {
-  const { coverLetter } = props.value
+  const { coverLetter, acknwoledgement } = props.value
+
+  // eslint-disable-next-line no-unused-vars
+  const { uploadedFiles, uploadProgress } = useSelector((state:any) => state)
+
+  let disable = true
+  // simple validation
+  if (coverLetter === '' && acknwoledgement === false) {
+    disable = false
+  }
+
+  console.log(uploadedFiles)
+  // eslint-disable-next-line no-unused-vars
+  function checkExistence (type:string) {
+    return uploadedFiles.filter(function (element: { fileType: string }) {
+      return element.fileType === type;
+    }).length
+  }
+
   return (
     // jobApplication markup
     <React.Fragment>
@@ -51,7 +70,7 @@ const JobApplication:FC<JobApplicationType> = (props) => {
         <div className="jobApplication__textFields row pl-4">
           <div className="form-group col-xl-12">
             <label htmlFor="state of origin" className="">
-              Write a cover letter
+              Write a cover letter <span className="text-danger">*</span>
             </label>
             <br />
             <textarea
@@ -62,7 +81,7 @@ const JobApplication:FC<JobApplicationType> = (props) => {
                   required: 'this is a required field',
                   pattern: {
                     value:
-                     /^[a-zA-Z]*$/,
+                    /^[a-zA-Z\s]*$/,
                     message: 'Invalid input',
                   }
                 })} value={coverLetter} onChange={props.handleChange}
@@ -81,11 +100,6 @@ const JobApplication:FC<JobApplicationType> = (props) => {
              type="checkbox"
              {...props.register("acknwoledgement", {
                required: 'Please tick the checkbox',
-               pattern: {
-                 value:
-                  /^[a-zA-Z]*$/,
-                 message: 'Invalid input',
-               }
              })} value={'true'} required={true} onChange={props.handleChange}
               />
               <label htmlFor="state of origin" className="">
@@ -106,7 +120,7 @@ const JobApplication:FC<JobApplicationType> = (props) => {
         </div>
 
         <div className="ctrls__next ml-5">
-        <button className="btn btn-dark btn-md" type="submit" onClick={props.completeForm}>Submit</button>
+        <button className="btn btn-dark btn-md" type="submit" disabled={!disable}>Submit</button>
         {/* {props.submited && <button className="btn btn-dark btn-md" onClick={props.completeForm}>Submit</button>} */}
 
           {/* {!props.submited && <button className="btn btn-dark btn-md" disabled onClick={props.completeForm}>Submiting please wait

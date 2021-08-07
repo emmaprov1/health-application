@@ -4,6 +4,7 @@ import {
   Citizenship,
   Identity,
   LicenseCertificate,
+  Nysc,
   Ssce,
   Tertiary,
   //  Symposium, Tertiary, Workshop, Conference, VipAssignment, DisabledSickness
@@ -35,6 +36,7 @@ const FileUploadManager = ({ showActivity, fileType, handleShow, fileDoc, deletF
             {fileType === 4 && <Certificate fileDoc={fileDoc} deletFile={() => deletFile}/>}
             {fileType === 5 && <Citizenship fileDoc={fileDoc} deletFile={() => deletFile}/>}
             {fileType === 6 && <Identity fileDoc={fileDoc} deletFile={() => deletFile}/>}
+            {fileType === 7 && <Nysc fileDoc={fileDoc} deletFile={() => deletFile}/>}
 
         </Modal.Body>
         <Modal.Footer>

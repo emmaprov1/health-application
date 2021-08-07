@@ -40,7 +40,7 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
 
   let disable = true
   // simple validation
-  if (checkExistence("ssce") !== 0 && checkExistence("tertiary") !== 0 && checkExistence("licenseCertifcate") !== 0 && checkExistence("certificate") !== 0) {
+  if (checkExistence("ssce") !== 0 && checkExistence("tertiary") !== 0) {
     disable = false
   }
 
@@ -89,7 +89,7 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
             >Choose file</span>
             </div>
             <p className="credentialsInfo__labelContainer text-center mt-3">
-              <label htmlFor="upload passport">Upload SSC Certificate</label>
+              <label htmlFor="upload passport">Upload SSC Certificate <span className="text-danger">*</span></label>
             </p>
           </div>
 
@@ -102,7 +102,7 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
             >Choose file</span>
             </div>
             <p className="credentialsInfo__labelContainer text-center mt-3">
-              <label htmlFor="upload passport">Upload BSC/HND Certificate</label>
+              <label htmlFor="upload passport">Upload BSC/HND Certificate <span className="text-danger">*</span></label>
             </p>
           </div>
 

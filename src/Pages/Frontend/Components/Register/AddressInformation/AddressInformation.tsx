@@ -66,7 +66,7 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
         <div className="addressInfo__textFields row pl-4">
           <div className="form-group col-xl-6">
             <label htmlFor="state of origin">
-              State Of Origin
+              State Of Origin <span className="text-danger">*</span>
             </label>
             <br />
             <select
@@ -93,7 +93,7 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
 
           <div className="form-group col-xl-6">
             <label htmlFor="lgaOfOrigin">
-              LGA Of Origin
+              LGA Of Origin <span className="text-danger">*</span>
             </label>
             <br />
             <select
@@ -124,7 +124,7 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
 
           <div className="form-group col-xl-6">
             <label htmlFor="state of origin">
-              Address Of Origin
+              Address Of Origin <span className="text-danger">*</span>
             </label>
             <br />
             <input
@@ -148,7 +148,7 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
 
           <div className="form-group col-xl-6">
             <label htmlFor="state of origin">
-              State Of Residence
+              State Of Residence <span className="text-danger">*</span>
             </label>
             <br />
             <select
@@ -177,7 +177,7 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
 
           <div className="form-group col-xl-4">
             <label htmlFor="state of origin">
-              LGA Of Residence
+              LGA Of Residence <span className="text-danger">*</span>
             </label>
             <br />
             <select
@@ -209,7 +209,7 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
 
           <div className="form-group col-xl-4">
             <label htmlFor="addressOfResidence">
-              Address Of Residence
+              Address Of Residence <span className="text-danger">*</span>
             </label>
             <br />
             <input

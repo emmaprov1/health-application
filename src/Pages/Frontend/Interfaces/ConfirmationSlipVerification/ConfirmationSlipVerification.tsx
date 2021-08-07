@@ -19,7 +19,6 @@ const ConfirmationSlipVerification = () => {
   const [loader, setLoader] = useState(false)
 
   const onSubmit = handleSubmit((data:any) => {
-    console.log(data.refId)
     const hashRef:any = MD5(data.refId).toString();
 
     setLoader(true)
@@ -40,8 +39,6 @@ const ConfirmationSlipVerification = () => {
   const SlipValidation = {
     phoneValidation: (data:any) => {
       userService.getDataByPhone(data).then((res:any) => {
-        console.log("correct", res.docs[0].data().referenceID)
-        console.log("correct", MD5(res.docs[0].data().referenceID).toString())
         if (res.docs.length > 0) {
           history.push("/slip/" + MD5(res.docs[0].data().referenceID).toString())
         } else {

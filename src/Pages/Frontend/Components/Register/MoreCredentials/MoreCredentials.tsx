@@ -24,7 +24,7 @@ const MoreCredentials:FC<MoreCredentialsType> = (props) => {
 
   let disable = true
   // simple validation
-  if (checkExistence("citizenship") !== 0 && checkExistence("identity") !== 0) {
+  if (checkExistence("identity") !== 0) {
     disable = false
   }
 
@@ -100,14 +100,27 @@ const MoreCredentials:FC<MoreCredentialsType> = (props) => {
 
         <div className="moreCredentials__fileField col-xl-6">
             <div className={checkExistence('identity') <= 0 ? "moreCredentials__uploadFile" : "moreCredentials__uploadFile2"}>
-             <span
+            <span
               id="uploadbtn"
               className="w-50 btn border rounded-0 shadow"
               onClick={() => { handleShow(); setFileType(6) }}
             >Choose file</span>
           </div>
           <p className="moreCredentials__labelContainer text-center mt-3">
-            <label htmlFor="upload passport">Upload Government Issued ID</label>
+            <label htmlFor="upload passport">Upload Government Issued ID <span className="text-danger">*</span></label>
+          </p>
+        </div>
+
+        <div className="moreCredentials__fileField col-xl-6">
+            <div className={checkExistence('nysc') <= 0 ? "moreCredentials__uploadFile" : "moreCredentials__uploadFile2"}>
+            <span
+              id="uploadbtn"
+              className="w-50 btn border rounded-0 shadow"
+              onClick={() => { handleShow(); setFileType(7) }}
+            >Choose file</span>
+          </div>
+          <p className="moreCredentials__labelContainer text-center mt-3">
+            <label htmlFor="upload passport">Upload NYSC certificate<span className="text-danger">*</span></label>
           </p>
         </div>
       </div>
@@ -115,7 +128,7 @@ const MoreCredentials:FC<MoreCredentialsType> = (props) => {
       {/* back and next buttons */}
       <div className="ctrls pl-4 pr-4 mt-2">
         <div className="ctrls__back">
-          <button type="button" className="ctrls__btn btn btn-secondary" onClick={() => props.changeTab(3)}>Back : Credentials Information</button>
+          <button type="button" className="ctrls__btn btn btn-dark" onClick={() => props.changeTab(3)}>Back : Credentials Information</button>
         </div>
 
         <div className="ctrls__next ml-5">

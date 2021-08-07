@@ -43,7 +43,7 @@ const PersonalInformation:FC<personalType> = (props) => {
   }
 
   // simple validation
-  if (error.length === 0 && checkExistence("profilePhoto") !== 0 && surname !== "" && jobRole !== "" && firstname !== "" && middlename !== "" && dataOfBirth !== "" && phoneNo !== "" && phoneNo2 !== "" && email !== "" && email2 !== "" && gender) {
+  if (error.length === 0 && checkExistence("profilePhoto") !== 0 && surname !== "" && jobRole !== "" && firstname !== "" && dataOfBirth !== "" && phoneNo !== "" && email !== "" && gender) {
     disable = false
   }
 
@@ -108,15 +108,17 @@ const PersonalInformation:FC<personalType> = (props) => {
 
   async function validatePhoneNo2 (e: { target: { value: any } }) {
     const phoneNos2 = e.target.value
-    await userService.validatePhone(phoneNos2).then((res:{docs:any}) => {
-      if (res.docs.length > 0) {
-        setError([...error, { type: "phoneNo2", message: "Phone number already exist" }])
-        disable = true
-      } else {
-        error.splice(error.findIndex(a => a.type === 'phoneNo2'), 1)
-        setError(error)
-      }
-    })
+    if (phoneNos2 !== "") {
+      await userService.validatePhone(phoneNos2).then((res:{docs:any}) => {
+        if (res.docs.length > 0) {
+          setError([...error, { type: "phoneNo2", message: "Phone number already exist" }])
+          disable = true
+        } else {
+          error.splice(error.findIndex(a => a.type === 'phoneNo2'), 1)
+          setError(error)
+        }
+      })
+    }
   }
 
   async function validateEmail (e: { target: { value: any } }) {
@@ -134,15 +136,17 @@ const PersonalInformation:FC<personalType> = (props) => {
 
   async function validateEmail2 (e: { target: {value: any } }) {
     const emails2 = e.target.value
-    await userService.validateEmail(emails2).then((res:any) => {
-      if (res.docs.length > 0) {
-        setError([...error, { type: "email2", message: "Email already exist" }])
-        disable = true
-      } else {
-        error.splice(error.findIndex(a => a.type === 'email2'), 1)
-        setError(error)
-      }
-    })
+    if (emails2 !== "") {
+      await userService.validateEmail(emails2).then((res:any) => {
+        if (res.docs.length > 0) {
+          setError([...error, { type: "email2", message: "Email already exist" }])
+          disable = true
+        } else {
+          error.splice(error.findIndex(a => a.type === 'email2'), 1)
+          setError(error)
+        }
+      })
+    }
   }
   return (
     // personalInfo markup
@@ -204,7 +208,7 @@ const PersonalInformation:FC<personalType> = (props) => {
           </div>
 
           <p className="personalInfo__labelContainer text-center mt-3">
-            <label htmlFor="upload passport">Upload Passport Photograph</label>
+            <label htmlFor="upload passport">Upload Passport Photograph <span className="text-danger">*</span></label>
           </p>
         </div>
         {/* form - file field - close */}
@@ -212,12 +216,12 @@ const PersonalInformation:FC<personalType> = (props) => {
         {/* form - text fields - open */}
         <div className="personalInfo__textFields row pl-4">
           <div className="form-group col-xl-12 text-center">
-            <div className="text-center w-100">Your Reference ID</div>
-            <input type="text" onClick={copyFunction} value={userNin.id} readOnly className="w-50 offset-3 text-center form-control" id="myInput"/>
+            <div className="text-center w-100 font-weight-bold">Your Reference ID</div>
+            <input type="text" onClick={copyFunction} value={userNin.id} readOnly className="w-50 offset-3 text-success text-center form-control" id="myInput" title="Click to copy" style={{ fontSize: "1.8rem", fontWeight: "bold" }}/>
           </div>
         <div className="form-group col-xl-6">
               <label htmlFor="state of origin" className="">
-                Job Role
+                Job Role <span className="text-danger">*</span>
               </label>
               <br />
               <select
@@ -271,7 +275,7 @@ const PersonalInformation:FC<personalType> = (props) => {
 
           <div className="form-group col-xl-6">
               <label htmlFor="surname">
-                Surname
+                Surname <span className="text-danger">*</span>
               </label>
               <br />
               <input
@@ -295,7 +299,7 @@ const PersonalInformation:FC<personalType> = (props) => {
 
           <div className="form-group col-xl-6">
             <label htmlFor="firstname">
-              First Name
+              First Name <span className="text-danger">*</span>
             </label>
             <input
               className="form-control"
@@ -343,7 +347,7 @@ const PersonalInformation:FC<personalType> = (props) => {
 
             <div className="form-group col-xl-6">
               <label htmlFor="middlename" className="personalInfo__label">
-                Date of birth
+                Date of birth <span className="text-danger">*</span>
               </label>
               <br />
               <input
@@ -369,7 +373,7 @@ const PersonalInformation:FC<personalType> = (props) => {
 
             <div className="form-group col-xl-6">
             <label htmlFor="phone" className="personalInfo__label">
-              Phone Number 1
+              Phone Number 1 <span className="text-danger">*</span>
             </label>
             <br />
             <input
@@ -423,7 +427,7 @@ const PersonalInformation:FC<personalType> = (props) => {
 
           <div className="form-group col-xl-6">
             <label htmlFor="email" className="personalInfo__label">
-              Email Address 1
+              Email Address 1 <span className="text-danger">*</span>
             </label>
             <br />
             <input
@@ -477,7 +481,7 @@ const PersonalInformation:FC<personalType> = (props) => {
 
           <div className="form-group  col-xl-6">
             <label htmlFor="gender" className="personalInfo__label">
-              Gender
+              Gender <span className="text-danger">*</span>
             </label>
             <br />
             <select
