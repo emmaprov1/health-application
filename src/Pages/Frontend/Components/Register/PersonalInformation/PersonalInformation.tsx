@@ -7,6 +7,7 @@ import fileService from '../../../../../Services/fileService'
 import userService from '../../../../../Services/userService'
 import emptyAvarter from "./../../../../../Assets/images/user-empty-avatar.png";
 import "./PersonalInformation.scss"
+import MD5 from 'crypto-js/md5'
 
 interface personalType {
   changeTab:(value: number) => void;
@@ -47,11 +48,13 @@ const PersonalInformation:FC<personalType> = (props) => {
     disable = false
   }
 
+  const hashRef:any = MD5(userNin.id).toString();
+
   const uploadImage = async (event: { target: { files: any; }; }) => {
     const file = event.target.files
     const fileType = "profilePhoto"
     setUploadStatus(true)
-    await fileService.uploadImage(file, fileType, userNin.id).then((res:any) => {
+    await fileService.uploadImage(file, fileType, hashRef).then((res:any) => {
       const resData = {
         remoteURL: res,
         name: file[0].name,

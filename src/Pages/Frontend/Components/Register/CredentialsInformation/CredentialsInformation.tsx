@@ -20,7 +20,6 @@ const CredentialsInformation:FC<CredentialsInformationType> = (props) => {
   const [showActivity, setShowActivity] = useState<boolean>(false)
   const [fileType, setFileType] = useState<number>(0)
 
-  console.log(uploadedFiles)
   // eslint-disable-next-line no-unused-vars
   function checkExistence (type:string) {
     return uploadedFiles.filter(function (element: { fileType: string }) {

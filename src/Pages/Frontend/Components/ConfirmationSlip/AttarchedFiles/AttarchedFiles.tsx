@@ -14,7 +14,6 @@ const AttarchedFiles:FC<propsType> = ({ value, disable }) => {
     }).length
   }
 
-  console.log(value)
   return (
         <div>
             <div className="card">

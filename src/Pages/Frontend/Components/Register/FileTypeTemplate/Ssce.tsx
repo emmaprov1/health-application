@@ -34,7 +34,7 @@ const Ssce = ({ fileDoc, deletFile }: propsType) => {
 
   console.log("userRefId", userRefId)
 
-  const hashRef:any = MD5(userRefId.ref).toString();
+  const hashRef:any = MD5(userRefId.id).toString();
 
   const uploadFile = async (event: any) => {
     console.log("uploading")
