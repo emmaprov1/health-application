@@ -233,9 +233,36 @@ const PersonalInformation:FC<personalType> = (props) => {
                 })} onChange={props.handleChange}
               >
               <option value="null">Select a Job Role</option>
-              <option value="consultant">Consultant</option>
-              <option value="Registrar">Registrar</option>
-              <option value="Medical Officer">Medical Officer</option>
+            <optgroup label="Permanent">
+              <option>Consultant</option>
+              <option>Registrar</option>
+              <option>Medical Officer</option>
+              <option>Dental Officer</option>
+              <option>Med.Lab Scientist</option>
+              <option>Pharmacist</option>
+              <option>Pharmacy Technician</option>
+              <option>Nursing Officer</option>
+              <option>Dietrician/Nutritionist</option>
+              <option>Physioterapist</option>
+              <option>Radiographer</option>
+              <option>Optometrist</option>
+              <option>Hospital Administrator</option>
+              <option>Medical Record Officer</option>
+              <option>Medical Laboratory Technician</option>
+              <option>Dental Technician</option>
+              <option>X-RAY Technician</option>
+              <option>Dental Therapist</option>
+              <option>Dental Technologist</option>
+            </optgroup>
+            <optgroup label="Intern">
+              <option value="pharmacy">Pharmacy</option>
+              <option value="nurse">Nurse</option>
+              <option value="MedHO">Medical House Officer</option>
+              <option value="dentalHO">Dental House Officer</option>
+              <option value="physiology">Physiotherapy</option>
+              <option value="medlab">Med lab</option>
+              <option value="radiology">Radiology</option>
+            </optgroup>
             </select>
               <div className="register--error text-danger">
                   {props.errors.jobRole && props.errors.jobRole.message}
