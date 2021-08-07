@@ -35,6 +35,14 @@ const userService = {
       .where("phoneNo", "==", phone)
       .where("phoneNo2", "==", phone)
       .get();
+  },
+  totalApplicant: async () => {
+    const db = firebase.firestore()
+    return await db.collection("totalApplicant")
+      .doc('mdKLaBGljc49j31prYrY')
+      .update({
+        totalCount: firebase.firestore.FieldValue.increment(1)
+      });
   }
 }
 

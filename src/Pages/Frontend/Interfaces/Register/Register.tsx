@@ -86,13 +86,15 @@ const Register = () => {
 
     await userService.saveRegistrationData(hashRef, fields).then(
       () => {
-        setLoader(false)
-        setSubmited(!submited)
-        setSuccess(!success)
-        toast.success('Application submitted successfully', { duration: 20000, className: 'bg-success text-white' });
-        setTimeout(() => {
-          window.location.href = `/#/slip/${hashRef}`
-        }, 4000)
+        userService.totalApplicant().then(() => {
+          setLoader(false)
+          setSubmited(!submited)
+          setSuccess(!success)
+          toast.success('Application submitted successfully', { duration: 20000, className: 'bg-success text-white' });
+          setTimeout(() => {
+            window.location.href = `/#/slip/${hashRef}`
+          }, 4000)
+        })
       }, error => {
         setLoader(false)
         setSubmited(!submited)
