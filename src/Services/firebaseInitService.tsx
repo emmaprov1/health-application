@@ -4,14 +4,14 @@ import 'firebase/storage'
 import "firebase/database"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDU_5mNo8kDkhSa-Km4yB_4LkaWuKucBEc",
-  authDomain: "poarms-58678.firebaseapp.com",
-  databaseURL: "https://poarms-58678.firebaseio.com",
-  projectId: "poarms-58678",
-  storageBucket: "poarms-58678.appspot.com",
-  messagingSenderId: "24343735708",
-  appId: "1:24343735708:web:adb017b10ab8a973322c59",
-  measurementId: "G-CLJD9ZGKFL"
+  apiKey: "AIzaSyCLdIb9Z3PE-ZFgRviuS16D93E6Ylrlp9o",
+  authDomain: "lshsc-ae41e.firebaseapp.com",
+  databaseURL: "https://lshsc-ae41e.firebaseio.com",
+  projectId: "lshsc-ae41e",
+  storageBucket: "lshsc-ae41e.appspot.com",
+  messagingSenderId: "5477673313",
+  appId: "1:5477673313:web:fcb00924ba4816be597d20",
+  measurementId: "G-28PV3E2DSP"
 }
 
 firebase.initializeApp(firebaseConfig)
