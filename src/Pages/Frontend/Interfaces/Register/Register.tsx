@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import userService from '../../../../Services/userService';
 import { useReference } from '../../../../Hooks';
 import MD5 from 'crypto-js/md5';
+import { ErrorMessage } from '@hookform/error-message';
 
 const initialState = {
   surname: "",
@@ -52,8 +53,6 @@ const Register = () => {
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  console.log("WATCHER", watch("firstname"))
-
   const handleChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
 
@@ -61,13 +60,10 @@ const Register = () => {
       ...fields,
       [name]: value,
     })
-    console.log(value)
   }
 
   const fileDoc = (data: { fileType: string | number; }) => {
     const dataSource = fields[data?.fileType]
-
-    console.log(dataSource)
 
     updateFields({
       ...fields,
@@ -143,6 +139,15 @@ const Register = () => {
               {/* register form column */}
               <div className="register__formWrap col-lg-8">
                 <div className="register__formCard p-2 p-lg-5 mt-1">
+                  {/* <div className="alert alert-danger">
+                    {errors}
+                  </div> */}
+                  <ErrorMessage
+                      errors={errors}
+                      name="singleErrorInput"
+                      render={({ message }) => <p>{message}</p>}
+                    />
+
                   <form className="register__formHandler" onSubmit={onSubmit}>
                     {currentTab === 1 && (<PersonalInformation
                                             changeTab={changeTab}
