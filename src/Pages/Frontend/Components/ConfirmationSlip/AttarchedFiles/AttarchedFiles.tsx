@@ -59,6 +59,10 @@ const AttarchedFiles:FC<propsType> = ({ value, disable }) => {
                             <h6>Valid ID</h6>
                             {data.length > 0 && checkExistence('identity') ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
                             </div>
+                            <div className="col-md">
+                            <h6>NYSC certificate</h6>
+                            {data.length > 0 && checkExistence('nysc') ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
+                            </div>
                         </div>
                     </div>
                     </div>
