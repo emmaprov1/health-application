@@ -32,13 +32,14 @@ const initialState = {
   lgaOfResidence: "",
   acknwoledgement: false,
   referenceID: "",
-  profilePhoto: ""
+  profilePhoto: "",
+  workDuration: ""
 };
 
 const Register = () => {
   const [currentTab, setCurrentTab] = useState<number>(1)
 
-  const { uploadedFiles } = useSelector((state:any) => state)
+  const { uploadedFiles, workExperienceReducer } = useSelector((state:any) => state)
 
   const userNin = useReference()
 
@@ -113,10 +114,11 @@ const Register = () => {
     updateFields({
       ...fields,
       data: [...uploadedFiles],
-      referenceID: userNin.id
+      referenceID: userNin.id,
+      workworkExperience: workExperienceReducer.WorkExperience
     })
   }, [
-    uploadedFiles])
+    uploadedFiles, workExperienceReducer])
 
   return (
       // markup for register
@@ -189,7 +191,7 @@ const Register = () => {
                                             value={fields}
                                             completeForm = {() => completeForm()}
                                             submited={submited}
-                                          />)}
+                                            fileDoc={fileDoc}/>)}
                   </form>
                 </div>
               </div>

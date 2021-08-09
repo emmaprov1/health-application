@@ -24,7 +24,7 @@ const MoreCredentials:FC<MoreCredentialsType> = (props) => {
 
   let disable = true
   // simple validation
-  if (checkExistence("identity") !== 0) {
+  if (checkExistence("identity") !== 0 && checkExistence("resume") !== 0) {
     disable = false
   }
 
@@ -120,9 +120,22 @@ const MoreCredentials:FC<MoreCredentialsType> = (props) => {
             >Choose file</span>
           </div>
           <p className="moreCredentials__labelContainer text-center mt-3">
-            <label htmlFor="upload passport">Upload NYSC certificate<span className="text-danger">*</span></label>
+            <label htmlFor="upload passport">Upload Resume<span className="text-danger">*</span></label>
           </p>
         </div>
+
+          <div className="moreCredentials__fileField col-xl-6">
+              <div className={checkExistence('resume') <= 0 ? "moreCredentials__uploadFile" : "moreCredentials__uploadFile2"}>
+              <span
+                id="uploadbtn"
+                className="w-50 btn border rounded-0 shadow"
+                onClick={() => { handleShow(); setFileType(8) }}
+              >Choose file</span>
+            </div>
+            <p className="moreCredentials__labelContainer text-center mt-3">
+              <label htmlFor="upload passport">Upload NYSC certificate<span className="text-danger">*</span></label>
+            </p>
+          </div>
       </div>
 
       {/* back and next buttons */}

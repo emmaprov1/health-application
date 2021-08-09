@@ -14,10 +14,10 @@ interface AddressInformationType {
 }
 
 const AddressInformation:FC<AddressInformationType> = (props) => {
-  const { stateOfOrigin, lgaOfOrigin, addressOfOrigin, stateOfResidence, addressOfResidence, lgaOfResidence } = props.value
+  const { stateOfOrigin, lgaOfOrigin, workDuration, addressOfOrigin, stateOfResidence, addressOfResidence, lgaOfResidence } = props.value
   let disable = true
   // simple validation
-  if (stateOfOrigin !== "" && lgaOfOrigin !== "" && addressOfOrigin !== "" && stateOfResidence !== "" && addressOfResidence !== "" && lgaOfResidence !== "") {
+  if (stateOfOrigin !== "" && lgaOfOrigin !== "" && workDuration !== "" && addressOfOrigin !== "" && stateOfResidence !== "" && addressOfResidence !== "" && lgaOfResidence !== "") {
     disable = false
   }
 
@@ -37,7 +37,7 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
         <div className="addressInfo__titlebar">
         <div className="stepwizard mb-5">
           <div className="stepwizard-row setup-panel">
-              <div className="stepwizard-step">
+          <div className="stepwizard-step">
                   <a href="#step-1" type="button" className="btn btn-default btn-circle">1</a>
                   <p>Step 1</p>
               </div>
@@ -231,6 +231,38 @@ const AddressInformation:FC<AddressInformationType> = (props) => {
             </div>
           </div>
 
+          <div className="form-group col-xl-4">
+            <label htmlFor="workDuration">
+            How Long Do you Wish to Work with LSHSC <span className="text-danger">*</span>
+            </label>
+            <br />
+            <select
+              className="form-control"
+              id="workDuration"
+              {...props.register("workDuration", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })}
+              value={workDuration}
+              onChange={props.handleChange}
+            >
+              <option value="null">--choose--</option>
+              <option>6 Month</option>
+              <option>1 year</option>
+              <option>2 years</option>
+              <option>3 years</option>
+              <option>4 years</option>
+              <option>5 years</option>
+              <option>Above</option>
+              </select>
+            <div className="register--error text-danger">
+                {props.errors.workDuration && props.errors.workDuration.message}
+            </div>
+          </div>
         </div>
       </div>
       {/* form - text fields - open */}

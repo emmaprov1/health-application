@@ -23,6 +23,7 @@ const PersonalInformationSlip:FC<propsType> = ({ value, disable }) => {
     stateOfResidence,
     addressOfResidence,
     lgaOfResidence,
+    workDuration
 
   } = value
 
@@ -125,6 +126,10 @@ const PersonalInformationSlip:FC<propsType> = ({ value, disable }) => {
                 <div className="col-md-6 form-group">
                     <label>Local government of residence </label>
                     <input type="text" name="" className="form-control rounded-0" value={lgaOfResidenceName} readOnly/>
+                </div>
+                <div className="col-md-6 form-group">
+                    <label>How Long Do you Wish to Work with LSHSC  </label>
+                    <input type="text" name="" className="form-control rounded-0" value={workDuration} readOnly/>
                 </div>
               </div>
             </div>

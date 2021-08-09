@@ -7,7 +7,8 @@ import {
   Nysc,
   Ssce,
   Tertiary,
-  //  Symposium, Tertiary, Workshop, Conference, VipAssignment, DisabledSickness
+  Resume,
+  WorkExperience
 } from "../FileTypeTemplate"
 import Certificate from "../FileTypeTemplate/Certificate"
 
@@ -37,6 +38,8 @@ const FileUploadManager = ({ showActivity, fileType, handleShow, fileDoc, deletF
             {fileType === 5 && <Citizenship fileDoc={fileDoc} deletFile={() => deletFile}/>}
             {fileType === 6 && <Identity fileDoc={fileDoc} deletFile={() => deletFile}/>}
             {fileType === 7 && <Nysc fileDoc={fileDoc} deletFile={() => deletFile}/>}
+            {fileType === 8 && <Resume fileDoc={fileDoc} deletFile={() => deletFile}/>}
+            {fileType === 9 && <WorkExperience fileDoc={fileDoc} deletFile={() => deletFile}/>}
 
         </Modal.Body>
         <Modal.Footer>

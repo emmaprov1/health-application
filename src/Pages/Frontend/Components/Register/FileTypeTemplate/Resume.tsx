@@ -19,7 +19,7 @@ type FormValues = {
     documentName: string;
   };
 
-const Nysc = ({ deletFile }: propsType) => {
+const Resume = ({ deletFile }: propsType) => {
   const { register, watch, handleSubmit, formState: { errors } } = useForm<FormValues>();
 
   const { uploadedFiles, uploaded, uploadProgress } = useSelector((state:any) => state)
@@ -37,7 +37,7 @@ const Nysc = ({ deletFile }: propsType) => {
     setUploadStatus(true)
     const documentName = watch("documentName")
     const file = event.target.files
-    const fileType = "nysc"
+    const fileType = "resume"
     await fileService.uploadImage(file, fileType, hashRef).then((res:any) => {
       const resData = {
         remoteURL: res,
@@ -57,14 +57,14 @@ const Nysc = ({ deletFile }: propsType) => {
 
   return (
           <Container>
-          <h5>Upload NYSC certificate</h5>
+          <h5>Upload Resume</h5>
           <hr/>
           <br/>
           <Row>
               <Col>
               <Form.Group controlId="exampleForm.ControlSelect1">
 
-                  <Form.Control type="text" {...register("documentName")} hidden value={`${userNin.id}_nysc`}/>
+                  <Form.Control type="text" {...register("documentName")} hidden value={`${userNin.id}_resume`}/>
 
               </Form.Group>
               <Form.Group controlId="formBasicPassword">
@@ -82,7 +82,7 @@ const Nysc = ({ deletFile }: propsType) => {
               <ul className="list-group">
                 {uploadedFiles &&
                   (uploadedFiles.map((items:any, index:any) => {
-                    return items.fileType === "nysc" && (
+                    return items.fileType === "resume" && (
                       <li key={index} className="list-group-item list-group-item-success mb-1 rounded">
                         <a href={items.remoteURL} target="_blank" rel="noreferrer">
                         <span className="badge alert-success pull-right">{items.size}mb</span>{items.name}
@@ -99,4 +99,4 @@ const Nysc = ({ deletFile }: propsType) => {
   )
 }
 
-export default Nysc
+export default Resume

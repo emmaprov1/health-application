@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { disableStatusReducer, UploadProgressReducer, UploadStorageReducer } from '.';
+import { disableStatusReducer, workExperienceReducer, UploadProgressReducer, UploadStorageReducer } from '.';
 import UploadMessageReducer from './FileManager/UploadMessageReducer';
 import referenceReducer from './Verification/referenceReducer';
 
@@ -8,7 +8,8 @@ const rootReducer = combineReducers({
   uploadMessage: UploadMessageReducer,
   uploadedFiles: UploadStorageReducer,
   reference: referenceReducer,
-  disableStatus: disableStatusReducer
+  disableStatus: disableStatusReducer,
+  workExperienceReducer: workExperienceReducer
 });
 
 export default rootReducer;
