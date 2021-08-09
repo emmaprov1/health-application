@@ -117,7 +117,7 @@ const JobApplication:FC<JobApplicationType> = (props) => {
           Your Work Experience <span className="text-danger">*</span>
         </label>
         <br />
-        <input onClick={() => { handleShow(); setFileType(9) }}></input>
+        <input onClick={() => { handleShow(); setFileType(9) }} className="form-control"></input>
 
         {workExperienceReducer.WorkExperience.length > 0 ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
 
