@@ -6,6 +6,7 @@ import { useReference } from '../../../../../Hooks'
 import fileService from '../../../../../Services/fileService'
 import userService from '../../../../../Services/userService'
 import emptyAvarter from "./../../../../../Assets/images/user-empty-avatar.png";
+import country from './../../../../../Data/country.json'
 import "./PersonalInformation.scss"
 import MD5 from 'crypto-js/md5'
 
@@ -22,7 +23,30 @@ const initialData = { fileType: "", name: "", remoteURL: "", size: "" }
 
 const PersonalInformation:FC<personalType> = (props) => {
   // eslint-disable-next-line no-unused-vars
-  const { surname, jobRole, firstname, middlename, dataOfBirth, phoneNo, phoneNo2, email, email2, gender } = props.value
+  const {
+    surname,
+    jobRole,
+    firstname,
+    middlename,
+    dataOfBirth,
+    phoneNo,
+    phoneNo2,
+    email,
+    email2,
+    gender,
+    medicalConditionStatus,
+    medicalCondition,
+    fatherName,
+    fatherBirthPlace,
+    motherName,
+    motherBirthPlace,
+    maritalStatus,
+    nationality,
+    maidenName,
+    nextOfKin,
+    relationshipWithNextOfKin,
+    placeOfBirth,
+  } = props.value
 
   const dispatcher = useDispatch()
   const userNin = useReference()
@@ -44,7 +68,26 @@ const PersonalInformation:FC<personalType> = (props) => {
   }
 
   // simple validation
-  if (error.length === 0 && checkExistence("profilePhoto") !== 0 && surname !== "" && jobRole !== "" && firstname !== "" && dataOfBirth !== "" && phoneNo !== "" && email !== "" && gender) {
+  if (error.length === 0 &&
+    checkExistence("profilePhoto") !== 0 &&
+    surname !== "" &&
+    jobRole !== "" &&
+    firstname !== "" &&
+    dataOfBirth !== "" &&
+    phoneNo !== "" &&
+    email !== "" &&
+    gender !== "" &&
+    medicalConditionStatus !== "" &&
+    fatherName !== "" &&
+    fatherBirthPlace !== "" &&
+    motherName !== "" &&
+    motherBirthPlace !== "" &&
+    maritalStatus !== "" &&
+    nationality !== "" &&
+    maidenName !== "" &&
+    nextOfKin !== "" &&
+    relationshipWithNextOfKin !== "" &&
+    placeOfBirth !== "") {
     disable = false
   }
 
@@ -508,6 +551,309 @@ const PersonalInformation:FC<personalType> = (props) => {
                {props.errors.gender && props.errors.gender.message}
            </div>
           </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="medicalConditionStatus" className="personalInfo__label">
+            Any Medical Condition  <span className="text-danger">*</span>
+            </label>
+            <br />
+            <select
+              className="form-control"
+              id="medicalConditionStatus"
+              {...props.register("medicalConditionStatus", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })}
+              value={medicalConditionStatus}
+              onChange={props.handleChange}
+            >
+              <option value="null">--choose--</option>
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+            <div className="register--error text-danger">
+               {props.errors.medicalConditionStatus && props.errors.medicalConditionStatus.message}
+           </div>
+          </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="medicalCondition" className="personalInfo__label">
+           If yes state medical condition
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="medicalCondition"
+              {...props.register("medicalCondition", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })} value={medicalCondition}
+               onChange={props.handleChange}
+            />
+            <div className="register--error text-danger">
+               {props.errors.medicalCondition && props.errors.medicalCondition.message}
+           </div>
+          </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="fatherName" className="personalInfo__label">
+             Father name <span className="text-danger">*</span>
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="fatherName"
+              placeholder="John doe"
+              {...props.register("fatherName", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })} value={fatherName}
+               onChange={props.handleChange}
+            />
+            <div className="register--error text-danger">
+               {props.errors.fatherName && props.errors.fatherName.message}
+           </div>
+          </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="fatherBirthPlace" className="personalInfo__label">
+            Father&lsquo;s birth place <span className="text-danger">*</span>
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="fatherBirthPlace"
+              {...props.register("fatherBirthPlace", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })} value={fatherBirthPlace}
+               onChange={props.handleChange}
+            />
+            <div className="register--error text-danger">
+               {props.errors.fatherBirthPlace && props.errors.fatherBirthPlace.message}
+           </div>
+          </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="motherName" className="personalInfo__label">
+            Mother&lsquo;s name <span className="text-danger">*</span>
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="motherName"
+              {...props.register("motherName", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })} value={motherName}
+               onChange={props.handleChange}
+            />
+            <div className="register--error text-danger">
+               {props.errors.motherName && props.errors.motherName.message}
+           </div>
+          </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="motherBirthPlace" className="personalInfo__label">
+            Mother birth place <span className="text-danger">*</span>
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="motherBirthPlace"
+              {...props.register("motherBirthPlace", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })} value={motherBirthPlace}
+               onChange={props.handleChange}
+            />
+            <div className="register--error text-danger">
+               {props.errors.motherBirthPlace && props.errors.motherBirthPlace.message}
+           </div>
+          </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="maritalStatus" className="personalInfo__label">
+            Marital status <span className="text-danger">*</span>
+            </label>
+            <br />
+            <select
+              className="form-control"
+              id="maritalStatus"
+              {...props.register("maritalStatus", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })} value={maritalStatus}
+               onChange={props.handleChange}
+            >
+                <option value="null">--choose--</option>
+                <option>Single</option>
+                <option>Married</option>
+            </select>
+            <div className="register--error text-danger">
+               {props.errors.maritalStatus && props.errors.maritalStatus.message}
+           </div>
+          </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="nationality" className="personalInfo__label">
+            Nationality <span className="text-danger">*</span>
+            </label>
+            <br />
+            <select
+              className="form-control"
+              id="nationality"
+              {...props.register("nationality", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })} value={nationality}
+               onChange={props.handleChange}
+            >
+              <option>--choose--</option>
+              {
+                country.map((countries:any, index) => {
+                  return (<option key={index}>{countries.name}</option>)
+                })
+              }
+              </select>
+            <div className="register--error text-danger">
+               {props.errors.nationality && props.errors.nationality.message}
+            </div>
+          </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="maidenName" className="personalInfo__label">
+            Maiden name<span className="text-danger">*</span>
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="maidenName"
+              {...props.register("maidenName", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })} value={maidenName}
+               onChange={props.handleChange}
+            />
+            <div className="register--error text-danger">
+               {props.errors.maidenName && props.errors.maidenName.message}
+           </div>
+          </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="nextOfKin" className="personalInfo__label">
+            Full name of next of kin <span className="text-danger">*</span>
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="nextOfKin"
+              {...props.register("nextOfKin", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })} value={nextOfKin}
+               onChange={props.handleChange}
+            />
+            <div className="register--error text-danger">
+               {props.errors.nextOfKin && props.errors.nextOfKin.message}
+           </div>
+          </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="relationshipWithNextOfKin" className="personalInfo__label">
+            Relationship with next of kin <span className="text-danger">*</span>
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="relationshipWithNextOfKin"
+              {...props.register("relationshipWithNextOfKin", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })} value={relationshipWithNextOfKin}
+               onChange={props.handleChange}
+            />
+            <div className="register--error text-danger">
+               {props.errors.relationshipWithNextOfKin && props.errors.relationshipWithNextOfKin.message}
+           </div>
+          </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="placeOfBirth" className="personalInfo__label">
+            Place of birth<span className="text-danger">*</span>
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="placeOfBirth"
+              {...props.register("placeOfBirth", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z]*$/,
+                  message: 'Invalid input',
+                }
+              })} value={placeOfBirth}
+               onChange={props.handleChange}
+            />
+            <div className="register--error text-danger">
+               {props.errors.placeOfBirth && props.errors.placeOfBirth.message}
+           </div>
+          </div>
+
         </div>
       </div>
       {/* form - text fields - close */}

@@ -30,10 +30,25 @@ const initialState = {
   stateOfResidence: "",
   addressOfResidence: "",
   lgaOfResidence: "",
-  acknwoledgement: false,
+  acknwoledgement: 0,
   referenceID: "",
   profilePhoto: "",
-  workDuration: ""
+  workDuration: "",
+
+  medicalConditionStatus: 0,
+  medicalCondition: "",
+  fatherName: "",
+  fatherBirthPlace: "",
+  motherName: "",
+  motherBirthPlace: "",
+  maritalStatus: "",
+  nationality: "",
+  maidenName: "",
+  nextOfKin: "",
+  relationshipWithNextOfKin: "",
+  placeOfBirth: "",
+  exConvictStatus: 0,
+  exConvictOffense: "",
 };
 
 const Register = () => {

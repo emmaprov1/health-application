@@ -6,7 +6,7 @@ interface propsType {
 }
 const AttarchedFiles:FC<propsType> = ({ value, disable }) => {
   // eslint-disable-next-line no-unused-vars
-  const { data, workworkExperience } = value
+  const { data, workworkExperience, exConvictStatus } = value
 
   function checkExistence (type:string) {
     return data.filter(function (element: { fileType: string }) {
@@ -70,6 +70,11 @@ const AttarchedFiles:FC<propsType> = ({ value, disable }) => {
                             <h6>Work experience</h6>
                             {data.length > 0 && workworkExperience.length > 0 ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
                             </div>
+                            <div className="col-md-2 pt-2">
+                            <h6>Are you an ex-convict?</h6>
+                            {data.length > 0 && exConvictStatus === 1 ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
+                            </div>
+
                         </div>
                     </div>
                     </div>

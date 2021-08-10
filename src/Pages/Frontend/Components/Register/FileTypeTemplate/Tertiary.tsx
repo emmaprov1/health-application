@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Col, Row, Form, Button } from "react-bootstrap"
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux'
@@ -21,10 +21,12 @@ type FormValues = {
 const Tertiary = ({ fileDoc, deletFile }: propsType) => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
   const [certname, setCertname] = useState();
+  const [uploadedFilesData, setUploadedFilesData] = useState([])
 
   const { uploadedFiles, uploaded, uploadProgress } = useSelector((state:any) => state)
   const [uploadStatus, setUploadStatus] = useState(false)
   const [uploadedNow, setUploadedNow] = useState("")
+  const [refresh, setRefresh] = useState(true)
 
   const onSubmit = handleSubmit((data) => {
     fileDoc({ ...data, fileType: "tertiary" })
@@ -44,6 +46,8 @@ const Tertiary = ({ fileDoc, deletFile }: propsType) => {
     const fileType = "tertiary"
     await fileService.uploadImage(file, fileType, hashRef).then((res:any) => {
       console.log("DOWNLOAD URI", res)
+      setRefresh(false)
+      setRefresh(true)
       const resData = {
         remoteURL: res,
         name: file[0].name,
@@ -60,6 +64,27 @@ const Tertiary = ({ fileDoc, deletFile }: propsType) => {
       toast.error("invalid file", { duration: 20000, className: 'bg-danger text-white' });
     })
   }
+
+  async function removeFile (data:string, index:number) {
+    uploadedFiles.splice(index, 1);
+    dispatcher({ type: UPLOADED_FILES, data: uploadedFiles })
+
+    setUploadedFilesData(() => {
+      return uploadedFiles
+    })
+
+    await fileService.deleteFile(data).then((res) => {
+      toast.success("Deleted file successfully", { duration: 20000, className: 'bg-success text-white' });
+      setRefresh(false)
+      setRefresh(true)
+    }, error => {
+      return console.log(error.message)
+    })
+  }
+
+  useEffect(() => {
+    setUploadedFilesData(uploadedFiles)
+  }, [uploadedFiles])
 
   return (
     <Container>
@@ -98,14 +123,14 @@ const Tertiary = ({ fileDoc, deletFile }: propsType) => {
 
         <Col>
         <ul className="list-group">
-          {uploadedFiles &&
+          {refresh &&
             (uploadedFiles.map((items:any, index:any) => {
               return items.fileType === "tertiary" && (
                 <li key={index} className="list-group-item list-group-item-success mb-1 rounded">
                   <a href={items.remoteURL} target="_blank" rel="noreferrer">
                   <span className="badge alert-success pull-right">{items.size}mb</span>{items.name}
                   </a>
-                  <span className="d-icon d-trash is-small bg-danger text-right text-white shadow-sm" onChange={() => deletFile(items?.fileType + "/" + items?.name)}></span>
+                  <button className="d-icon d-trash is-small bg-danger text-right text-white btn p-1 border-0 ml-3 rounded-circle" onClick={() => removeFile(`${hashRef}/${items?.fileType}/${items?.fileType}_${items?.name}`, index)}></button>
                   </li>)
             }))
           }

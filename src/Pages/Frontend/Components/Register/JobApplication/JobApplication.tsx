@@ -17,7 +17,10 @@ interface JobApplicationType {
 }
 
 const JobApplication:FC<JobApplicationType> = (props) => {
-  const { coverLetter, acknwoledgement } = props.value
+  const {
+    coverLetter,
+    exConvictOffense, acknwoledgement
+  } = props.value
 
   // eslint-disable-next-line no-unused-vars
   const { uploadedFiles, uploadProgress, workExperienceReducer } = useSelector((state:any) => state)
@@ -109,29 +112,79 @@ const JobApplication:FC<JobApplicationType> = (props) => {
     </div>
 </div>
 
-  {/* form - text fields - open */}
-  <div className="jobApplication__textFields row pl-4">
-    <div className="form-group col-xl-12">
-      <div className="form-group">
-        <label htmlFor="state of origin" className="">
-          Your Work Experience <span className="text-danger">*</span>
-        </label>
-        <br />
-        <input onClick={() => { handleShow(); setFileType(9) }} className="form-control"></input>
+        {/* form - text fields - open */}
+        <div className="jobApplication__textFields row pl-4">
+          <div className="form-group col-xl-12">
+            <div className="form-group">
+              <label htmlFor="state of origin" className="">
+                Your Work Experience <span className="text-danger">*</span>
+              </label>
+              <br />
+              {workExperienceReducer.WorkExperience.length === 0 && (<button className="btn btn-outline-primary p-1" onClick={() => { handleShow(); setFileType(9) }}> click to Start adding your work experience</button>)}
+              {workExperienceReducer.WorkExperience.length > 0 && (<button className="btn btn-outline-success p-1" onClick={() => { handleShow(); setFileType(9) }}> click to update work experience</button>)}
 
-        {workExperienceReducer.WorkExperience.length > 0 ? <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> : <span className="fa fa-times text-light bg-danger p-1 rounded-circle"></span>}
+              {workExperienceReducer.WorkExperience.length > 0 && <span className="fa fa-check text-light bg-success p-1 rounded-circle"></span> }
 
-      </div>
+            </div>
 
-        <div className="register--error text-danger">
-            {props.errors.coverLetter && props.errors.coverLetter.message}
+              <div className="register--error text-danger">
+                  {props.errors.coverLetter && props.errors.coverLetter.message}
+              </div>
+            </div>
         </div>
-      </div>
-  </div>
+
+         <div className="form-group col-xl-6">
+            <label htmlFor="exConvictStatus" className="personalInfo__label">
+            Are you an exconvict?<span className="text-danger">*</span>
+            </label>
+            <br />
+            <select
+              className="form-control"
+              id="exConvictStatus"
+              {...props.register("exConvictStatus", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[0-1]*$/,
+                  message: 'Invalid input',
+                }
+              })}
+               onChange={props.handleChange}
+            >
+              <option value="">--choose--</option>
+              <option value="1">yes</option>
+              <option value="0">no</option>
+              </select>
+            <div className="register--error text-danger">
+               {props.errors.exConvictStatus && props.errors.exConvictStatus.message}
+           </div>
+          </div>
+
+          <div className="form-group col-xl-6">
+            <label htmlFor="exConvictOffense" className="personalInfo__label">
+             If Yes, State Offense and Penalty
+            </label>
+            <br />
+            <input
+              className="form-control"
+              id="exConvictOffense"
+              {...props.register("exConvictOffense", {
+                required: 'this is a required field',
+                pattern: {
+                  value:
+                   /^[a-zA-Z ]*$/,
+                  message: 'Invalid input',
+                }
+              })} value={exConvictOffense}
+               onChange={props.handleChange}
+            />
+            <div className="register--error text-danger">
+               {props.errors.exConvictOffense && props.errors.exConvictOffense.message}
+           </div>
+          </div>
 
         <div className="jobApplication__textFields row pl-4">
           <div className="form-group col-xl-12">
-
             <br />
             <input
              type="checkbox"
@@ -143,7 +196,7 @@ const JobApplication:FC<JobApplicationType> = (props) => {
             I accept and acknwoledge that information provided are true to the best of my knowledge.
             </label>
               <div className="register--error text-danger">
-                  {props.errors.coverLetter && props.errors.coverLetter.message}
+                  {props.errors.acknwoledgement && props.errors.acknwoledgement.message}
               </div>
             </div>
         </div>

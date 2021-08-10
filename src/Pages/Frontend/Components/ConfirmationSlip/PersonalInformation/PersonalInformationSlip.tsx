@@ -23,8 +23,19 @@ const PersonalInformationSlip:FC<propsType> = ({ value, disable }) => {
     stateOfResidence,
     addressOfResidence,
     lgaOfResidence,
-    workDuration
-
+    workDuration,
+    medicalConditionStatus,
+    medicalCondition,
+    fatherName,
+    fatherBirthPlace,
+    motherName,
+    motherBirthPlace,
+    maritalStatus,
+    nationality,
+    maidenName,
+    nextOfKin,
+    relationshipWithNextOfKin,
+    placeOfBirth
   } = value
 
   const stateOfResidenceName:any = state[2].data?.filter((obj:any) => {
@@ -131,6 +142,147 @@ const PersonalInformationSlip:FC<propsType> = ({ value, disable }) => {
                     <label>How Long Do you Wish to Work with LSHSC  </label>
                     <input type="text" name="" className="form-control rounded-0" value={workDuration} readOnly/>
                 </div>
+        <div className="form-group col-md-3">
+            <label htmlFor="medicalConditionStatus" className="personalInfo__label">
+            Any Medical Condition
+            </label>
+            <br />
+            <input
+              className="form-control"
+              id="medicalConditionStatus"
+              value={medicalConditionStatus ? 'yes' : 'no'}
+            />
+          </div>
+
+          <div className="form-group col-md-3">
+            <label htmlFor="medicalCondition" className="personalInfo__label">
+           If yes state medical condition
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="medicalCondition" value={medicalCondition}
+            />
+          </div>
+        <div className="form-group col-md-3">
+            <label htmlFor="fatherName" className="personalInfo__label">
+             Father name
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="fatherName"
+              placeholder="John doe" value={fatherName}
+            />
+          </div>
+
+          <div className="form-group col-md-3">
+            <label htmlFor="fatherBirthPlace" className="personalInfo__label">
+            Father&lsquo;s birth place
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="fatherBirthPlace" value={fatherBirthPlace}
+            />
+          </div>
+
+          <div className="form-group col-md-3">
+            <label htmlFor="motherName" className="personalInfo__label">
+            Mother&lsquo;s name
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="motherName" value={motherName}
+            />
+          </div>
+
+          <div className="form-group col-md-3">
+            <label htmlFor="motherBirthPlace" className="personalInfo__label">
+            Mother birth place
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="motherBirthPlace" value={motherBirthPlace}
+            />
+          </div>
+
+          <div className="form-group col-md-3">
+            <label htmlFor="maritalStatus" className="personalInfo__label">
+            Marital status
+            </label>
+            <br />
+            <select
+              className="form-control"
+              id="maritalStatus" value={maritalStatus}
+            />
+          </div>
+
+          <div className="form-group col-md-3">
+            <label htmlFor="nationality" className="personalInfo__label">
+            Nationality
+            </label>
+            <br />
+            <select
+              className="form-control"
+              id="nationality" value={nationality}
+              />
+          </div>
+
+          <div className="form-group col-md-3">
+            <label htmlFor="maidenName" className="personalInfo__label">
+            Maiden name
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="maidenName" value={maidenName}
+            />
+          </div>
+
+          <div className="form-group col-md-3">
+            <label htmlFor="nextOfKin" className="personalInfo__label">
+            Full name of next of kin
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="nextOfKin" value={nextOfKin}
+            />
+          </div>
+
+          <div className="form-group col-md-3">
+            <label htmlFor="relationshipWithNextOfKin" className="personalInfo__label">
+            Relationship with next of kin
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text"
+              id="relationshipWithNextOfKin" value={relationshipWithNextOfKin}
+            />
+          </div>
+
+          <div className="form-group col-md-3">
+            <label htmlFor="placeOfBirth" className="personalInfo__label">
+            Place of birth
+            </label>
+            <br />
+            <input
+              className="form-control"
+              type="text" value={placeOfBirth}
+            />
+          </div>
+
               </div>
             </div>
         </div>)}

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Col, Row, Form, Button } from "react-bootstrap"
 
 import { useForm } from 'react-hook-form';
@@ -25,6 +25,9 @@ const Resume = ({ deletFile }: propsType) => {
   const { uploadedFiles, uploaded, uploadProgress } = useSelector((state:any) => state)
   const [uploadStatus, setUploadStatus] = useState(false)
   const [uploadedNow, setUploadedNow] = useState("")
+  const [refresh, setRefresh] = useState(true)
+  const [uploadedFilesData, setUploadedFilesData] = useState([])
+
   const dispatcher = useDispatch()
   const userNin = useReference()
   const storedFiles: string[] = uploadedFiles
@@ -39,9 +42,11 @@ const Resume = ({ deletFile }: propsType) => {
     const file = event.target.files
     const fileType = "resume"
     await fileService.uploadImage(file, fileType, hashRef).then((res:any) => {
+      setRefresh(false)
+      setRefresh(true)
       const resData = {
         remoteURL: res,
-        name: documentName,
+        name: file[0].name,
         size: (file[0].size / 1048576).toFixed(2),
         fileType
       }
@@ -55,6 +60,27 @@ const Resume = ({ deletFile }: propsType) => {
     })
   }
 
+  async function removeFile (data:string, index:number) {
+    uploadedFiles.splice(index, 1);
+    dispatcher({ type: UPLOADED_FILES, data: uploadedFiles })
+
+    setUploadedFilesData(() => {
+      return uploadedFiles
+    })
+
+    await fileService.deleteFile(data).then((res) => {
+      toast.success("Deleted file successfully", { duration: 20000, className: 'bg-success text-white' });
+      setRefresh(false)
+      setRefresh(true)
+    }, error => {
+      return console.log(error.message)
+    })
+  }
+
+  useEffect(() => {
+    setUploadedFilesData(uploadedFiles)
+  }, [uploadedFiles])
+
   return (
           <Container>
           <h5>Upload Resume</h5>
@@ -64,7 +90,7 @@ const Resume = ({ deletFile }: propsType) => {
               <Col>
               <Form.Group controlId="exampleForm.ControlSelect1">
 
-                  <Form.Control type="text" {...register("documentName")} hidden value={`${userNin.id}_resume`}/>
+                  <Form.Control type="text" {...register("documentName")} hidden value={`_resume`}/>
 
               </Form.Group>
               <Form.Group controlId="formBasicPassword">
@@ -80,15 +106,15 @@ const Resume = ({ deletFile }: propsType) => {
 
               <Col>
               <ul className="list-group">
-                {uploadedFiles &&
+                {refresh &&
                   (uploadedFiles.map((items:any, index:any) => {
                     return items.fileType === "resume" && (
                       <li key={index} className="list-group-item list-group-item-success mb-1 rounded">
                         <a href={items.remoteURL} target="_blank" rel="noreferrer">
                         <span className="badge alert-success pull-right">{items.size}mb</span>{items.name}
                         </a>
-                        <span className="d-icon d-trash is-small bg-danger text-right text-white shadow-sm" onChange={() => deletFile(items?.fileType + "/" + items?.name)}></span>
-                        </li>)
+                        <button className="d-icon d-trash is-small bg-danger text-right text-white btn p-1 border-0 ml-3 rounded-circle" onClick={() => removeFile(`${hashRef}/${items?.fileType}/${items?.fileType}_${items?.name}`, index)}></button>
+                   </li>)
                   }))
                 }
               </ul>

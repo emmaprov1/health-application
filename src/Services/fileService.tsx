@@ -92,9 +92,9 @@ const fileService = {
     return await storageRef.getDownloadURL().then((downloadURL: any) => (downloadURL))
   },
 
-  deleteFile: (file:any) => {
+  deleteFile: async (file:any) => {
     // Create a reference to the file to delete
-    return firebase.storage().ref().child(file).delete();
+    return await firebase.storage().ref().child(file).delete();
   }
 }
 

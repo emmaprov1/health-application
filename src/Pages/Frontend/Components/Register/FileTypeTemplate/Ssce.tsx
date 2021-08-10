@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Col, Row, Form, Button } from "react-bootstrap"
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux'
@@ -25,6 +25,8 @@ const Ssce = ({ fileDoc, deletFile }: propsType) => {
   const [uploadStatus, setUploadStatus] = useState(false)
   const [uploadedNow, setUploadedNow] = useState("")
   const [certname, setCertName] = useState("")
+  const [uploadedFilesData, setUploadedFilesData] = useState([])
+  const [refresh, setRefresh] = useState(true)
 
   const onSubmit = handleSubmit((data) => fileDoc({ ...data, fileType: "ssce" }));
 
@@ -43,6 +45,8 @@ const Ssce = ({ fileDoc, deletFile }: propsType) => {
     const fileType = "ssce"
     await fileService.uploadImage(file, fileType, hashRef).then((res:any) => {
       console.log("DOWNLOAD URI", res)
+      setRefresh(false)
+      setRefresh(true)
       const resData = {
         remoteURL: res,
         name: file[0].name,
@@ -59,6 +63,28 @@ const Ssce = ({ fileDoc, deletFile }: propsType) => {
       toast.error("invalid file", { duration: 20000, className: 'bg-danger text-white' });
     })
   }
+
+  async function removeFile (data:string, index:number) {
+    uploadedFiles.splice(index, 1);
+    dispatcher({ type: UPLOADED_FILES, data: uploadedFiles })
+
+    setUploadedFilesData(() => {
+      return uploadedFiles
+    })
+
+    await fileService.deleteFile(data).then((res) => {
+      toast.success("Deleted file successfully", { duration: 20000, className: 'bg-success text-white' });
+      setRefresh(false)
+      setRefresh(true)
+    }, error => {
+      return console.log(error.message)
+    })
+  }
+  console.log(uploadedFilesData)
+
+  useEffect(() => {
+    setUploadedFilesData(uploadedFiles)
+  }, [uploadedFiles])
 
   return (
       <Container>
@@ -90,21 +116,17 @@ const Ssce = ({ fileDoc, deletFile }: propsType) => {
             </div>
               )}
           </Form.Group>
-          {/* <!-- Progress Bar --> */}
-
-          {/* <Button onClick={ onSubmit } disabled={uploadStatus}>Add</Button> */}
           </Col>
-
           <Col>
-          <ul className="list-group">
-          {uploadedFiles &&
-              (uploadedFiles.map((items:any, index:any) => {
+          <ul className={refresh ? 'list-group' : ('list-group d-none')}>
+          {refresh &&
+              (uploadedFilesData.map((items:any, index:any) => {
                 return (items.fileType === "ssce" && (
                   <li key={index} className="list-group-item list-group-item-success mb-1 rounded">
                   <a href={items.remoteURL} target="_blank" rel="noreferrer">
                   <span className="badge alert-success pull-right">{items.size}mb</span>{items.name}
                   </a>
-                  <span className="d-icon d-trash is-small bg-danger text-right text-white shadow-sm" onChange={() => deletFile(items?.fileType + "/" + items?.name)}></span>
+                  <button className="d-icon d-trash is-small bg-danger text-right text-white btn p-1 border-0 ml-3 rounded-circle" onClick={() => removeFile(`${hashRef}/${items?.fileType}/${items?.fileType}_${items?.name}`, index)}></button>
                   </li>))
               }))
           }
