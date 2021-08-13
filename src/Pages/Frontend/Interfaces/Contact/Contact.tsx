@@ -133,8 +133,6 @@ const Contact = () => {
 
                     <div className="col-lg">
                         <div className="contact-map">
-                            {/* <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1240.9784469650635!2d-0.09628980040806674!3d51.53235045994284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sng!4v1603023038539!5m2!1sen!2sng" frameBorder="0"
-                                style={{ border: 0 }} aria-hidden="false"></iframe> */}
 
 <iframe className="contact-map__map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d63428.784729506035!2d3.4458768310546706!3d6.483760860732382!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa2818595b4e1dd46!2sLAGOS%20STATE%20HEALTH%20SERVICE%20COMMISSION!5e0!3m2!1sen!2sus!4v1628840622618!5m2!1sen!2sus" frameBorder="0"
                                 style={{ border: 0 }} aria-hidden="false"></iframe>
