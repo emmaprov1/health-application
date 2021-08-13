@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { RegisterFooter, RegisterHeader } from '../../Components/Index'
-import './Contact.css'
+import './Contact.scss'
 import emailjs from 'emailjs-com';
 import { Loader } from '../../../../Components';
 import toast, { Toaster } from 'react-hot-toast';
@@ -36,7 +36,7 @@ const Contact = () => {
   return (
     <React.Fragment>
     <RegisterHeader/>
-
+     <div className="contact">
         <header className="container-fluid p-0 my-5">
             <div className="services-page__hero section d-flex align-items-center">
                 <div className="container">
@@ -58,7 +58,7 @@ const Contact = () => {
                             <div className="contact-info__details">
                                 <h3 className="contact-info__heading">Email Here</h3>
                                 <p>
-                                    <a href="mailto:info@jobazone.com" target="_blank" rel="noopener noreferrer">info@jobazone.com</a>
+                                    <a href="mailto:info@jobazone.com" target="_blank" rel="noopener noreferrer">hsc@lagosstate.gov.ng, info@lshsc.com.ng</a>
                                 </p>
                             </div>
                         </div>
@@ -72,7 +72,7 @@ const Contact = () => {
                             <div className="contact-info__details">
                                 <h3 className="contact-info__heading">Location Here</h3>
                                 <p>
-                                    <a href="https://www.google.com/maps/place/Lagos/@6.548055,3.28396,10z/" target="_blank" rel="noopener noreferrer">20-22 Wenlock Road, London, England, N1 7GU.</a>
+                                    <a href="https://www.google.com/maps/place/Lagos/@6.548055,3.28396,10z/" target="_blank" rel="noopener noreferrer">1 Ganiu Smith Street Lagos Island.</a>
                                 </p>
                             </div>
                         </div>
@@ -86,7 +86,7 @@ const Contact = () => {
                             <div className="contact-info__details">
                                 <h3 className="contact-info__heading">Call Here</h3>
                                 <p>
-                                    <a href="tel:+2348143470003" target="_blank" rel="noopener noreferrer">+234 814 3470 003</a>
+                                    <a href="tel:+2348143470003" target="_blank" rel="noopener noreferrer">012293437, 07036534348, 08135349102, 08039209165, 09011002705</a>
                                 </p>
                             </div>
                         </div>
@@ -140,7 +140,7 @@ const Contact = () => {
                 </div>
             </div>
         </section>
-
+        </div>
     <RegisterFooter/>
 
     <Toaster/>

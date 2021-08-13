@@ -1,0 +1,91 @@
+/*********************************
+            Contact Page
+*********************************/
+.contact{
+    .contact-info__card {
+        background: var(--color-white);
+        border-radius: 5px;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        -webkit-box-shadow: 0 2px 2.8rem 0 rgba(0, 0, 0, 0.08);
+        box-shadow: 0 2px 2.8rem 0 rgba(0, 0, 0, 0.08);
+        padding: 3rem;
+    }
+
+    .contact-info__card:hover .icon-wrap--grey {
+        background: var(--color-secondary);
+        color: var(--color-white);
+    }
+
+    .contact-info__card .icon-wrap--grey {
+        background: var(--color-grey-light-5);
+        color: var(--color-secondary);
+        font-size: 1.3rem;
+        margin-bottom: 1.2rem;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+    }
+
+    .contact-info__heading {
+        margin-bottom: 1.2rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+    }
+
+    .contact-info__card p a {
+        color: #6b6b84;
+    }
+
+    .contact-info__card p a:hover {
+        color: var(--color-secondary);
+        text-decoration: none;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        font-size: inherit;
+        padding: 2rem 1.5rem;
+    }
+
+    .contact-form .form-group {
+        margin-bottom: 2rem;
+    }
+
+    .contact-form .btn {
+        width: 100%;
+    }
+
+    .contact-map__map {
+        width: 100%;
+        height: 35rem;
+    }
+
+    .contact-details__icon-wrap i {
+        color: var(--color-secondary);
+    }
+
+
+    .contact-info__card .icon-wrap--grey {
+        background: rgb(250, 249, 249);
+        color: #009b9d;
+        font-size: 1.3rem;
+        margin-bottom: 1.2rem;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        border-radius:50px;
+        width:100px;
+        height:100px;
+    }
+
+    button{
+        background-color: #009b9d;
+        color:honeydew;
+        border:1px solid honeydew;
+    }
+    button:hover{
+        background-color: #0c6869;
+        color:honeydew;
+        border:1px solid honeydew;
+    }
+
+}
