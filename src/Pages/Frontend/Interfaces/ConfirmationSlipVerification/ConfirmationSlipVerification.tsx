@@ -20,7 +20,6 @@ const ConfirmationSlipVerification = () => {
 
   const onSubmit = handleSubmit((data:any) => {
     const hashRef:any = MD5(data.refId).toString();
-
     setLoader(true)
 
     switch (true) {

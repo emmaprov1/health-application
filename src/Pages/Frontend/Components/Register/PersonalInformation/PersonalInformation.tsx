@@ -9,6 +9,7 @@ import emptyAvarter from "./../../../../../Assets/images/user-empty-avatar.png";
 import country from './../../../../../Data/country.json'
 import "./PersonalInformation.scss"
 import MD5 from 'crypto-js/md5'
+import { AgeValidator } from '../../../../../Helpers'
 
 interface personalType {
   changeTab:(value: number) => void;
@@ -66,6 +67,11 @@ const PersonalInformation:FC<personalType> = (props) => {
       return element.fileType === type;
     }).length
   }
+  let dobLimitError = false
+  const bday = AgeValidator(dataOfBirth)
+  if (bday <= 17) {
+    dobLimitError = true
+  }
 
   // simple validation
   if (error.length === 0 &&
@@ -74,6 +80,7 @@ const PersonalInformation:FC<personalType> = (props) => {
     jobRole !== "" &&
     firstname !== "" &&
     dataOfBirth !== "" &&
+    AgeValidator(dataOfBirth) < 18 &&
     phoneNo !== "" &&
     email !== "" &&
     gender !== "" &&
@@ -414,6 +421,8 @@ const PersonalInformation:FC<personalType> = (props) => {
               />
               <div className="register--error text-danger">
                   {props.errors.dataOfBirth && props.errors.dataOfBirth.message}
+                  {dobLimitError && 'Age cannot be less than 18yrs'}
+
               </div>
             </div>
 

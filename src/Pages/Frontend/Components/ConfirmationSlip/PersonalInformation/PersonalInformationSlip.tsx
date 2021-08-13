@@ -19,7 +19,7 @@ const PersonalInformationSlip:FC<propsType> = ({ value, disable }) => {
     gender,
     stateOfOrigin,
     addressOfOrigin,
-    dateOfBirth,
+    dataOfBirth,
     stateOfResidence,
     addressOfResidence,
     lgaOfResidence,
@@ -37,7 +37,7 @@ const PersonalInformationSlip:FC<propsType> = ({ value, disable }) => {
     relationshipWithNextOfKin,
     placeOfBirth
   } = value
-
+  console.log(value)
   const stateOfResidenceName:any = state[2].data?.filter((obj:any) => {
     return obj.id === stateOfResidence?.toString()
   })[0]?.name
@@ -122,7 +122,7 @@ const PersonalInformationSlip:FC<propsType> = ({ value, disable }) => {
 
                 <div className="col-md-6 form-group">
                     <label> Date of Birth</label>
-                    <input type="text" name="" className="form-control rounded-0" value={dateOfBirth}/>
+                    <input type="text" name="" className="form-control rounded-0" value={dataOfBirth}/>
                 </div>
 
                 <div className="col-md-6 form-group">
@@ -219,7 +219,7 @@ const PersonalInformationSlip:FC<propsType> = ({ value, disable }) => {
             Marital status
             </label>
             <br />
-            <select
+            <input
               className="form-control"
               id="maritalStatus" value={maritalStatus}
             />
@@ -230,7 +230,7 @@ const PersonalInformationSlip:FC<propsType> = ({ value, disable }) => {
             Nationality
             </label>
             <br />
-            <select
+            <input
               className="form-control"
               id="nationality" value={nationality}
               />

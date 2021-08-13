@@ -31,7 +31,7 @@ const RegisterHeader = () => {
                         <a className="nav-link" href="/#/slip/nin/verification">Print slip</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Contact</a>
+                        <a className="nav-link" href="/#/contact">Contact</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="#">Login</a>

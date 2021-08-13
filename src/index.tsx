@@ -7,8 +7,9 @@ import reportWebVitals from './reportWebVitals';
 import Store from './Storage/Store';
 import { createHashHistory } from "history";
 import { ConfirmationSlip, ConfirmationSlipVerification, Dashboard, OfficerRecords, ForgotPassword, Home, Login, OfficerRecordsSingle, Register } from './Pages/Frontend/Interfaces';
-import { Wrapper, WrapperFront } from './Pages';
+import { Wrapper } from './Pages';
 import './index.scss'
+import Contact from './Pages/Frontend/Interfaces/Contact/Contact';
 const history = createHashHistory();
 
 const app = (
@@ -18,15 +19,12 @@ const app = (
       <Router history={history}>
           <Route exact path="/login" component={Login}></Route>
           <Route exact path="/register" component={Register}></Route>
-          <Route exact path="/" component={Register}></Route>
+          <Route exact path="/contact" component={Contact}></Route>
+          <Route exact path="/" component={Home}></Route>
           <Route exact path="/slip/:refid" component={ConfirmationSlip}></Route>
           <Route exact path="/slip/nin/verification" component={ConfirmationSlipVerification}></Route>
           <Route exact path="/forgot-password" component={ForgotPassword}></Route>
-          <Route exact path="/home">
-            <WrapperFront>
-              <Home/>
-            </WrapperFront>
-          </Route>
+
           <Route exact path="/dashboard">
             <Wrapper>
               <Dashboard/>
