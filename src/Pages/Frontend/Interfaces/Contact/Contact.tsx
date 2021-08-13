@@ -19,7 +19,7 @@ const Contact = () => {
     setSubmited(!submited)
 
     console.log("form data", data)
-    await emailjs.sendForm('service_2g20o67', 'service_2g20o67', data, 'user_QFZBAx6OtbZmcE17k4qh  ')
+    await emailjs.sendForm('service_2g20o67', 'template_wb2k1k6', data, 'user_QFZBAx6OtbZmcE17k4qh')
       .then((result) => {
         setLoader(false)
         console.log(result.text)
@@ -123,7 +123,7 @@ const Contact = () => {
                                     <div className="text-danger"> {errors.message && errors.message.message} </div>
                                 </div>
 
-                                <button type="submit" className="btn btn-outline-primary info btn--primary-light">
+                                <button type="submit" className="btn btn--default info btn--primary-light">
                                     Submit
                                     {submited && (<span className="spinner-border spinner-border-md" role="status" aria-hidden="true"></span>)}
                                 </button>
